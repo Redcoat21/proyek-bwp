@@ -1,6 +1,7 @@
 import './bootstrap';
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
+
 // @ts-ignore
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import type { DefineComponent } from "vue";

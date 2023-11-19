@@ -13,10 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/vue', function () {
-    return \Inertia\Inertia::render('Hello');
-});
+Route::get('/', fn() => \Inertia\Inertia::render('LandingPage'))->name('home');

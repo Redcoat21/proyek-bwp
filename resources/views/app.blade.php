@@ -8,6 +8,7 @@
     <title>Document</title>
     @routes
     @vite('resources/js/app.ts')
+    @vite('resources/css/app.css')
     @inertiaHead
 </head>
 <body>
