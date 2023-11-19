@@ -1,14 +1,14 @@
 <script lang="ts" setup>
     import route from "ziggy-js";
     import Auth from "@/Pages/Layouts/Auth.vue";
-    import { toggleFormVisibility } from '../formVisibility';
+    import { toggleFormVisibility, formVisibility } from '../formVisibility';
 </script>
 
 <template>
     <header class="flex bg-neutral-100">
-        <button v-on:click="toggleFormVisibility" class="text-4xl font-semibold text-blue-600 p-2">
-
-        </button>
+        <a :href="route('home')" class="text-4xl font-semibold text-blue-600 p-2">
+            RuangDosen
+        </a>
         <form action="" method="">
             <div class="flex p-2">
                 <label for="searchBar"></label>
@@ -25,7 +25,7 @@
             </button>
         </div>
         <div class="grow flex justify-end my-auto">
-            <button class="text-white bg-blue-600 rounded-lg py-3 px-4 my-auto font-semibold hover:bg-blue-900">
+            <button @click="toggleFormVisibility" class="text-white bg-blue-600 rounded-lg py-3 px-4 my-auto font-semibold hover:bg-blue-900">
                 Login
             </button>
         </div>
