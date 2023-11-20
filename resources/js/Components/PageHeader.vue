@@ -16,7 +16,7 @@ import Button from "@/Components/Button.vue";
         <div class="flex items-center grow">
             <form action="">
                 <div class="flex p-2">
-                    <TextInput input-type="text" id="searchBar" />
+                    <TextInput input-type="text" id="searchBar" placeholder="Apa yang ingin anda cari?" />
                     <button class="grow bg-blue-600">
                         <img src="/icon/search.svg" alt="search" class="w-9 h-9 p-1.5">
                     </button>
@@ -28,10 +28,7 @@ import Button from "@/Components/Button.vue";
             This is supposed to be a dropdown
         </div>
         <div class="my-auto mx-2">
-<!--            TODO: Add Login Button and Profile Button -->
-            <Button class="hover:bg-blue-900 text-white">
-                Login
-            </Button>
+            <slot name="authButton"></slot>
         </div>
     </Header>
 </template>
