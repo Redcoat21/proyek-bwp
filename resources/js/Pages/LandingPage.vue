@@ -1,10 +1,9 @@
-<script lang="ts" setup>
-import Header from "@/Pages/Components/Header.vue";
-import Auth from "@/Pages/Layouts/Auth.vue";
-
+<script setup>
+    import ApplicationLogo from "@/Components/ApplicationLogo.vue";
+    import PageHeader from "@/Components/PageHeader.vue";
+    import TextInput from "@/Components/TextInput.vue";
 </script>
 
 <template>
-    <Header />
-    <Auth title="login"></Auth>
+    <PageHeader />
 </template>
