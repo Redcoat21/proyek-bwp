@@ -15,9 +15,9 @@
         <div>
             <div class="flex">
                 <TextBox type="text" placeholder="Mau belajar apa kali ini?" input-class="p-1.5" />
-                <div class="bg-coursera-blue grow">
+                <button class="bg-coursera-blue grow">
                     <img src="/icon/search.svg" alt="search" class="w-10 h-10 p-1.5">
-                </div>
+                </button>
             </div>
         </div>
         <div class="grow flex justify-end mx-3">

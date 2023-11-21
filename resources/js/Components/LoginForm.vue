@@ -5,7 +5,7 @@ import {useForm} from "@inertiajs/vue3";
 import CourseraButton from "@/Components/CourseraButton.vue";
 
 const form = useForm({
-    email: '',
+    username: '',
     password: ''
 });
 
@@ -16,13 +16,13 @@ const form = useForm({
         <form action="">
             <div class="my-1 px-2">
                 <TextBox
-                    v-on:model-changed="args => { form.email = args }"
-                    type="email"
-                    placeholder="nama@gmail.com"
-                    label="EMAIL"
+                    v-on:model-changed="args => { form.username = args }"
+                    type="text"
+                    placeholder="Masukkan username anda"
+                    label="USERNAME"
                     label-class="block text-sm my-2"
                     input-class="p-1.5 border w-full"
-                    :binding="form.email"
+                    :binding="form.username"
                 />
             </div>
             <div class="my-1 px-2">

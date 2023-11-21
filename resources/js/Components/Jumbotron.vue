@@ -4,6 +4,7 @@
 
 <template>
     <div class="bg-[url(/public/asset/jumbotron.jpg)] bg-bottom h-96">
-        a
+        <slot />
     </div>
 </template>
+

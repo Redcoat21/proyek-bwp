@@ -11,8 +11,6 @@ const showForm = ref(false);
 
 function toggleShowForm() {
     showForm.value = !showForm.value;
-
-    console.log(showForm);
 }
 </script>
 
@@ -27,9 +25,31 @@ function toggleShowForm() {
     <ModalOverlay v-on:close-button-clicked="toggleShowForm" v-if="showForm">
         <AuthenticationLayout :is-login-form=true></AuthenticationLayout>
     </ModalOverlay>
-    <main class="z-10">
+    <main>
         <article>
-            <Jumbotron></Jumbotron>
+            <Jumbotron>
+                <div class="flex flex-col items-center justify-center h-full">
+                    <div>
+                        <h1 class="text-5xl font-semibold my-2">Belajar dimana saja dan kapan saja</h1>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-semibold my-2">Dengan pengajar professional setara dengan Dosen Universitas</h1>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-semibold my-2">Dilengkapi dengan berbagai macam topik menarik</h1>
+                    </div>
+                </div>
+            </Jumbotron>
+        </article>
+        <article>
+            <section class="flex justify-center">
+                <h1 class="font-semibold text-coursera-blue text-4xl">Our Top Lecturer</h1>
+            </section>
+            <section class="flex">
+                <div></div>
+                <div></div>
+                <div></div>
+            </section>
         </article>
     </main>
 </template>
