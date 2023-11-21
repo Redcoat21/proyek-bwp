@@ -1,20 +1,20 @@
-<script lang="ts" setup>
+<script setup>
     import { onMounted, ref, watch } from 'vue';
-    const props = defineProps<{
-        identifier?: string,
-        type: string,
-        label?: string,
-        placeholder?: string,
-        inputClass?: string,
-        labelClass?: string,
-        labelBlock?: boolean,
-        binding?: any
-    }>();
+    const props = defineProps({
+        identifier: String,
+        type: String,
+        label: String,
+        placeholder: String,
+        inputClass: String,
+        labelClass: String,
+        labelBlock: Boolean,
+        binding: String
+    });
 
     const model = ref(props.binding);
     const emit = defineEmits(['model-changed', 'focus-in', 'focus-out']);
 
-    function updateBinding(value: any) {
+    function updateBinding(value) {
         emit('model-changed', value);
     }
 </script>

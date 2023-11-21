@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     @routes
-    @vite(['resources/js/app.ts', 'resources/css/app.css'])
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
     @inertiaHead
 </head>
 <body>

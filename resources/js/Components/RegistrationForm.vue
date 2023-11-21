@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
 
 import TextBox from "@/Components/TextBox.vue";
 import { useForm } from "@inertiajs/vue3";

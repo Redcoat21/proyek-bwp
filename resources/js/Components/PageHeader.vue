@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<script setup>
     import { Link } from '@inertiajs/vue3';
     import route from "ziggy-js";
     import TextBox from "@/Components/TextBox.vue";

@@ -1,14 +1,18 @@
-<script lang="ts" setup>
+<script setup>
 
 import PageHeader from "@/Components/PageHeader.vue";
 import CourseraButton from "@/Components/CourseraButton.vue";
 import AuthenticationLayout from "@/Layouts/AuthenticationLayout.vue";
 import { ref } from 'vue';
+import Jumbotron from "@/Components/Jumbotron.vue";
+import ModalOverlay from "@/Components/ModalOverlay.vue";
 
 const showForm = ref(false);
 
 function toggleShowForm() {
     showForm.value = !showForm.value;
+
+    console.log(showForm);
 }
 </script>
 
@@ -20,5 +24,12 @@ function toggleShowForm() {
             </CourseraButton>
         </template>
     </PageHeader>
-    <AuthenticationLayout v-on:close-button-clicked="toggleShowForm" v-if="showForm" :is-login-form=true></AuthenticationLayout>
+    <ModalOverlay v-on:close-button-clicked="toggleShowForm" v-if="showForm">
+        <AuthenticationLayout :is-login-form=true></AuthenticationLayout>
+    </ModalOverlay>
+    <main class="z-10">
+        <article>
+            <Jumbotron></Jumbotron>
+        </article>
+    </main>
 </template>
