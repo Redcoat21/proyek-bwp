@@ -18,6 +18,7 @@ function togglePasswordStrengthChecker() {
     passwordStrengthChecker.value = !passwordStrengthChecker.value;
 }
 
+const passwordStrength = ref(0);
 // Return 1 for weak
 // Return 2 for moderate
 // Return 3 for strong
@@ -25,18 +26,16 @@ function checkPasswordStrength() {
     const password = form.password;
 
     if(password.length < 5) {
-        return 1;
+        passwordStrength.value = 1;
+    }
+    else if(password.length < 10) {
+        passwordStrength.value = 2;
+    }
+    else {
+        passwordStrength.value = 3;
     }
 
-    if(password.length < 10) {
-        return 2;
-    }
-
-    if(password.length >= 10) {
-        return 3;
-    }
-
-    return 0;
+    console.log(passwordStrength.value);
 }
 </script>
 
@@ -67,7 +66,7 @@ function checkPasswordStrength() {
             </div>
             <div class="my-1 px-2">
                 <TextBox
-                    v-on:model-changed="args => { form.password = args; }"
+                    v-on:model-changed="args => { form.password = args; checkPasswordStrength() }"
                     v-on:focus-in="togglePasswordStrengthChecker"
                     v-on:focus-out="togglePasswordStrengthChecker"
                     type="password"
@@ -80,27 +79,30 @@ function checkPasswordStrength() {
             </div>
             <section class="flex" v-if="passwordStrengthChecker">
                 <div
-                    class="h-2 w-1/3 bg-neutral-200 mx-2"
+                    class="h-2 w-1/3 mx-2"
                     :class="{
-                    'bg-red-600': checkPasswordStrength() == 1,
-                     'bg-yellow-600': checkPasswordStrength() == 2,
-                     'bg-green-600': checkPasswordStrength() == 3}"
+                    'bg-neutral-200': passwordStrength === 0,
+                    'bg-red-600': passwordStrength === 1,
+                     'bg-yellow-600': passwordStrength === 2,
+                     'bg-green-600': passwordStrength === 3}"
                 >
                 </div>
                 <div
-                    class="h-2 w-1/3 bg-neutral-200 mx-2"
+                    class="h-2 w-1/3 mx-2"
                     :class="{
-                     'bg-yellow-600': checkPasswordStrength() == 2,
-                     'bg-green-600': checkPasswordStrength() == 3}"></div>
+                    'bg-neutral-200': passwordStrength === 0,
+                     'bg-yellow-600': passwordStrength === 2,
+                     'bg-green-600': passwordStrength === 3}"></div>
                 <div
-                    class="h-2 w-1/3 bg-neutral-200 mx-2"
+                    class="h-2 w-1/3 mx-2"
                     :class="{
-                     'bg-green-600': checkPasswordStrength() == 3}"></div>
+                    'bg-neutral-200': passwordStrength === 0,
+                     'bg-green-600': passwordStrength === 3}"></div>
             </section>
             <section class="flex" v-if="passwordStrengthChecker">
-                <p class="text-red-600 mx-2" v-if="checkPasswordStrength() == 1">WEAK</p>
-                <p class="text-yellow-600 mx-2" v-if="checkPasswordStrength() == 2">MODERATE</p>
-                <p class="text-green-600 mx-2" v-if="checkPasswordStrength() == 3">STRONG!</p>
+                <p class="text-red-600 mx-2" v-if="passwordStrength === 1">WEAK</p>
+                <p class="text-yellow-600 mx-2" v-if="passwordStrength === 2">MODERATE</p>
+                <p class="text-green-600 mx-2" v-if="passwordStrength === 3">STRONG!</p>
             </section>
             <div class="my-1 px-2">
                 <TextBox
