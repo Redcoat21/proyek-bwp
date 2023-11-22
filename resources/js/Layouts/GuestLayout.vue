@@ -6,6 +6,8 @@ import AuthenticationLayout from "@/Layouts/AuthenticationLayout.vue";
 import { ref } from 'vue';
 import Jumbotron from "@/Components/Jumbotron.vue";
 import ModalOverlay from "@/Components/ModalOverlay.vue";
+import Card from "@/Components/Card.vue";
+import Footer from "@/Components/Footer.vue";
 
 const showForm = ref(false);
 
@@ -41,15 +43,30 @@ function toggleShowForm() {
                 </div>
             </Jumbotron>
         </article>
-        <article>
+        <article class="grow">
             <section class="flex justify-center">
-                <h1 class="font-semibold text-coursera-blue text-4xl">Our Top Lecturer</h1>
+                <h1 class="font-semibold text-coursera-blue text-4xl my-7">Our Top Lecturer</h1>
             </section>
             <section class="flex">
-                <div></div>
+                <Card :borderless="false">
+                    <template #cardImage>
+                        <div class="h-52 w-52 rounded-full bg-green-300">
+                            <img src="" alt="">
+                        </div>
+                    </template>
+                    <template #cardContent>
+                        <div>
+                            <h1 class="text-coursera-blue text-2xl font-semibold break-all">Ahmad Bambang Cecep S.Mat, M.Mat</h1>
+                        </div>
+                    </template>
+                </Card>
                 <div></div>
                 <div></div>
             </section>
         </article>
+        <article class="grow">
+
+        </article>
     </main>
+    <Footer />
 </template>

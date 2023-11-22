@@ -46,7 +46,7 @@
                 @focusout="$emit('focus-out')"
             >
             <button @click.prevent="toggleEye" v-if="props.hasEye">
-                <img :src="url" alt="" class="w-10 h-10">
+                <img :src="url" alt="" class="w-7 h-7">
             </button>
         </div>
 </template>
