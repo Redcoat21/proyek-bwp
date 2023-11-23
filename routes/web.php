@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PageController::class, 'showHome'])->name('home');
+
+Route::prefix('/auth')->group(function () {
+    Route::post('/login', [AuthController::class, 'validateLoginInput'])->name('auth.login');
+});
