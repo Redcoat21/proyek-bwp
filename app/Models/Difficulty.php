@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Difficulty extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'username';
-    public $keyType = 'string';
-    public $incrementing = false;
+    protected $primaryKey = 'id';
+    public $keyType = 'int';
+    public $incrementing = true;
 }
