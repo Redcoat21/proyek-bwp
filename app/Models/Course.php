@@ -12,4 +12,6 @@ class Course extends Model
     protected $primaryKey = 'id';
     public $keyType = 'int';
     public $incrementing = true;
+    public $table = 'course';
+    public $timestamps = false;
 }

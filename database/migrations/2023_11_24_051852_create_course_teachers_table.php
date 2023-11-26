@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('course_teachers', function (Blueprint $table) {
+        Schema::create('certificate', function (Blueprint $table) {
             $table->string('username', 300);
             $table->unsignedInteger('course');
 
@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('course')->references('id')->on('course');
 
             $table->primary(['username', 'course']);
+            $table->date('start');
         });
     }
 

@@ -19,7 +19,6 @@ return new class extends Migration
             $table->foreign('course')->references('id')->on('course');
 
             $table->primary(['username', 'course']);
-            $table->date('start');
         });
     }
 

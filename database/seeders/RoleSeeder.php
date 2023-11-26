@@ -14,13 +14,13 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        $roleData = ['Admin', 'Customer', 'Teacher'];
-
-        $roleId = ['ADM', 'CUS', 'TEA'];
+        $roles = array(
+            array('id' => 'ADM', 'name' => 'Admin'),
+            array('id' => 'CUS', 'name' => 'Customer'),
+            array('id' => 'TEA', 'name' => 'Teacher'),
+        );
 
         Role::factory()
-            ->count(count($roleData))
-            ->sequence(fn (Sequence $sequence) => ['id' => $roleId[$sequence->index], 'name' => $roleData[$sequence->index]])
-            ->create();
+            ->createMany($roles);
     }
 }

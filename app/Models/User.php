@@ -12,4 +12,6 @@ class User extends Model
     protected $primaryKey = 'username';
     public $keyType = 'string';
     public $incrementing = false;
+    public $table = 'user';
+    public $timestamps = false;
 }

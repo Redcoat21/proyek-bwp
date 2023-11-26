@@ -11,5 +11,7 @@ class CourseTaken extends Model
 
     protected $primaryKey = ['username', 'course'];
     protected $keyType = ['string', 'int'];
-
+    public $table = 'course_taken';
+    public $timestamps = false;
+    public $incrementing = false;
 }
