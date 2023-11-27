@@ -18,15 +18,16 @@ class AuthController extends Controller
             'nama.required' => 'Username harus diisi.',
             'password.required' => 'Pasword harus diisi.'
         ]);
+
         $username = $request -> username;
         $password = $request -> password;
         $user = User::find($username);
-        if($user){
 
+        if($user){
             if(Hash::check($password, $user->password)){
                 return Inertia::render('Welcome');
             }
-            return Inertia::render('Home');
+            return to_route('welcome')->with('msg', 'wrong');
         }
         else{
             return Inertia::render('Home');
@@ -54,6 +55,7 @@ class AuthController extends Controller
         ]);
         $username = $request -> username;
         $user = User::find($username);
+
         if($user){
             return Inertia::render('Home'); //kembar
         }

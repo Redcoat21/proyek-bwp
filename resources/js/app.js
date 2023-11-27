@@ -1,19 +1,12 @@
-import './bootstrap';
-import { createApp, h } from 'vue'
-import { createInertiaApp } from '@inertiajs/vue3'
+import "@protonemedia/laravel-splade/dist/style.css";
 
-import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
-import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
+import { createApp } from "vue/dist/vue.esm-bundler.js";
+import { renderSpladeApp, SpladePlugin } from '@protonemedia/laravel-splade'
 
-createInertiaApp({
-    resolve: (name) => resolvePageComponent(
-        `./Pages/${name}.vue`,
-        import.meta.glob("./Pages/**/*.vue")
-    ),
-    setup({ el, App, props, plugin }) {
-        createApp({ render: () => h(App, props) })
-            .use(plugin)
-            .use(ZiggyVue)
-            .mount(el)
-    },
+const el = document.getElementById('app')
+
+createApp({
+    render: renderSpladeApp({ el })
 })
+    .use(SpladePlugin)
+    .mount(el);

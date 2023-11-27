@@ -10,6 +10,5 @@ const user = computed(() => page.props.auth.user);
 </script>
 
 <template>
-    Logged in as {{ user }}
     <GuestLayout />
 </template>

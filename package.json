@@ -6,17 +6,11 @@
         "build": "vite build"
     },
     "devDependencies": {
-        "@vitejs/plugin-vue": "^4.5.0",
-        "@vue/tsconfig": "^0.4.0",
         "autoprefixer": "^10.4.16",
         "axios": "^1.6.1",
-        "check-password-strength": "^2.0.7",
         "laravel-vite-plugin": "^0.8.0",
         "postcss": "^8.4.31",
         "tailwindcss": "^3.3.5",
         "vite": "^4.0.0"
-    },
-    "dependencies": {
-        "@inertiajs/vue3": "^1.0.14"
     }
 }
