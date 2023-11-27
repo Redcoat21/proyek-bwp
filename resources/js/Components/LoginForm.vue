@@ -17,7 +17,7 @@ const form = useForm({
 
 <template>
     <div class="w-1/2">
-        <form>
+        <form @submit.prevent="form.post(route('auth.login'))">
             <div class="my-1 px-2">
                 <TextBox
                     v-on:model-changed="args => { form.username = args }"
@@ -45,7 +45,7 @@ const form = useForm({
                 <p class="text-red-600">{{ form.errors.password }}</p>
             </div>
             <div class="my-1 px-2">
-                <CourseraButton @click.prevent="form.post(route('auth.login'))" class="w-full hover:bg-blue-900 my-2">
+                <CourseraButton class="w-full hover:bg-blue-900 my-2">
                     Login
                 </CourseraButton>
             </div>
