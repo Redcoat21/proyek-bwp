@@ -12,3 +12,5 @@
     (composer run-script seed-db-fresh) ATAU (php artisan migrate:fresh --seed)
 - Kalau pengen seed semua tabel
     (composer run-script seed-db) ATAU (php artisan db:seed)
+
+( Kalau ada error (primary key constraint error) saat seeding silahkan di run ulang lagi sampai gaada error :D )
