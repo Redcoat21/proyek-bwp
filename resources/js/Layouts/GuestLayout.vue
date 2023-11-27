@@ -19,7 +19,7 @@ function toggleShowForm() {
 <template>
     <PageHeader>
         <template #courseraButton>
-            <CourseraButton v-on:click.prevent="toggleShowForm" class="hover:bg-blue-900">
+            <CourseraButton @click.prevent="toggleShowForm" class="hover:bg-blue-900">
                 Login
             </CourseraButton>
         </template>
