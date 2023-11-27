@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('email', 300);
             $table->string('password', 300);
             $table->string('name', 300);
-            $table->boolean('status');
 
             $table->char('role', 3);
             $table->foreign('role')->references('id')->on('role');
