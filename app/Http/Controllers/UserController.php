@@ -8,17 +8,6 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    function addCus($username, $password, $email, $name){
-        $pass = Hash::make($password);
-        $newUser = new User();
-        $newUser->username = $username;
-        $newUser->name = $name;
-        $newUser->email = $email;
-        $newUser->password = $pass;
-        $newUser->role = 'CUS';
-        $res = $newUser->save();
-    }
-
     function addUser(string $username, string $password, string $email, string $name, string $role): void {
         $pass = Hash::make($password);
         $newUser = new User();
