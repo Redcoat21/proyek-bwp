@@ -19,25 +19,14 @@ class UserController extends Controller
         $res = $newUser->save();
     }
 
-    function addAdm($username, $password, $email, $name){
+    function addUser(string $username, string $password, string $email, string $name, string $role): void {
         $pass = Hash::make($password);
         $newUser = new User();
         $newUser->username = $username;
         $newUser->name = $name;
         $newUser->email = $email;
         $newUser->password = $pass;
-        $newUser->role = 'ADM';
-        $res = $newUser->save();
-    }
-
-    function addTea($username, $password, $email, $name){
-        $pass = Hash::make($password);
-        $newUser = new User();
-        $newUser->username = $username;
-        $newUser->name = $name;
-        $newUser->email = $email;
-        $newUser->password = $pass;
-        $newUser->role = 'TEA';
+        $newUser->role = $role;
         $res = $newUser->save();
     }
 }

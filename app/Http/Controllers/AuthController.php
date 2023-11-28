@@ -61,7 +61,7 @@ class AuthController extends Controller
         }
         else{
             $user = new UserController();
-            $user->addCus($request->username, $request->password, $request->email, $request->name);
+            $user->addUser($request->username, $request->password, $request->email, $request->name, 'CUS');
             return Inertia::render('Home');
         }
     }
