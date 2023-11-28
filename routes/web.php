@@ -20,7 +20,8 @@ Route::get('/counter', Counter::class);
 
 Route::prefix('/test')->group(function () {
     Route::get('/auth', fn () => view('temp.auth'))->name('login');
-    Route::post('/auth', [UserController::class, 'authenticateUser']);
+    Route::post('/auth', [AuthController::class, 'login']);
+    Route::post('/register', [AuthController::class, 'register']);
 });
 
 Route::middleware('auth')->group(function () {
