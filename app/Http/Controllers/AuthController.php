@@ -9,11 +9,15 @@ use Inertia\Inertia;
 
 class AuthController extends Controller
 {
+    public function login(Request $request)
+    {
+        $this->validateLoginInput($request);
+    }
     public function validateLoginInput(Request $request)
     {
         $request->validate([
-            'username' => 'required',
-            'password' => 'required'
+            'username' => 'bail|required',
+            'password' => 'bail|required'
         ], [
             'nama.required' => 'Username harus diisi.',
             'password.required' => 'Pasword harus diisi.'
@@ -25,12 +29,12 @@ class AuthController extends Controller
 
         if($user){
             if(Hash::check($password, $user->password)){
-                return Inertia::render('Welcome');
+                return view('hello');
             }
-            return to_route('welcome')->with('msg', 'wrong');
+            return view('hello');
         }
         else{
-            return Inertia::render('Home');
+            return view('hello');
         }
     }
 

@@ -16,3 +16,8 @@ use App\Livewire\Counter;
 */
 
 Route::get('/counter', Counter::class);
+
+Route::prefix('/test')->group(function () {
+    Route::get('/auth', fn () => view('temp.auth'));
+    Route::post('/auth', [AuthController::class, 'login']);
+});

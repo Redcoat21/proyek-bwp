@@ -18,4 +18,9 @@ class UserController extends Controller
         $newUser->role = $role;
         $res = $newUser->save();
     }
+
+    public function store(Request $request)
+    {
+
+    }
 }
