@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Model
+class User extends Authenticatable
 {
     use HasFactory;
 
@@ -14,4 +15,6 @@ class User extends Model
     public $incrementing = false;
     public $table = 'user';
     public $timestamps = false;
+
+    public $fillable = ['username', 'email', 'password', 'name', 'role'];
 }

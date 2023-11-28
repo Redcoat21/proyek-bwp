@@ -1,7 +1,7 @@
-<div>
-    <h1>{{ $count }}</h1>
+<div x-data="{ count: 0 }">
+    <h1 x-text="count">{{ $count }}</h1>
 
-    <button x-on:click="$wire.increment">+</button>
+    <button x-on:click="count++">+</button>
 
-    <button x-on:click="$wire.decrement">-</button>
+    <button x-on:click="count--">-</button>
 </div>

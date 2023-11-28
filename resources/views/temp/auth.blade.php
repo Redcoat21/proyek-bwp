@@ -7,6 +7,11 @@
     <title>Document</title>
 </head>
 <body>
+    <h1 style="color: red;">
+        @error('username')
+            {{ $message }}
+        @enderror
+    </h1>
     <h1>LOGIN</h1>
     <form action="/test/auth" method="POST">
         @csrf

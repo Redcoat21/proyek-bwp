@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Counter;
 /*
@@ -18,6 +19,10 @@ use App\Livewire\Counter;
 Route::get('/counter', Counter::class);
 
 Route::prefix('/test')->group(function () {
-    Route::get('/auth', fn () => view('temp.auth'));
-    Route::post('/auth', [AuthController::class, 'login']);
+    Route::get('/auth', fn () => view('temp.auth'))->name('login');
+    Route::post('/auth', [UserController::class, 'authenticateUser']);
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/home', fn () => "<h1>Helllo World</h1>")->name('home');
 });
