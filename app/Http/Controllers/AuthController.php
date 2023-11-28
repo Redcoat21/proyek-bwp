@@ -41,8 +41,7 @@ class AuthController extends Controller
     {
         $credentials = $this->validateRegisterInput($request);
 
-        dd($credentials);
-        $username = $request -> username;
+        $username = $credentials['username'];
         $user = User::find($username);
 
         if($user){
@@ -51,7 +50,7 @@ class AuthController extends Controller
         }
         else{
             $user = new UserController();
-            $user->create($request->username, $request->password, $request->email, $request->name, 'CUS');
+            $user->create($username, $credentials['password'], $credentials['email'], $request->name, 'CUS');
             return back()->with('success', 'User Registered succesfully!');
         }
     }

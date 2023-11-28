@@ -12,6 +12,9 @@
             {{ $error }}
         </h1>
     @endforeach
+    @if(Session::has('success'))
+        <h1 style="color: green;">{{ Session::get('success') }}</h1>
+    @endif
     <h1>LOGIN</h1>
     <form action="/test/auth" method="POST">
         @csrf
@@ -32,15 +35,15 @@
         @csrf
         <div>
             <label for="username">Username: </label>
-            <input type="text" name="username" id="username">
+            <input type="text" name="username" id="username" value="{{ old('username') }}">
         </div>
         <div>
             <label for="name">Name: </label>
-            <input type="text" name="name" id="name">
+            <input type="text" name="name" id="name" value="{{ old('name') }}">
         </div>
         <div>
             <label for="email">Email: </label>
-            <input type="text" name="email" id="email">
+            <input type="text" name="email" id="email" value="{{ old('email') }}">
         </div>
         <div>
             <label for="email">Password: </label>
