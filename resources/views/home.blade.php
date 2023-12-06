@@ -10,16 +10,16 @@
 <body>
     <nav class="bg-white border border-black-1000">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="{{ route('homeGuest') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <a href="{{ route('homeGuest') }}" class="flex items-center space-x-3">
                 <span class="self-center text-2xl font-semibold whitespace-nowrap">RuangDosen</span>
             </a>
             <div class="items-center justify-between flex w-auto" id="navbar-search">
-                <ul class="flex p-0 font-medium bg-gray-50 md:space-x-8 flex-row mt-0 bg-white">
+                <ul class="flex p-0 font-medium md:space-x-8 flex-row mt-0 bg-white">
                     <li>
-                        <a href="#" class="block bg-transparent text-blue-700 p-0">Home</a>
+                        <a href="#" class="block text-blue-700 bg-transparent p-0">Home</a>
                     </li>
                     <li>
-                        <a href="#" class="block text-gray-900 rounded hover:bg-transparent hover:text-blue-700 p-0">Courses</a>
+                        <a href="#" class="block text-gray-900 hover:bg-transparent hover:text-blue-700 p-0">Courses</a>
                     </li>
                 </ul>
             </div>
