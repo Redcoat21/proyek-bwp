@@ -10,16 +10,16 @@
 <body>
     <nav class="bg-white border border-black-1000">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="{{ route('homeGuest') }}" class="flex items-center space-x-3">
+            <a href="{{ route('homeGuest') }}" class="flex items-center space-x-3 text-blue-500">
                 <span class="self-center text-2xl font-semibold whitespace-nowrap">RuangDosen</span>
             </a>
             <div class="items-center justify-between flex w-auto" id="navbar-search">
                 <ul class="flex p-0 font-medium md:space-x-8 flex-row mt-0 bg-white">
                     <li>
-                        <a href="#" class="block text-blue-700 bg-transparent p-0">Home</a>
+                        <a href="#" class="block text-blue-600 bg-transparent p-0">Home</a>
                     </li>
                     <li>
-                        <a href="#" class="block text-gray-900 hover:bg-transparent hover:text-blue-700 p-0">Courses</a>
+                        <a href="#" class="block text-gray-900 hover:bg-transparent hover:text-blue-600 p-0">Courses</a>
                     </li>
                 </ul>
             </div>
@@ -34,7 +34,7 @@
                     <input type="text" id="search-navbar" class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Search...">
                 </div>
                 <div class="relative block my-2 mx-3">
-                    <a class="bg-blue-700 hover:bg-blue-900 text-white py-1 px-3 border border-blue-700 rounded">
+                    <a class="bg-blue-600 hover:bg-blue-800 text-white py-1 px-3 border border-blue-600 rounded">
                         Login
                     </a>
                 </div>
