@@ -16,7 +16,7 @@
             <div class="items-center justify-between flex w-auto" id="navbar-search">
                 <ul class="flex p-0 font-medium bg-gray-50 md:space-x-8 flex-row mt-0 bg-white">
                     <li>
-                        <a href="#" class="block text-red bg-transparent text-blue-700 p-0">Home</a>
+                        <a href="#" class="block bg-transparent text-blue-700 p-0">Home</a>
                     </li>
                     <li>
                         <a href="#" class="block text-gray-900 rounded hover:bg-transparent hover:text-blue-700 p-0">Courses</a>
