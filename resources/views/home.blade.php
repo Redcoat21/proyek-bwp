@@ -14,7 +14,7 @@
                 <span class="self-center text-2xl font-semibold whitespace-nowrap">RuangDosen</span>
             </a>
             <div class="items-center justify-between flex w-auto" id="navbar-search">
-                <ul class="flex p-0 font-medium md:space-x-8 flex-row mt-0 bg-white">
+                <ul class="flex p-0 font-medium space-x-8 flex-row mt-0 bg-white">
                     <li>
                         <a href="#" class="block text-blue-600 bg-transparent p-0">Home</a>
                     </li>
@@ -41,6 +41,16 @@
             </div>
         </div>
     </nav>
+
+    {{-- <section class="bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply"> --}}
+    {{-- <section class="bg-center bg-no-repeat bg-[url('{{ asset('asset/jumbotron.jpg') }}')] bg-gray-700 bg-blend-multiply"> --}}
+    <section class="bg-center bg-no-repeat bg-cover bg-gray-300 bg-blend-multiply relative overflow-hidden" style="background-image: url('{{ asset('asset/jumbotron.jpg') }}')">
+        <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
+            <h2 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Belajar dimana saja dan kapan saja</h2>
+            <p class="mb-8 text-lg font-normal text-gray-100 lg:text-xl sm:px-16 lg:px-48">Dengan Pengajar Professional setara dengan Dosen Universitas <br> dan <br> berbagai macam topik menarik</p>            <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
+            </div>
+        </div>
+    </section>
 
 </body>
 </html>
