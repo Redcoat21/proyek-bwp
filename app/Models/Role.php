@@ -2,24 +2,19 @@
 
 namespace App\Models;
 
-use Database\Factories\RoleFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Role extends Model
 {
     use HasFactory;
 
-    protected $table = 'role';
-    protected $primaryKey = 'id';
-    public $keyType = 'string';
-    public $incrementing = false;
     public $timestamps = false;
-    public $fillable = ['name'];
+    public $primaryKey = "id";
 
-    protected static function newFactory(): Factory
+    public function users(): BelongsTo
     {
-        return RoleFactory::new();
+        return $this->belongsTo(User::class, 'role');
     }
 }

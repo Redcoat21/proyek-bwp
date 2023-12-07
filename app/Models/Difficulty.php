@@ -4,13 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Difficulty extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'id';
-    public $keyType = 'int';
-    public $incrementing = true;
+
     public $timestamps = false;
-    public $table = 'difficulty';
+
+    public function courses(): BelongsTo
+    {
+        return $this->belongsTo(Course::class, 'difficulty', 'id');
+    }
 }

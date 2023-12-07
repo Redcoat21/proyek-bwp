@@ -4,14 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Category extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id';
-    protected $keyType = 'int';
-    public $incrementing = true;
-    public $table = 'category';
     public $timestamps = false;
+
+    public function courses(): BelongsTo
+    {
+        return $this->belongsTo(Course::class, 'category');
+    }
 }

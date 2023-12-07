@@ -91,7 +91,7 @@ return [
 
     /*
     |---------------------------------------------------------------------------
-    | Eloquent Model Binding
+    | Eloquent Course Binding
     |---------------------------------------------------------------------------
     |
     | Previous versions of Livewire supported binding directly to eloquent model

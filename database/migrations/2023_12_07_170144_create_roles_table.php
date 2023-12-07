@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('category', function (Blueprint $table) {
-            $table->unsignedTinyInteger('id')->autoIncrement();
-            $table->string('name', 100);
+        Schema::create('roles', function (Blueprint $table) {
+            $table->char('id', 3)->primary();
+            $table->string('name');
         });
     }
 
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('category');
+        Schema::dropIfExists('roles');
     }
 };

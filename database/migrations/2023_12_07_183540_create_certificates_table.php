@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('course_taken', function (Blueprint $table) {
-            $table->string('username', 300);
-            $table->unsignedInteger('course');
+        Schema::create('certificates', function (Blueprint $table) {
+            $table->id();
+            $table->string('student', 100);
+            $table->unsignedBigInteger('course');
 
-            $table->foreign('username')->references('username')->on('user');
-            $table->foreign('course')->references('id')->on('course');
-
-            $table->primary(['username', 'course']);
+            $table->foreign('student')->references('username')->on('users');
+            $table->foreign('course')->references('id')->on('courses');
         });
     }
 

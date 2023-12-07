@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\homeController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
+use App\Livewire\Counter;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,8 +17,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PageController::class, 'showHome'])->name('home');
+Route::get('/counter', Counter::class);
 
-Route::prefix('/auth')->group(function () {
-    Route::post('/login', [AuthController::class, 'validateLoginInput'])->name('auth.login');
+Route::get('/', [homeController::class, 'getHomeGuest'])->name('homeGuest');
+
+Route::prefix('/test')->group(function () {
+    Route::get('/auth', fn () => view('temp.auth'))->name('login');
+    Route::post('/auth', [AuthController::class, 'login']);
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/file', [\App\Http\Controllers\FileController::class, 'showFile']);
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/home', fn () => "<h1>Helllo World</h1>")->name('home');
+    Route::get('/file', fn () => view('temp.file'))->name('file');
 });

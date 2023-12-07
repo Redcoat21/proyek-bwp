@@ -17,8 +17,7 @@ class RoleFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => '',
-            'name' => ''
+            //
         ];
     }
 }

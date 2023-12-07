@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transaction', function (Blueprint $table) {
-            $table->unsignedInteger('id')->autoIncrement();
-            $table->unsignedInteger('course');
-            $table->foreign('course')->references('id')->on('course');
+        Schema::create('transactions', function (Blueprint $table) {
+            $table->id();
 
-            $table->string('username', 300);
-            $table->foreign('username')->references('username')->on('user');
+            $table->string('student', 100);
+            $table->unsignedBigInteger('course');
 
-            $table->timestamp('date');
+            $table->foreign('student')->references('username')->on('users');
+            $table->foreign('course')->references('id')->on('courses');
+
+            $table->timestamp('time');
         });
     }
 
