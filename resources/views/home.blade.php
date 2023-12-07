@@ -52,6 +52,9 @@
 
     <div class="flex justify-center my-5">
         <h1 class="text-4xl font-bold text-blue-600">Our Top Lecturer</h1>
+        <div class="grid grid-cols-3">
+            
+        </div>
     </div>
 </body>
 </html>
