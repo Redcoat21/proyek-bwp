@@ -16,7 +16,7 @@
             <div class="items-center justify-between flex w-auto" id="navbar-search">
                 <ul class="flex p-0 font-medium space-x-8 flex-row mt-0 bg-white">
                     <li>
-                        <a href="#" class="block text-blue-600 bg-transparent p-0">Home</a>
+                        <a href="{{ route('homeGuest') }}" class="block text-blue-600 bg-transparent p-0">Home</a>
                     </li>
                     <li>
                         <a href="#" class="block text-gray-900 hover:bg-transparent hover:text-blue-600 p-0">Courses</a>
@@ -42,8 +42,6 @@
         </div>
     </nav>
 
-    {{-- <section class="bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply"> --}}
-    {{-- <section class="bg-center bg-no-repeat bg-[url('{{ asset('asset/jumbotron.jpg') }}')] bg-gray-700 bg-blend-multiply"> --}}
     <section class="bg-center bg-no-repeat bg-cover bg-gray-300 bg-blend-multiply relative overflow-hidden" style="background-image: url('{{ asset('asset/jumbotron.jpg') }}')">
         <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
             <h2 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Belajar dimana saja dan kapan saja</h2>
@@ -52,5 +50,8 @@
         </div>
     </section>
 
+    <div class="flex justify-center my-5">
+        <h1 class="text-4xl font-bold text-blue-600">Our Top Lecturer</h1>
+    </div>
 </body>
 </html>
