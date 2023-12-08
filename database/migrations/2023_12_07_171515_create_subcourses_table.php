@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('name', 200);
             $table->string('description', 500);
             $table->unsignedBigInteger('course');
-            $table->json('data');
+            $table->json('data')->nullable();
 
             $table->foreign('course')->references('id')->on('courses');
         });
