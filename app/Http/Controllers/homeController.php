@@ -11,4 +11,15 @@ class homeController extends Controller
     {
         return view('home');
     }
+
+    public function getLogin(){
+        return view('login');
+    }
+
+    public function postLogin(Request $request){
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+    }
 }
