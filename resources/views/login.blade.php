@@ -87,7 +87,7 @@ Login
         </div>
     </div>
 
-    <script>
+    <script type="module">
         $(document).ready(function() {
             $('#toRegister').on('click', function() {
                 $('#login-section').addClass("hidden");
