@@ -77,6 +77,21 @@ Login
                       <input id="password" name="password" type="password" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Masukkan kata sandi Anda">
                     </div>
                 </div>
+
+                <div class="col-span-2 col-start-3 mt-3">
+                    <label for="sebagai" class="block text-sm font-medium leading-6 text-gray-900">Sebagai</label>
+                    <div class="flex">
+                        <div class="flex items-center me-4">
+                            <input id="student" type="radio" value="student" name="inline-radio-group" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300">
+                            <label for="student" class="ms-2 text-sm font-medium text-gray-900">Student</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input id="lecturer" type="radio" value="lecturer" name="inline-radio-group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300">
+                            <label for="lecturer" class="ms-2 text-sm font-medium text-gray-900">Lecturer</label>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-span-2 col-start-3 mb-1 mt-10">
                     <button type="submit" id="register" name="register" class="w-full text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">Register</button>
                 </div>
