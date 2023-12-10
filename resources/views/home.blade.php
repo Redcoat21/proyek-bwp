@@ -5,6 +5,10 @@ Home
 @endsection
 
 @section('isi')
+    {{--    Penanda usernya berhasil login atau tidak --}}
+    @if(auth()->user())
+        {{ auth()->user()->username }}
+    @endif
     <section class="bg-center bg-no-repeat bg-cover bg-gray-300 bg-blend-multiply relative overflow-hidden" style="background-image: url('{{ asset('asset/jumbotron.jpg') }}')">
         <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
             <h2 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Belajar dimana saja dan kapan saja</h2>

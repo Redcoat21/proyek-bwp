@@ -5,6 +5,7 @@ Login
 @endsection
 
 @section('content')
+    {{--    Tampilan ERROR Message dan juga message sukses register --}}
     @foreach($errors->all() as $error)
         <p class="text-red-500">{{ $error }}</p>
     @endforeach
