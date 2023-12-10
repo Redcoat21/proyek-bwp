@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
+use App\Models\Difficulty;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +19,16 @@ class CourseFactory extends Factory
      */
     public function definition(): array
     {
+        $lecturers = User::where('role', 'LEC')->pluck('username');
+        $difficulties = Difficulty::all()->pluck('id');
+        $categories = Category::all()->pluck('id');
+
         return [
-            //
+            'name' => fake()->word(),
+            'status' => fake()->randomNumber(1),
+            'lecturer' => fake()->randomElement($lecturers),
+            'difficulty' => fake()->randomElement($difficulties),
+            'category' => fake()->randomElement($categories)
         ];
     }
 }

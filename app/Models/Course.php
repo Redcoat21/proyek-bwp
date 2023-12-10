@@ -33,12 +33,12 @@ class Course extends Model
 
     public function lecturers(): HasOne
     {
-        return $this->hasOne(User::class, 'lecturer');
+        return $this->hasOne(User::class, 'lecturer')->where('role', '=', 'LEC');
     }
 
     public function customers(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'transactions', 'course', 'student', 'id', 'username');
+        return $this->belongsToMany(User::class, 'transactions', 'course', 'student', 'id', 'username')->where('role', '=', 'STU');
     }
 
     public function graduates(): BelongsToMany
