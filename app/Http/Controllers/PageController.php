@@ -15,4 +15,9 @@ class PageController extends Controller
     {
         return view('login');
     }
+
+    public function showHome(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
+    {
+        return view('home');
+    }
 }

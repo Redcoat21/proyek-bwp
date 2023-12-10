@@ -3,9 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Livewire\Counter;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,15 +15,12 @@ use App\Livewire\Counter;
 |
 */
 
-Route::get('/counter', Counter::class);
-
 Route::prefix('auth')->group(function () {
     Route::get('/', [PageController::class, 'showAuthPage'])->name('auth.get');
+    Route::post('/', [AuthController::class, 'process'])->name('auth.post');
 });
 
-Route::get('/', [homeController::class, 'getHomeGuest'])->name('homeGuest');
-Route::get('/login', [homeController::class, 'getLogin'])->name('loginFront');
-Route::post('/login', [homeController::class, 'postLogin']);
+Route::get('/', [PageController::class, 'showHome'])->name('home.get');
 
 Route::prefix('/test')->group(function () {
     Route::get('/auth', fn () => view('temp.auth'))->name('login');
@@ -35,6 +30,5 @@ Route::prefix('/test')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/home', fn () => "<h1>Helllo World</h1>")->name('home');
     Route::get('/file', fn () => view('temp.file'))->name('file');
 });

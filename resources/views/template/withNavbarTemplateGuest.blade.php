@@ -4,13 +4,13 @@
 {{-- Navbar nanti search barnya harus bisa di show sama hide supaya pas waktu gak mau dishow gak perlu dishow --}}
     <nav class="bg-white border border-black-1000">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="{{ route('homeGuest') }}" class="flex items-center space-x-3 text-blue-500">
+            <a href="{{ route('home.get') }}" class="flex items-center space-x-3 text-blue-500">
                 <span class="self-center text-2xl font-semibold whitespace-nowrap">RuangDosen</span>
             </a>
             <div class="items-center justify-between flex w-auto" id="navbar-search">
                 <ul class="flex p-0 font-medium space-x-8 flex-row mt-0 bg-white">
                     <li>
-                        <a href="{{ route('homeGuest') }}" class="block text-blue-600 bg-transparent p-0">Home</a>
+                        <a href="{{ route('home.get') }}" class="block text-blue-600 bg-transparent p-0">Home</a>
                     </li>
                     <li>
                         <a href="#" class="block text-gray-900 hover:bg-transparent hover:text-blue-600 p-0">Courses</a>
