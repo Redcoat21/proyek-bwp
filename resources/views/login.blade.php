@@ -24,9 +24,8 @@ Login
             LOGIN
         </div>
         <div class="mt-2 grid gap-x-6 gap-y-8 grid-cols-6">
-            <form action="" method="post" class="col-span-2 col-start-3 mt-2">
+            <form action="{{ route('auth.post') }}" method="post" class="col-span-2 col-start-3 mt-2">
                 @csrf
-
                 <input type="hidden" name="type" value="login">
 
                 <div class="col-span-2 col-start-3 mt-3">
@@ -59,9 +58,8 @@ Login
             REGISTER
         </div>
         <div class="mt-2 grid gap-x-6 gap-y-8 grid-cols-6">
-            <form action="" method="post" class="col-span-2 col-start-3 mt-2">
+            <form action="{{ route('auth.post') }}" method="post" class="col-span-2 col-start-3 mt-2">
                 @csrf
-
                 <input type="hidden" name="type" value="register">
 
                 <div class="col-span-2 col-start-3 mt-3">
