@@ -18,7 +18,7 @@ Home
             <h1 class="text-4xl font-bold text-blue-600">Our Top Lecturer</h1>
         </div>
         <div class="grid grid-cols-3 mb-5">
-            <div class="place-self-center text-center">
+            <div class="place-self-center text-center w-3/5">
                 <div class="flex flex-col items-center">
                     <div class="flex justify-center">
                         <img class="rounded-full w-3/4 h-auto" src="{{ asset('asset/male_lecturer.jpg') }}">
@@ -30,7 +30,7 @@ Home
                     </a>
                 </div>
             </div>
-            <div class="place-self-center text-center">
+            <div class="place-self-center text-center w-3/5">
                 <div class="flex flex-col items-center">
                     <div class="flex justify-center">
                         <img class="rounded-full w-3/4 h-auto" src="{{ asset('asset/old_lecturer.jpg') }}">
@@ -42,7 +42,7 @@ Home
                     </a>
                 </div>
             </div>
-            <div class="place-self-center text-center">
+            <div class="place-self-center text-center w-3/5">
                 <div class="flex justify-center">
                     <img class="rounded-full w-3/4 h-auto" src="{{ asset('asset/female_lecturer.jpg') }}">
                 </div>
@@ -61,9 +61,13 @@ Home
         </div>
         <div class="grid grid-cols-3 mb-5 justify-items-center">
 
-            <a href="#" class="w-3/4 bg-white border border-gray-200 rounded-lg">
+            <a href="#" class="w-3/5 bg-white border border-gray-200 rounded-lg">
                 <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
                 <div class="p-5">
+                    <div class="flex items-center space-x-3">
+                        <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
+                        <span class="self-center text-xs font-normal whitespace-nowrap">AWS Educate</span>
+                    </div>
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Cloud Engineering for Beginners</h5>
                     <p class="mb-3 font-normal text-gray-700">Learn Basic Cloud Engineering with AWS Educate Team.</p>
                 </div>
