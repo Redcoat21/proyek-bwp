@@ -18,14 +18,36 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        $roles = Role::all()->pluck('id');
-        $password = ['abcdefg12346@@!', 'userganteng1240', 'ayamayam21345'];
         return [
             'username' => fake()->userName(),
-            'password' => Hash::make(fake()->randomElement($password)),
+            'name' => fake()->name(),
             'email' => fake()->email(),
             'phone' => fake()->phoneNumber(),
-            'role' => fake()->randomElement($roles)
         ];
+    }
+
+    public function user(): Factory|UserFactory
+    {
+        return $this->defineUser('userabcd123@@!#', 'STU');
+    }
+
+    public function admin(): Factory|UserFactory
+    {
+        return $this->defineUser('adminabcd123@@!#', 'ADM');
+    }
+
+    public function lecturer(): Factory|UserFactory
+    {
+        return $this->defineUser('lecturerabcd123@@!#', 'LEC');
+    }
+
+    private function defineUser(string $rawPassword, string $roleId)
+    {
+        return $this->state(function (array $attributes) use ($rawPassword, $roleId) {
+            return [
+                'password' => Hash::make($rawPassword),
+                'role' => $roleId
+            ];
+        });
     }
 }
