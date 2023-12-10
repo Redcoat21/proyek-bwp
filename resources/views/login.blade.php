@@ -26,14 +26,16 @@ Login
             <form action="" method="post" class="col-span-2 col-start-3 mt-2">
                 @csrf
 
+                <input type="hidden" name="type" value="login">
+
                 <div class="col-span-2 col-start-3 mt-3">
-                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">EMAIL</label>
+                    <label for="username" class="block text-sm font-medium leading-6 text-gray-900">USERNAME <span class="text-red-600">*</span></label>
                     <div class="mt-1">
-                      <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="nama@gmail.com">
+                      <input id="username" name="username" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Masukkan username Anda">
                     </div>
                 </div>
                 <div class="col-span-2 col-start-3 mt-3">
-                    <label for="password" class="block text-sm font-medium leading-6 text-gray-900">PASSWORD</label>
+                    <label for="password" class="block text-sm font-medium leading-6 text-gray-900">PASSWORD <span class="text-red-600">*</span></label>
                     <div class="mt-1">
                       <input id="password" name="password" type="password" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Masukkan kata sandi Anda">
                     </div>
@@ -59,22 +61,36 @@ Login
             <form action="" method="post" class="col-span-2 col-start-3 mt-2">
                 @csrf
 
+                <input type="hidden" name="type" value="register">
+
                 <div class="col-span-2 col-start-3 mt-3">
-                    <label for="nama" class="block text-sm font-medium leading-6 text-gray-900">NAMA LENGKAP</label>
+                    <label for="username" class="block text-sm font-medium leading-6 text-gray-900">USERNAME <span class="text-red-600">*</span></label>
                     <div class="mt-1">
-                      <input id="nama" name="nama" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Masukkan nama lengkap Anda">
+                      <input id="username" name="username" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Masukkan username anda disini">
                     </div>
                 </div>
                 <div class="col-span-2 col-start-3 mt-3">
-                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">EMAIL</label>
+                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">EMAIL <span class="text-red-600">*</span></label>
                     <div class="mt-1">
                       <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="nama@gmail.com">
                     </div>
                 </div>
                 <div class="col-span-2 col-start-3 mt-3">
-                    <label for="password" class="block text-sm font-medium leading-6 text-gray-900">PASSWORD</label>
+                    <label for="nama" class="block text-sm font-medium leading-6 text-gray-900">NAMA LENGKAP <span class="text-red-600">*</span></label>
+                    <div class="mt-1">
+                      <input id="nama" name="nama" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Masukkan nama lengkap Anda">
+                    </div>
+                </div>
+                <div class="col-span-2 col-start-3 mt-3">
+                    <label for="password" class="block text-sm font-medium leading-6 text-gray-900">PASSWORD <span class="text-red-600">*</span></label>
                     <div class="mt-1">
                       <input id="password" name="password" type="password" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Masukkan kata sandi Anda">
+                    </div>
+                </div>
+                <div class="col-span-2 col-start-3 mt-3">
+                    <label for="confirm" class="block text-sm font-medium leading-6 text-gray-900">CONFIRM PASSWORD <span class="text-red-600">*</span></label>
+                    <div class="mt-1">
+                      <input id="confirm" name="confirm" type="password" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Masukkan lagi kata sandi Anda">
                     </div>
                 </div>
 
@@ -89,6 +105,13 @@ Login
                             <input id="lecturer" type="radio" value="lecturer" name="inline-radio-group" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300">
                             <label for="lecturer" class="ms-2 text-sm font-medium text-gray-900">Lecturer</label>
                         </div>
+                    </div>
+                </div>
+
+                <div class="col-span-2 col-start-3 mt-3 hidden" id="khususLecturer">
+                    <label for="confirm" class="block text-sm font-medium leading-6 text-gray-900">YOUR DESCRIPTION</label>
+                    <div class="mt-1">
+                      <input id="desc" name="desc" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Mathematics Expert">
                     </div>
                 </div>
 
@@ -112,6 +135,18 @@ Login
             $('#toLogin').on('click', function() {
                 $('#register-section').addClass("hidden");
                 $('#login-section').removeClass("hidden");
+            })
+
+            $('#lecturer').change(function(){
+                if($(this).is(':checked')){
+                    $('#khususLecturer').removeClass("hidden")
+                }
+            })
+
+            $('#student').change(function(){
+                if($(this).is(':checked')){
+                    $('#khususLecturer').addClass("hidden")
+                }
             })
         });
     </script>
