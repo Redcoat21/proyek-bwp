@@ -19,6 +19,10 @@ use App\Livewire\Counter;
 
 Route::get('/counter', Counter::class);
 
+Route::prefix('auth')->group(function () {
+    Route::get('/', [PageController::class, 'showAuthPage'])->name('auth.get');
+});
+
 Route::get('/', [homeController::class, 'getHomeGuest'])->name('homeGuest');
 Route::get('/login', [homeController::class, 'getLogin'])->name('loginFront');
 Route::post('/login', [homeController::class, 'postLogin']);
