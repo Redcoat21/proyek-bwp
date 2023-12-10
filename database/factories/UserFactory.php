@@ -2,12 +2,16 @@
 
 namespace Database\Factories;
 
+use App\Models\Admin;
+use App\Models\Lecturer;
+use App\Models\Student;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Role;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends Factory<User>
  */
 class UserFactory extends Factory
 {
@@ -19,34 +23,48 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'username' => fake()->userName(),
+            'username' => fake()->unique()->userName(),
             'name' => fake()->name(),
+            'password' => 'abcd',
             'email' => fake()->email(),
-            'phone' => fake()->phoneNumber(),
         ];
     }
 
-    public function user(): Factory|UserFactory
+    public function student()
     {
-        return $this->defineUser('userabcd123@@!#', 'STU');
+        return $this->defineUser('userabcd123!@#', 'STU')->afterCreating(function (User $user) {
+            Student::factory()->create([
+                'username' => $user->username,
+                'phone' => fake()->phoneNumber()
+            ]);
+        });
     }
 
-    public function admin(): Factory|UserFactory
+    public function lecturer()
     {
-        return $this->defineUser('adminabcd123@@!#', 'ADM');
+        return $this->defineUser('lecturerabcd123!@#', 'LEC')->afterCreating(function (User $user) {
+            Lecturer::factory()->create([
+                'username' => $user->username,
+                'description' => fake()->text()
+            ]);
+        });
     }
 
-    public function lecturer(): Factory|UserFactory
+    public function admin()
     {
-        return $this->defineUser('lecturerabcd123@@!#', 'LEC');
+        return $this->defineUser('adminabcd123!@#', 'ADM')->afterCreating(function (User $user) {
+            Admin::factory()->create([
+                'username' => $user->username
+            ]);
+        });
     }
 
-    private function defineUser(string $rawPassword, string $roleId)
+    public function defineUser(string $password, string $role): Factory|UserFactory
     {
-        return $this->state(function (array $attributes) use ($rawPassword, $roleId) {
+        return $this->state(function (array $attributes) use ($password, $role) {
             return [
-                'password' => Hash::make($rawPassword),
-                'role' => $roleId
+            'password' => Hash::make($password),
+            'role' => $role
             ];
         });
     }
