@@ -36,6 +36,7 @@ class User extends \Illuminate\Foundation\Auth\User
             case 'STU':
                 $user = new Student;
                 $user->username = $username;
+                $user->phone = fake()->phoneNumber();
                 break;
             case 'ADM':
                 $user = new Admin;
@@ -44,6 +45,7 @@ class User extends \Illuminate\Foundation\Auth\User
             case 'LEC':
                 $user = new Lecturer;
                 $user->username = $username;
+                $user->description = fake()->text();
                 break;
         }
 

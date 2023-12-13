@@ -9,6 +9,7 @@ class Lecturer extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['username', 'description'];
     public $keyType = "string";
     public $timestamps = false;
     public $primaryKey = 'username';

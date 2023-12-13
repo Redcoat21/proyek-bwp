@@ -25,7 +25,7 @@ class CourseFactory extends Factory
 
         return [
             'name' => fake()->word(),
-            'status' => fake()->randomNumber(1),
+            'status' => fake()->numberBetween(0, 1),
             'lecturer' => fake()->randomElement($lecturers),
             'difficulty' => fake()->randomElement($difficulties),
             'category' => fake()->randomElement($categories)
