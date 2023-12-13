@@ -4,6 +4,7 @@
 Home
 @endsection
 
+
 @section('isi')
     {{--    Penanda usernya berhasil login atau tidak --}}
     @if(auth()->user())

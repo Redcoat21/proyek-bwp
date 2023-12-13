@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\homeController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 /*
@@ -27,6 +26,7 @@ Route::prefix('/test')->group(function () {
     Route::post('/auth', [AuthController::class, 'login']);
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/file', [\App\Http\Controllers\FileController::class, 'showFile']);
+    Route::get('/test2', [PageController::class, 'getTopThreeLecturer']);
 });
 
 Route::middleware('auth')->group(function () {

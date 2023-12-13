@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Lecturer extends Model
 {
@@ -15,8 +17,8 @@ class Lecturer extends Model
     public $primaryKey = 'username';
     public $incrementing = false;
 
-    public function course()
+    public function course(): HasMany
     {
-
+        return $this->hasMany(Course::class, 'lecturer');
     }
 }

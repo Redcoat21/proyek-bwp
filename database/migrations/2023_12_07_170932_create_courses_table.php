@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('difficulty');
             $table->unsignedBigInteger('category');
 
-            $table->foreign('lecturer')->references('username')->on('users');
+            $table->foreign('lecturer')->references('username')->on('lecturers');
             $table->foreign('difficulty')->references('id')->on('difficulties');
             $table->foreign('category')->references('id')->on('categories');
         });

@@ -31,9 +31,9 @@ class Course extends Model
         return $this->hasMany(Subcourse::class, 'course');
     }
 
-    public function lecturers(): HasOne
+    public function lecturers(): BelongsTo
     {
-        return $this->hasOne(Lecturer::class, 'lecturer');
+        return $this->belongsTo(Lecturer::class, 'lecturer');
     }
 
     public function customers(): BelongsToMany
