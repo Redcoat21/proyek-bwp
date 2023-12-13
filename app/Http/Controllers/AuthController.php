@@ -30,7 +30,7 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'username' => 'Invalid Username'
+            'username' => 'Invalid Username or Wrong Password'
         ])->onlyInput('username');
     }
 
