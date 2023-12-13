@@ -38,13 +38,13 @@ Login
                 <div class="col-span-2 col-start-3 mt-3">
                     <label for="username" class="block text-sm font-medium leading-6 text-gray-900">USERNAME <span class="text-red-600">*</span></label>
                     <div class="mt-1">
-                      <input id="username" name="username" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Masukkan username Anda">
+                      <input id="username" name="username" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Enter your username">
                     </div>
                 </div>
                 <div class="col-span-2 col-start-3 mt-3">
                     <label for="password" class="block text-sm font-medium leading-6 text-gray-900">PASSWORD <span class="text-red-600">*</span></label>
                     <div class="mt-1">
-                      <input id="password" name="password" type="password" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Masukkan kata sandi Anda">
+                      <input id="password" name="password" type="password" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Enter your password">
                     </div>
                 </div>
                 <div class="col-span-2 col-start-3 mb-1 mt-10">
@@ -72,36 +72,36 @@ Login
                 <div class="col-span-2 col-start-3 mt-3">
                     <label for="username" class="block text-sm font-medium leading-6 text-gray-900">USERNAME <span class="text-red-600">*</span></label>
                     <div class="mt-1">
-                      <input id="username" name="username" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Masukkan username anda disini">
+                      <input id="username" name="username" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Choose a username">
                     </div>
                 </div>
                 <div class="col-span-2 col-start-3 mt-3">
                     <label for="email" class="block text-sm font-medium leading-6 text-gray-900">EMAIL <span class="text-red-600">*</span></label>
                     <div class="mt-1">
-                      <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="nama@gmail.com">
+                      <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="name@gmail.com">
                     </div>
                 </div>
                 <div class="col-span-2 col-start-3 mt-3">
-                    <label for="nama" class="block text-sm font-medium leading-6 text-gray-900">NAMA LENGKAP <span class="text-red-600">*</span></label>
+                    <label for="nama" class="block text-sm font-medium leading-6 text-gray-900">FULL NAME <span class="text-red-600">*</span></label>
                     <div class="mt-1">
-                      <input id="nama" name="nama" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Masukkan nama lengkap Anda">
+                      <input id="nama" name="nama" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Type your full name">
                     </div>
                 </div>
                 <div class="col-span-2 col-start-3 mt-3">
                     <label for="password" class="block text-sm font-medium leading-6 text-gray-900">PASSWORD <span class="text-red-600">*</span></label>
                     <div class="mt-1">
-                      <input id="password" name="password" type="password" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Masukkan kata sandi Anda">
+                      <input id="password" name="password" type="password" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Create your password">
                     </div>
                 </div>
                 <div class="col-span-2 col-start-3 mt-3">
                     <label for="confirm" class="block text-sm font-medium leading-6 text-gray-900">CONFIRM PASSWORD <span class="text-red-600">*</span></label>
                     <div class="mt-1">
-                      <input id="confirm" name="confirm" type="password" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Masukkan lagi kata sandi Anda">
+                      <input id="confirm" name="confirm" type="password" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Re-enter your password to confirm">
                     </div>
                 </div>
 
                 <div class="col-span-2 col-start-3 mt-3">
-                    <label for="sebagai" class="block text-sm font-medium leading-6 text-gray-900">Sebagai</label>
+                    <label for="sebagai" class="block text-sm font-medium leading-6 text-gray-900">As</label>
                     <div class="flex">
                         <div class="flex items-center me-4">
                             <input id="student" type="radio" value="student" name="inline-radio-group" checked class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300">

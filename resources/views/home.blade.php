@@ -63,7 +63,31 @@ Home
         <div class="w-full text-center mb-5">
             <h1 class="text-4xl font-bold text-blue-600">Our Top Courses</h1>
         </div>
-        <div class="grid grid-cols-3 mb-5 justify-items-center">
+        <div class="grid grid-cols-3 my-10 justify-items-center">
+
+            <a href="#" class="w-3/5 bg-white border border-gray-200 rounded-lg">
+                <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
+                <div class="p-5">
+                    <div class="flex items-center space-x-3">
+                        <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
+                        <span class="self-center text-xs font-normal whitespace-nowrap">AWS Educate</span>
+                    </div>
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Cloud Engineering for Beginners</h5>
+                    <p class="mb-3 font-normal text-gray-700">Learn Basic Cloud Engineering with AWS Educate Team.</p>
+                </div>
+            </a>
+
+            <a href="#" class="w-3/5 bg-white border border-gray-200 rounded-lg">
+                <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
+                <div class="p-5">
+                    <div class="flex items-center space-x-3">
+                        <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
+                        <span class="self-center text-xs font-normal whitespace-nowrap">AWS Educate</span>
+                    </div>
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Cloud Engineering for Beginners</h5>
+                    <p class="mb-3 font-normal text-gray-700">Learn Basic Cloud Engineering with AWS Educate Team.</p>
+                </div>
+            </a>
 
             <a href="#" class="w-3/5 bg-white border border-gray-200 rounded-lg">
                 <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
