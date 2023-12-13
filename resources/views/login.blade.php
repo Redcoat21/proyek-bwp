@@ -1,7 +1,7 @@
 @extends('template.baseTemplate')
 
 @section('title')
-Login
+Authentication
 @endsection
 
 @section('content')
