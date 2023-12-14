@@ -3,41 +3,53 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 
-class User extends Model
+
+class User extends \Illuminate\Foundation\Auth\User
 {
     use HasFactory;
 
+    public $keyType = "string";
     public $timestamps = false;
     public $primaryKey = 'username';
+    public $incrementing = false;
+    public $guarded = [];
 
     public function role(): HasOne
     {
         return $this->hasOne(Role::class, 'role');
     }
-    public function teachedCourses(): BelongsTo
+
+    protected static function booted()
     {
-        return $this->belongsTo(Course::class, 'lecturer');
+        static::created(function (User $user) {
+            User::createSpecifiedUser($user->username, $user->role);
+        });
     }
 
-    public function buyedCourses(): BelongsToMany
+    private static function createSpecifiedUser(string $username, string $role): void
     {
-        return $this->belongsToMany(Course::class, 'transactions', 'student', 'course', 'username', 'id');
-    }
+        $user = null;
+        switch($role)
+        {
+            case 'STU':
+                $user = new Student;
+                $user->username = $username;
+                $user->phone = fake()->phoneNumber();
+                break;
+            case 'ADM':
+                $user = new Admin;
+                $user->username = $username;
+                break;
+            case 'LEC':
+                $user = new Lecturer;
+                $user->username = $username;
+                $user->description = fake()->text();
+                break;
+        }
 
-    public function completedSubcourses(): BelongsToMany
-    {
-        return $this->belongsToMany(Subcourse::class, 'subcourses_completion', 'student', 'subcourse', 'username', 'id');
-    }
-
-    public function completedCourses(): BelongsToMany
-    {
-        return $this->belongsToMany(Course::class, 'certificates', 'student', 'course', 'username', 'id');
+        $user->save();
     }
 }

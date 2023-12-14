@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Role extends Model
 {
     use HasFactory;
-
+    public $keyType = "string";
     public $timestamps = false;
     public $primaryKey = "id";
 

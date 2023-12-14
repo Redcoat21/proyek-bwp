@@ -7,33 +7,31 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Inertia\Inertia;
 
 class AuthController extends Controller
 {
+    public function process(Request $request): RedirectResponse
+    {
+        // Request typenya login.
+        if($request->type === 'login') {
+            return $this->login($request);
+        } else {
+            return $this->register($request);
+        }
+    }
+
     public function login(Request $request): RedirectResponse
     {
         $credentials = $this->validateLoginInput($request);
 
         if(Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect('home');
+            return redirect('/');
         }
 
         return back()->withErrors([
-            'username' => 'Invalid Username'
+            'username' => 'Invalid Username or Wrong Password!'
         ])->onlyInput('username');
-    }
-
-    private function validateLoginInput(Request $request): array | null
-    {
-        return $request->validate([
-            'username' => 'bail|required',
-            'password' => 'bail|required'
-        ], [
-            'username.required' => 'Username harus diisi.',
-            'password.required' => 'Pasword harus diisi.'
-        ]);
     }
 
     public function register(Request $request): RedirectResponse
@@ -45,33 +43,52 @@ class AuthController extends Controller
 
         if($user){
             // Apabila user kembar.
-            return back()->withErrors('error', 'Username sudah ada!');
+            return back()->withErrors('error', 'Username already exists!');
         }
         else{
-            $user = new UserController();
-            $user->create($username, $credentials['password'], $credentials['email'], $request->name, 'CUS');
+            $role = $credentials['inline-radio-group'] === 'student' ? 'STU' : 'LEC';
+           User::create([
+                'username' => $credentials['username'],
+                'password' => Hash::make($credentials['password']),
+                'name' => $credentials['nama'],
+                'email' => $credentials['email'],
+                'role' => $role
+            ]);
+
             return back()->with('success', 'User Registered succesfully!');
         }
     }
 
-    public function validateRegisterInput(Request $request): array | null
+    private function validateRegisterInput(Request $request): array | null
     {
         return $request->validate([
-            'name' => 'required|regex:/^[a-zA-Z\s]+$/',
-            'username' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|min:6',
-            'passwordConfirmation' => 'required|same:password'
+            'nama_register' => 'required|regex:/^[a-zA-Z\s]+$/',
+            'username_register' => 'required',
+            'email_register' => 'required|email',
+            'password_register' => 'required|min:6',
+            'confirm_register' => 'required|same:password',
+            'inline-radio-group' => 'required'
         ], [
-            'name.required' => 'Nama lengkap harus diisi.',
-            'name.regex' => 'Nama tidak boleh mengandung simbol atau angka.',
-            'email.required' => 'Email harus diisi.',
-            'email.email' => 'Harus berupa email.',
-            'username.required' => 'Username harus diisi.',
-            'passwordConfirmation.required' => 'Confirm password harus diisi.',
-            'passwordConfirmation.same' => 'Confirm password tidak sama dengan password.',
-            'password.required' => 'Pasword harus diisi.',
-            'password.min' => 'Pasword minimal mengandung 6 karakter.'
+            'nama_register.required' => 'Full name is required.',
+            'nama_register.regex' => 'Name must not contain symbols or numbers.',
+            'email_register.required' => 'Email is required.',
+            'email_register.email' => 'It must be an email.',
+            'username_register.required' => 'Username is required.',
+            'confirm_register.required' => 'Confirm password is required.',
+            'confirm_register.same' => 'Confirm password does not match the password.',
+            'password_register.required' => 'Pasword must be filled.',
+            'password_register.min' => 'The password must contain at least 6 characters.'
+        ]);
+    }
+
+    private function validateLoginInput(Request $request): array | null
+    {
+        return $request->validate([
+            'username_login' => 'bail|required',
+            'password_login' => 'bail|required'
+        ], [
+            'username_login.required' => 'Username is required.',
+            'password_login.required' => 'Password is required.'
         ]);
     }
 }

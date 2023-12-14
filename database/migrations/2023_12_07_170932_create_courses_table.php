@@ -16,10 +16,12 @@ return new class extends Migration
             $table->string('name', 200);
             $table->boolean('status');
             $table->string('lecturer', 100);
+            $table->text('description');
+            $table->string('cover', 500);
             $table->unsignedBigInteger('difficulty');
             $table->unsignedBigInteger('category');
 
-            $table->foreign('lecturer')->references('username')->on('users');
+            $table->foreign('lecturer')->references('username')->on('lecturers');
             $table->foreign('difficulty')->references('id')->on('difficulties');
             $table->foreign('category')->references('id')->on('categories');
         });

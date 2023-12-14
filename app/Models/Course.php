@@ -31,18 +31,18 @@ class Course extends Model
         return $this->hasMany(Subcourse::class, 'course');
     }
 
-    public function lecturers(): HasOne
+    public function lecturers(): BelongsTo
     {
-        return $this->hasOne(User::class, 'lecturer');
+        return $this->belongsTo(Lecturer::class, 'lecturer');
     }
 
     public function customers(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'transactions', 'course', 'student', 'id', 'username');
+        return $this->belongsToMany(Student::class, 'transactions', 'course', 'student', 'id', 'username');
     }
 
     public function graduates(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'certificates', 'course', 'student', 'id', 'username');
+        return $this->belongsToMany(Student::class, 'certificates', 'course', 'student', 'id', 'username');
     }
 }
