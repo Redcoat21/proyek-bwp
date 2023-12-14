@@ -16,12 +16,19 @@ Home
                         <a href="{{ route('home.get') }}" class="block text-blue-600 bg-transparent p-0">Home</a>
                     </li>
                     <li>
-                        <a href="#" class="block text-gray-900 hover:bg-transparent hover:text-blue-600 p-0">Courses</a>
+                        <a href="
+                        @if (!auth()->user())
+                            {{ route('auth.get') }}
+                        @else
+                            {{ route('home.get') }}
+                        @endif
+                        " class="block text-gray-900 hover:bg-transparent hover:text-blue-600 p-0">Courses</a>
                     </li>
                 </ul>
             </div>
             <div class="flex">
-                <div class="relative block">
+                {{-- Uncomment the below part to reveal the search bar, search bar is exclusively for course --}}
+                {{-- <div class="relative block">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                     <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
@@ -29,11 +36,17 @@ Home
                     <span class="sr-only">Search icon</span>
                     </div>
                     <input type="text" id="search-navbar" class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Search...">
-                </div>
+                </div> --}}
                 <div class="relative block my-2 mx-3">
-                    <a href="{{ route('auth.get') }}" class="bg-blue-600 hover:bg-blue-800 text-white py-1 px-3 border border-blue-600 rounded text-sm">
-                        Login
-                    </a>
+                    @if (!auth()->user())
+                        <a href="{{ route('auth.get') }}" class="bg-blue-600 hover:bg-blue-800 text-white py-1 px-3 border border-blue-600 rounded text-sm">
+                            Login
+                        </a>
+                    @else
+                        <a href="#">
+                            <img src="{{ asset('asset/def_pp.jpg') }}"class="h-10 rounded-full" alt="pp">
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -43,7 +56,7 @@ Home
 @section('content')
     {{--    Penanda usernya berhasil login atau tidak --}}
     @if(auth()->user())
-        {{ auth()->user()->username }}
+        {{ auth()->user()->name }}
     @endif
     <section class="bg-center bg-no-repeat bg-cover bg-gray-300 bg-blend-multiply relative overflow-hidden" style="background-image: url('{{ asset('asset/jumbotron.jpg') }}')">
         <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
@@ -65,7 +78,13 @@ Home
                     </div>
                     <span class="mt-3 mb-1 block font-semibold text-2xl px-3 text-blue-600">Ahmad Bambang Cecep S.Mat, M.Mat</span>
                     <span class="mb-3 block font-normal text-sm px-3 text-blue-600">Mathematics Expert</span>
-                    <a href="#" class="bg-blue-600 hover:bg-blue-800 text-white py-2 px-6 border border-blue-600 rounded-full text-sm mt-2">
+                    <a href="
+                    @if (!auth()->user())
+                        {{ route('auth.get') }}
+                    @else
+                        {{ route('home.get') }}
+                    @endif
+                    " class="bg-blue-600 hover:bg-blue-800 text-white py-2 px-6 border border-blue-600 rounded-full text-sm mt-2">
                         See Courses
                     </a>
                 </div>
@@ -77,7 +96,13 @@ Home
                     </div>
                     <span class="mt-3 mb-1 block font-semibold text-2xl px-3 text-blue-600">Alvin Setia S.Kom. M.Kom.</span>
                     <span class="mb-3 block font-normal text-sm px-3 text-blue-600">Data and Web Mining Specialist</span>
-                    <a href="#" class="bg-blue-600 hover:bg-blue-800 text-white py-2 px-6 border border-blue-600 rounded-full text-sm mt-2">
+                    <a href="
+                    @if (!auth()->user())
+                        {{ route('auth.get') }}
+                    @else
+                        {{ route('home.get') }}
+                    @endif
+                    " class="bg-blue-600 hover:bg-blue-800 text-white py-2 px-6 border border-blue-600 rounded-full text-sm mt-2">
                         See Courses
                     </a>
                 </div>
@@ -88,7 +113,13 @@ Home
                 </div>
                 <span class="mt-3 mb-1 block font-semibold text-2xl px-3 text-blue-600">Jessica M.H. S.Ak</span>
                 <span class="mb-3 block font-normal text-sm px-3 text-blue-600">Accounting Expert</span>
-                <a href="#" class="bg-blue-600 hover:bg-blue-800 text-white py-2 px-6 border border-blue-600 rounded-full text-sm mt-2">
+                <a href="
+                @if (!auth()->user())
+                        {{ route('auth.get') }}
+                    @else
+                        {{ route('home.get') }}
+                    @endif
+                " class="bg-blue-600 hover:bg-blue-800 text-white py-2 px-6 border border-blue-600 rounded-full text-sm mt-2">
                     See Courses
                 </a>
             </div>
@@ -101,7 +132,13 @@ Home
         </div>
         <div class="grid grid-cols-3 my-10 justify-items-center">
 
-            <a href="#" class="w-3/5 bg-white border border-gray-200 rounded-lg">
+            <a href="
+            @if (!auth()->user())
+                {{ route('auth.get') }}
+            @else
+                {{ route('home.get') }}
+            @endif
+            " class="w-3/5 bg-white border border-gray-200 rounded-lg">
                 <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
                 <div class="p-5">
                     <div class="flex items-center space-x-3">
@@ -113,7 +150,13 @@ Home
                 </div>
             </a>
 
-            <a href="#" class="w-3/5 bg-white border border-gray-200 rounded-lg">
+            <a href="
+            @if (!auth()->user())
+                {{ route('auth.get') }}
+            @else
+                {{ route('home.get') }}
+            @endif
+            " class="w-3/5 bg-white border border-gray-200 rounded-lg">
                 <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
                 <div class="p-5">
                     <div class="flex items-center space-x-3">
@@ -125,7 +168,13 @@ Home
                 </div>
             </a>
 
-            <a href="#" class="w-3/5 bg-white border border-gray-200 rounded-lg">
+            <a href="
+            @if (!auth()->user())
+                {{ route('auth.get') }}
+            @else
+                {{ route('home.get') }}
+            @endif
+            " class="w-3/5 bg-white border border-gray-200 rounded-lg">
                 <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
                 <div class="p-5">
                     <div class="flex items-center space-x-3">
