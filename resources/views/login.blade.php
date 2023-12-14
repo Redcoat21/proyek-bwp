@@ -11,6 +11,13 @@ Authentication
     @endforeach
     @if(session()->has('success'))
         <p class="text-green-500">{{ session()->get('success') }}</p>
+    @else
+        {{-- <script type="module">
+            $(document).ready(function() {
+                $('#login-section').addClass("hidden");
+                $('#register-section').removeClass("hidden");
+        });
+        </script> --}}
     @endif
     <nav class="bg-white">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-1 p-4">
@@ -36,16 +43,26 @@ Authentication
                 <input type="hidden" name="type" value="login">
 
                 <div class="col-span-2 col-start-3 mt-3">
-                    <label for="username" class="block text-sm font-medium leading-6 text-gray-900">USERNAME <span class="text-red-600">*</span></label>
+                    <label for="username_login" class="block text-sm font-medium leading-6 text-gray-900">USERNAME <span class="text-red-600">*</span></label>
                     <div class="mt-1">
-                      <input id="username" name="username" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Enter your username">
+                      <input id="username_login" name="username_login" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Enter your username" value="{{ old('username') }}">
                     </div>
+                    @error('username_login')
+                        <div class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-white bg-red-600 text-sm leading-6">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="col-span-2 col-start-3 mt-3">
-                    <label for="password" class="block text-sm font-medium leading-6 text-gray-900">PASSWORD <span class="text-red-600">*</span></label>
+                    <label for="password_login" class="block text-sm font-medium leading-6 text-gray-900">PASSWORD <span class="text-red-600">*</span></label>
                     <div class="mt-1">
-                      <input id="password" name="password" type="password" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Enter your password">
+                      <input id="password_login" name="password_login" type="password" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Enter your password">
                     </div>
+                    @error('password_login')
+                        <div class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-white bg-red-600 text-sm leading-6">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="col-span-2 col-start-3 mb-1 mt-10">
                     <button type="submit" id="login" name="login" class="w-full text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">Login</button>
@@ -74,30 +91,55 @@ Authentication
                     <div class="mt-1">
                       <input id="username" name="username" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Choose a username">
                     </div>
+                    @error('username')
+                        <div class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-white bg-red-600 text-sm leading-6">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="col-span-2 col-start-3 mt-3">
                     <label for="email" class="block text-sm font-medium leading-6 text-gray-900">EMAIL <span class="text-red-600">*</span></label>
                     <div class="mt-1">
-                      <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="name@gmail.com">
+                      <input id="email" name="email" type="text" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="name@gmail.com">
                     </div>
+                    @error('email')
+                        <div class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-white bg-red-600 text-sm leading-6">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="col-span-2 col-start-3 mt-3">
                     <label for="nama" class="block text-sm font-medium leading-6 text-gray-900">FULL NAME <span class="text-red-600">*</span></label>
                     <div class="mt-1">
                       <input id="nama" name="nama" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Type your full name">
                     </div>
+                    @error('nama')
+                        <div class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-white bg-red-600 text-sm leading-6">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="col-span-2 col-start-3 mt-3">
                     <label for="password" class="block text-sm font-medium leading-6 text-gray-900">PASSWORD <span class="text-red-600">*</span></label>
                     <div class="mt-1">
                       <input id="password" name="password" type="password" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Create your password">
                     </div>
+                    @error('password')
+                        <div class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-white bg-red-600 text-sm leading-6">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
                 <div class="col-span-2 col-start-3 mt-3">
                     <label for="confirm" class="block text-sm font-medium leading-6 text-gray-900">CONFIRM PASSWORD <span class="text-red-600">*</span></label>
                     <div class="mt-1">
                       <input id="confirm" name="confirm" type="password" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Re-enter your password to confirm">
                     </div>
+                    @error('confirm')
+                        <div class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-white bg-red-600 text-sm leading-6">
+                            {{ $message }}
+                        </div>
+                    @enderror
                 </div>
 
                 <div class="col-span-2 col-start-3 mt-3">

@@ -84,11 +84,11 @@ class AuthController extends Controller
     private function validateLoginInput(Request $request): array | null
     {
         return $request->validate([
-            'username' => 'bail|required',
-            'password' => 'bail|required'
+            'username_login' => 'bail|required',
+            'password_login' => 'bail|required'
         ], [
-            'username.required' => 'Username is required.',
-            'password.required' => 'Password is required.'
+            'username_login.required' => 'Username is required.',
+            'password_login.required' => 'Password is required.'
         ]);
     }
 }
