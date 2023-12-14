@@ -30,12 +30,12 @@ class PageController extends Controller
     public function getTopThreeLecturer(): JsonResponse
     {
         $res = DB::select("
-            SELECT u.username, u.name, u.profile_picture
+            SELECT u.username, u.name, u.profile_picture, l.description
             FROM transactions AS `t`
             LEFT JOIN courses AS `c` ON c.id = t.course
             LEFT JOIN lecturers AS `l` ON l.username = c.lecturer
             LEFT JOIN users AS `u` ON u.username = l.username
-            GROUP BY u.username, u.name, u.profile_picture LIMIT 3
+            GROUP BY u.username, u.name, u.profile_picture, l.description LIMIT 3
         ");
         return response()->json($res);
     }
