@@ -24,7 +24,10 @@ class AuthController extends Controller
     {
         $credentials = $this->validateLoginInput($request);
 
-        if(Auth::attempt($credentials)) {
+        if(Auth::attempt([
+            'username' => $credentials['username_login'],
+            'password' => $credentials['password_login']
+        ])) {
             $request->session()->regenerate();
             return redirect('/');
         }
@@ -38,7 +41,7 @@ class AuthController extends Controller
     {
         $credentials = $this->validateRegisterInput($request);
 
-        $username = $credentials['username'];
+        $username = $credentials['username_register'];
         $user = User::find($username);
 
         if($user){
@@ -48,10 +51,10 @@ class AuthController extends Controller
         else{
             $role = $credentials['inline-radio-group'] === 'student' ? 'STU' : 'LEC';
            User::create([
-                'username' => $credentials['username'],
-                'password' => Hash::make($credentials['password']),
-                'name' => $credentials['nama'],
-                'email' => $credentials['email'],
+                'username' => $username,
+                'password' => Hash::make($credentials['password_register']),
+                'name' => $credentials['nama_register'],
+                'email' => $credentials['email_register'],
                 'role' => $role
             ]);
 
@@ -66,7 +69,7 @@ class AuthController extends Controller
             'username_register' => 'required',
             'email_register' => 'required|email',
             'password_register' => 'required|min:6',
-            'confirm_register' => 'required|same:password',
+            'confirm_register' => 'required|same:password_register',
             'inline-radio-group' => 'required'
         ], [
             'nama_register.required' => 'Full name is required.',
