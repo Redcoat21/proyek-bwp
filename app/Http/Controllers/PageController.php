@@ -25,6 +25,11 @@ class PageController extends Controller
         return view('home');
     }
 
+    public function showCourse(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
+    {
+        return view('course');
+    }
+
     public function getTopThreeLecturer()
     {
         $res = DB::select("SELECT course, COUNT(*) AS `occurences` FROM transactions GROUP BY course LIMIT 3");
