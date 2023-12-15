@@ -47,7 +47,7 @@ class AuthController extends Controller
         }
         else{
             $role = $credentials['inline-radio-group'] === 'student' ? 'STU' : 'LEC';
-            $user = User::create([
+           User::create([
                 'username' => $credentials['username'],
                 'password' => Hash::make($credentials['password']),
                 'name' => $credentials['nama'],
@@ -62,22 +62,22 @@ class AuthController extends Controller
     private function validateRegisterInput(Request $request): array | null
     {
         return $request->validate([
-            'nama' => 'required|regex:/^[a-zA-Z\s]+$/',
-            'username' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|min:6',
-            'confirm' => 'required|same:password',
+            'nama_register' => 'required|regex:/^[a-zA-Z\s]+$/',
+            'username_register' => 'required',
+            'email_register' => 'required|email',
+            'password_register' => 'required|min:6',
+            'confirm_register' => 'required|same:password',
             'inline-radio-group' => 'required'
         ], [
-            'nama.required' => 'Full name is required.',
-            'name.regex' => 'Name must not contain symbols or numbers.',
-            'email.required' => 'Email is required.',
-            'email.email' => 'It must be an email.',
-            'username.required' => 'Username is required.',
-            'confirm.required' => 'Confirm password is required.',
-            'confirm.same' => 'Confirm password does not match the password.',
-            'password.required' => 'Pasword must be filled.',
-            'password.min' => 'The password must contain at least 6 characters.'
+            'nama_register.required' => 'Full name is required.',
+            'nama_register.regex' => 'Name must not contain symbols or numbers.',
+            'email_register.required' => 'Email is required.',
+            'email_register.email' => 'It must be an email.',
+            'username_register.required' => 'Username is required.',
+            'confirm_register.required' => 'Confirm password is required.',
+            'confirm_register.same' => 'Confirm password does not match the password.',
+            'password_register.required' => 'Pasword must be filled.',
+            'password_register.min' => 'The password must contain at least 6 characters.'
         ]);
     }
 

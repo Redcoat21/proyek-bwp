@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name', 200);
             $table->boolean('status');
             $table->string('lecturer', 100);
+            $table->text('description');
+            $table->string('cover', 500);
             $table->unsignedBigInteger('difficulty');
             $table->unsignedBigInteger('category');
 

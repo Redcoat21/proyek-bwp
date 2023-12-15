@@ -5,6 +5,7 @@ Home
 @endsection
 
 @section('header')
+    @dd($topCourses->getData())
     <nav class="bg-white border border-black-1000">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="{{ route('home.get') }}" class="flex items-center space-x-3 text-blue-500">
@@ -71,58 +72,26 @@ Home
             <h1 class="text-4xl font-bold text-blue-600">Our Top Lecturer</h1>
         </div>
         <div class="grid grid-cols-3 mb-5">
-            <div class="place-self-center text-center w-3/5">
-                <div class="flex flex-col items-center">
-                    <div class="flex justify-center">
-                        <img class="rounded-full w-3/4 h-auto" src="{{ asset('asset/male_lecturer.jpg') }}">
-                    </div>
-                    <span class="mt-3 mb-1 block font-semibold text-2xl px-3 text-blue-600">Ahmad Bambang Cecep S.Mat, M.Mat</span>
-                    <span class="mb-3 block font-normal text-sm px-3 text-blue-600">Mathematics Expert</span>
-                    <a href="
+            @foreach($topLecturers->getData() as $topLecturer)
+                <div class="place-self-center text-center w-3/5">
+                    <div class="flex flex-col items-center">
+                        <div class="flex justify-center">
+                            <img class="rounded-full w-3/4 h-auto" src="{{ asset($topLecturer->profile_picture) }}" alt="profile-picture">
+                        </div>
+                        <span class="mt-3 mb-1 block font-semibold text-2xl px-3 text-blue-600">{{ $topLecturer->name }}</span>
+                        <span class="mb-3 block font-normal text-sm px-3 text-blue-600">{{ $topLecturer->description }}</span>
+                        <a href="
                     @if (!auth()->user())
                         {{ route('auth.get') }}
                     @else
                         {{ route('home.get') }}
                     @endif
                     " class="bg-blue-600 hover:bg-blue-800 text-white py-2 px-6 border border-blue-600 rounded-full text-sm mt-2">
-                        See Courses
-                    </a>
-                </div>
-            </div>
-            <div class="place-self-center text-center w-3/5">
-                <div class="flex flex-col items-center">
-                    <div class="flex justify-center">
-                        <img class="rounded-full w-3/4 h-auto" src="{{ asset('asset/old_lecturer.jpg') }}">
+                            See Courses
+                        </a>
                     </div>
-                    <span class="mt-3 mb-1 block font-semibold text-2xl px-3 text-blue-600">Alvin Setia S.Kom. M.Kom.</span>
-                    <span class="mb-3 block font-normal text-sm px-3 text-blue-600">Data and Web Mining Specialist</span>
-                    <a href="
-                    @if (!auth()->user())
-                        {{ route('auth.get') }}
-                    @else
-                        {{ route('home.get') }}
-                    @endif
-                    " class="bg-blue-600 hover:bg-blue-800 text-white py-2 px-6 border border-blue-600 rounded-full text-sm mt-2">
-                        See Courses
-                    </a>
                 </div>
-            </div>
-            <div class="place-self-center text-center w-3/5">
-                <div class="flex justify-center">
-                    <img class="rounded-full w-3/4 h-auto" src="{{ asset('asset/female_lecturer.jpg') }}">
-                </div>
-                <span class="mt-3 mb-1 block font-semibold text-2xl px-3 text-blue-600">Jessica M.H. S.Ak</span>
-                <span class="mb-3 block font-normal text-sm px-3 text-blue-600">Accounting Expert</span>
-                <a href="
-                @if (!auth()->user())
-                        {{ route('auth.get') }}
-                    @else
-                        {{ route('home.get') }}
-                    @endif
-                " class="bg-blue-600 hover:bg-blue-800 text-white py-2 px-6 border border-blue-600 rounded-full text-sm mt-2">
-                    See Courses
-                </a>
-            </div>
+            @endforeach
         </div>
     </div>
 

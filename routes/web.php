@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('auth')->group(function () {
     Route::get('/', [PageController::class, 'showAuthPage'])->name('auth.get');
     Route::post('/', [AuthController::class, 'process'])->name('auth.post');
+    Route::get('/toggle', [PageController::class, 'toggleLogin'])->name('auth.get.toggle');
 });
 
 Route::get('/', [PageController::class, 'showHome'])->name('home.get');
