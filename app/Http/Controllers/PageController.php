@@ -32,6 +32,11 @@ class PageController extends Controller
         return view('course');
     }
 
+    public function showListCourse(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
+    {
+        return view('listCourse');
+    }
+
     // public function getTopThreeLecturer()
     public function getTopLecturers(): JsonResponse
     {

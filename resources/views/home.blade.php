@@ -20,7 +20,7 @@ Home
                         @if (!auth()->user())
                             {{ route('auth.get') }}
                         @else
-                            {{ route('home.get') }}
+                            {{ route('listCourse.get') }}
                         @endif
                         " class="block text-gray-900 hover:bg-transparent hover:text-blue-600 p-0">Courses</a>
                     </li>
@@ -43,9 +43,12 @@ Home
                             Login
                         </a>
                     @else
-                        <a href="#">
-                            <img src="{{ asset('asset/def_pp.jpg') }}"class="h-10 rounded-full" alt="pp">
-                        </a>
+                        <form action="{{ route('auth.post.logout') }}" method="post">
+                            @csrf
+                            <button>
+                                <img src="{{ asset('asset/def_pp.jpg') }}"class="h-10 rounded-full" alt="pp">
+                            </button>
+                        </form>
                     @endif
                 </div>
             </div>

@@ -24,6 +24,13 @@ Authentication
             LOGIN
         </div>
         <div class="mt-2 grid gap-x-6 gap-y-8 grid-cols-6">
+            @if($errors->has('username'))
+                <div class="col-span-2 col-start-3 mt-3">
+                    <div class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-white bg-red-600 text-sm leading-6">
+                        {{ $errors->first('username') }}
+                    </div>
+                </div>
+            @endif
             <form action="{{ route('auth.post') }}" method="post" class="col-span-2 col-start-3 mt-2">
                 @csrf
                 <input type="hidden" name="type" value="login">
@@ -31,7 +38,7 @@ Authentication
                 <div class="col-span-2 col-start-3 mt-3">
                     <label for="username_login" class="block text-sm font-medium leading-6 text-gray-900">USERNAME <span class="text-red-600">*</span></label>
                     <div class="mt-1">
-                      <input id="username_login" name="username_login" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Enter your username" value="{{ old('username') }}">
+                      <input id="username_login" name="username_login" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Enter your username" value="{{ old('username_login') }}">
                     </div>
                     @error('username_login')
                         <div class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-white bg-red-600 text-sm leading-6">
@@ -72,6 +79,21 @@ Authentication
             REGISTER
         </div>
         <div class="mt-2 grid gap-x-6 gap-y-8 grid-cols-6">
+            @if($errors->has('kembar'))
+                <div class="col-span-2 col-start-3 mt-3">
+                    <div class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-white bg-red-600 text-sm leading-6">
+                        {{ $errors->first('kembar') }}
+                    </div>
+                </div>
+            @endif
+
+            @if(session()->has('success'))
+                <div class="col-span-2 col-start-3 mt-3">
+                    <div class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-white bg-green-600 text-sm leading-6">
+                        {{ session()->get('success') }}
+                    </div>
+                </div>
+            @endif
             <form action="{{ route('auth.post') }}" method="post" class="col-span-2 col-start-3 mt-2">
                 @csrf
                 <input type="hidden" name="type" value="register">
@@ -79,7 +101,7 @@ Authentication
                 <div class="col-span-2 col-start-3 mt-3">
                     <label for="username" class="block text-sm font-medium leading-6 text-gray-900">USERNAME <span class="text-red-600">*</span></label>
                     <div class="mt-1">
-                      <input id="username" name="username_register" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Choose a username">
+                      <input id="username" name="username_register" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Choose a username" value="{{ old('username_register') }}">
                     </div>
                     @error('username_register')
                         <div class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-white bg-red-600 text-sm leading-6">
@@ -90,7 +112,7 @@ Authentication
                 <div class="col-span-2 col-start-3 mt-3">
                     <label for="email" class="block text-sm font-medium leading-6 text-gray-900">EMAIL <span class="text-red-600">*</span></label>
                     <div class="mt-1">
-                      <input id="email" name="email_register" type="text" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="name@gmail.com">
+                      <input id="email" name="email_register" type="text" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="name@gmail.com" value="{{ old('email_register') }}">
                     </div>
                     @error('email_register')
                         <div class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-white bg-red-600 text-sm leading-6">
@@ -101,7 +123,8 @@ Authentication
                 <div class="col-span-2 col-start-3 mt-3">
                     <label for="nama" class="block text-sm font-medium leading-6 text-gray-900">FULL NAME <span class="text-red-600">*</span></label>
                     <div class="mt-1">
-                      <input id="nama" name="nama_register" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Type your full name">
+                        <input id="nama" name="nama_register" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Type your full name" value="{{ old('nama_register') }}">
+
                     </div>
                     @error('nama_register')
                         <div class="mt-2 block w-full rounded-md border-0 py-1.5 px-3 text-white bg-red-600 text-sm leading-6">
@@ -149,7 +172,7 @@ Authentication
                 <div class="col-span-2 col-start-3 mt-3 hidden" id="khususLecturer">
                     <label for="confirm" class="block text-sm font-medium leading-6 text-gray-900">YOUR DESCRIPTION</label>
                     <div class="mt-1">
-                      <input id="desc" name="desc" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Mathematics Expert">
+                      <input id="desc" name="desc" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Mathematics Expert" value="{{ old('desc') }}">
                     </div>
                 </div>
 

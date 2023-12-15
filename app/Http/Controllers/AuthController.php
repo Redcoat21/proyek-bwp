@@ -52,7 +52,7 @@ class AuthController extends Controller
 
         if($user){
             // Apabila user kembar.
-            return back()->withErrors('error', 'Username already exists!');
+            return back()->withErrors(['kembar' => 'Username already exists!']);
         }
         else{
             $role = $credentials['inline-radio-group'] === 'student' ? 'STU' : 'LEC';

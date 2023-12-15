@@ -30,6 +30,8 @@ Route::get('/', [PageController::class, 'showHome'])->name('home.get');
 
 Route::get('/course', [PageController::class, 'showCourse'])->name('course.get');
 
+Route::get('/listCourse', [PageController::class, 'showListCourse'])->name('listCourse.get');
+
 Route::prefix('/test')->group(function () {
     Route::get('/auth', fn () => view('temp.auth'))->name('login');
     Route::post('/auth', [AuthController::class, 'login']);
