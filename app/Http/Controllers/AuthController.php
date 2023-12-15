@@ -37,6 +37,12 @@ class AuthController extends Controller
         ])->onlyInput('username');
     }
 
+    public function logout(): RedirectResponse
+    {
+        Auth::logout();
+        return redirect(route('home.get'));
+    }
+
     public function register(Request $request): RedirectResponse
     {
         $credentials = $this->validateRegisterInput($request);

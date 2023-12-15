@@ -15,9 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('auth')->group(function () {
-    Route::get('/', [PageController::class, 'showAuthPage'])->name('auth.get');
-    Route::post('/', [AuthController::class, 'process'])->name('auth.post');
-    Route::get('/toggle', [PageController::class, 'toggleLogin'])->name('auth.get.toggle');
+    Route::controller(PageController::class)->group(function () {
+        Route::get('/', [PageController::class, 'showAuthPage'])->name('auth.get');
+        Route::get('/toggle', [PageController::class, 'toggleLogin'])->name('auth.get.toggle');
+    });
+
+    Route::controller(AuthController::class)->group(function () {
+        Route::post('/', [AuthController::class, 'process'])->name('auth.post');
+        Route::post('/logout', [AuthController::class, 'logout'])->name('auth.post.logout');
+    });
 });
 
 Route::get('/', [PageController::class, 'showHome'])->name('home.get');
