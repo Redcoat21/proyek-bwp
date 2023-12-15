@@ -6,7 +6,7 @@ Nama Course
 
 @section('header')
     <nav class="bg-white border border-black-1000">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 py-1">
             <a href="{{ route('home.get') }}" class="flex items-center space-x-3 text-blue-500">
                 <span class="self-center text-2xl font-semibold whitespace-nowrap">RuangDosen</span>
             </a>
