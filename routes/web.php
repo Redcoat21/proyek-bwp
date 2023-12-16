@@ -14,32 +14,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', [PageController::class, 'showHome'])->name('home.get');
+
+// LOGIN AND REGISTER
 Route::prefix('auth')->group(function () {
+    // SHOW PAGE
     Route::controller(PageController::class)->group(function () {
         Route::get('/', [PageController::class, 'showAuthPage'])->name('auth.get');
         Route::get('/toggle', [PageController::class, 'toggleLogin'])->name('auth.get.toggle');
     });
 
+    // PROCESS FORM
     Route::controller(AuthController::class)->group(function () {
         Route::post('/', [AuthController::class, 'process'])->name('auth.post');
         Route::post('/logout', [AuthController::class, 'logout'])->name('auth.post.logout');
     });
 });
 
-Route::get('/', [PageController::class, 'showHome'])->name('home.get');
-
 Route::get('/course', [PageController::class, 'showCourse'])->name('course.get');
-
-Route::get('/listCourse', [PageController::class, 'showListCourse'])->name('listCourse.get');
 
 Route::prefix('/test')->group(function () {
     Route::get('/auth', fn () => view('temp.auth'))->name('login');
     Route::post('/auth', [AuthController::class, 'login']);
     Route::post('/register', [AuthController::class, 'register']);
-    Route::post('/file', [\App\Http\Controllers\FileController::class, 'showFile']);
     Route::get('/test2', [PageController::class, 'getTopThreeLecturer']);
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/file', fn () => view('temp.file'))->name('file');
+    Route::get('/listCourse', [PageController::class, 'showListCourse'])->name('listCourse.get');
 });
