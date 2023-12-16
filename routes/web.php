@@ -31,8 +31,6 @@ Route::prefix('auth')->group(function () {
     });
 });
 
-Route::get('/course', [PageController::class, 'showCourse'])->name('course.get');
-
 Route::prefix('/test')->group(function () {
     Route::get('/auth', fn () => view('temp.auth'))->name('login');
     Route::post('/auth', [AuthController::class, 'login']);
@@ -42,4 +40,7 @@ Route::prefix('/test')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/listCourse', [PageController::class, 'showListCourse'])->name('listCourse.get');
+    Route::get('/course', [PageController::class, 'showCourse'])->name('course.get');
 });
+
+Route::get('/courseDetail', [PageController::class, 'showCourseDetail'])->name('courseDetail.get');

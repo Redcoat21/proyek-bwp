@@ -29,12 +29,17 @@ class PageController extends Controller
 
     public function showCourse(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
-        return view('course');
+        return view('courses.course');
     }
 
     public function showListCourse(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
         return view('courses.listCourse');
+    }
+
+    public function showCourseDetail(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
+    {
+        return view('courses.courseDetail');
     }
 
     // public function getTopThreeLecturer()

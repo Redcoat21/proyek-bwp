@@ -5,7 +5,7 @@
 @endsection
 
 @section('header')
-    <x-navbar :searchBar="true" />
+    <x-navbar :searchBar="true" activePage="course" />
 @endsection
 
 {{-- ini buat dilanjut sama edward --}}
