@@ -44,3 +44,4 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/course', [PageController::class, 'showCourse'])->name('course.get');
 Route::get('/courseDetail', [PageController::class, 'showCourseDetail'])->name('courseDetail.get');
+Route::get('/subCourse', [PageController::class, 'showSubCourse'])->name('subCourse.get');

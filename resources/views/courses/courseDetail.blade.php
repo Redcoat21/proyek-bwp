@@ -24,7 +24,7 @@
         </div>
     </div>
 </div>
-<hr class="h-px mb-8 bg-gray-600 border-0 mx-6">
+<hr class="h-px mb-8 bg-gray-400 border-0 mx-6">
     <div class="mx-20">
         <span class="font-semibold text-xl">Courses</span>
         <ul class="w-full">
