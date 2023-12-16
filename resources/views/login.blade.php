@@ -63,7 +63,6 @@ Authentication
                 <div class="col-span-2 col-start-3 mb-10 text-center">
                     <span class="text-sm font-normal">
                         Baru di RuangDosen?
-{{--                        <button type="button" id="toRegister" name="toRegister" class="text-blue-600 underline underline-offset-2">Daftar</button>--}}
                         <a href="{{route('auth.get.toggle')}}" class="text-blue-600 underline underline-offset-2">Daftar</a>
                     </span>
                 </div>
