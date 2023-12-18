@@ -1,7 +1,7 @@
 @extends('template.baseTemplate')
 
 @section('title')
-Home
+    Home
 @endsection
 
 @section('header')
@@ -22,7 +22,7 @@ Home
             <h1 class="text-4xl font-bold text-blue-600">Our Top Lecturer</h1>
         </div>
         <div class="grid grid-cols-3 mb-5">
-            @foreach($topLecturers->getData() as $topLecturer)
+            @foreach($topLecturers as $topLecturer)
                 <div class="place-self-center text-center w-3/5">
                     <div class="flex flex-col items-center">
                         <div class="flex justify-center">
@@ -104,7 +104,6 @@ Home
                     <p class="mb-3 font-normal text-gray-700">Learn Basic Cloud Engineering with AWS Educate Team.</p>
                 </div>
             </a>
-
         </div>
     </div>
 @endsection

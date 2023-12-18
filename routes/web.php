@@ -31,6 +31,7 @@ Route::prefix('auth')->group(function () {
     });
 });
 
+// Ini buat dipake sama backend doang, jangan di apa apain kecuali mau ngetes juga :)
 Route::prefix('/test')->group(function () {
     Route::get('/auth', fn () => view('temp.auth'))->name('login');
     Route::post('/auth', [AuthController::class, 'login']);
@@ -42,6 +43,4 @@ Route::middleware('auth')->group(function () {
     Route::get('/listCourse', [PageController::class, 'showListCourse'])->name('listCourse.get');
 });
 
-Route::get('/course', [PageController::class, 'showCourse'])->name('course.get');
-Route::get('/courseDetail', [PageController::class, 'showCourseDetail'])->name('courseDetail.get');
 Route::get('/subCourse', [PageController::class, 'showSubCourse'])->name('subCourse.get');

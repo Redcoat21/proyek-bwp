@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
@@ -34,7 +35,7 @@ class PageController extends Controller
 
     public function showListCourse(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
-        return view('courses.listCourse');
+        return view('courses.listCourse', ['courses' => Course::all()]);
     }
 
     public function showCourseDetail(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
@@ -48,7 +49,7 @@ class PageController extends Controller
     }
 
     // public function getTopThreeLecturer()
-    public function getTopLecturers(): JsonResponse
+    public function getTopLecturers(): array
     {
         $res = DB::select("
             SELECT u.username, u.name, u.profile_picture, l.description
@@ -58,7 +59,7 @@ class PageController extends Controller
             LEFT JOIN users AS `u` ON u.username = l.username
             GROUP BY u.username, u.name, u.profile_picture, l.description LIMIT 3
         ");
-        return response()->json($res);
+        return $res;
     }
 
     public function toggleLogin(): RedirectResponse
@@ -76,7 +77,7 @@ class PageController extends Controller
         return back();
     }
 
-    public function getTopCourses(): JsonResponse
+    public function getTopCourses(): array
     {
         $res = DB::select("
             SELECT c.id, c.name, c.description, u.username, u.profile_picture, COUNT(*) AS `occurences`
@@ -90,6 +91,6 @@ class PageController extends Controller
             LIMIT 3;
         ");
 
-        return response()->json($res);
+        return $res;
     }
 }
