@@ -27,6 +27,7 @@ class PageController extends Controller
         return view('home', ['topLecturers' => $this->getTopLecturers(), 'topCourses' => $this->getTopCourses()]);
     }
 
+
     public function getTopLecturers(): JsonResponse
     {
         $res = DB::select("
