@@ -5,7 +5,10 @@ Home
 @endsection
 
 @section('header')
+<<<<<<< Updated upstream
     {{-- @dd($topCourses->getData()) --}}
+=======
+>>>>>>> Stashed changes
     <nav class="bg-white border border-black-1000">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="{{ route('home.get') }}" class="flex items-center space-x-3 text-blue-500">
