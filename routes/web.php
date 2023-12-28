@@ -22,12 +22,9 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::get('/', [PageController::class, 'showHome'])->name('home.get');
-<<<<<<< Updated upstream
-=======
 Route::get('/listcourse', [homeController::class, 'getlistcourse'])->name('listcourse.get');
 Route::get('/lecturer', [homeController::class, 'getlecturer'])->name('lecturer.get');
 Route::get('/lecturer/detail', [homeController::class, 'getlecturerdetail'])->name('lecturer_detail.get');
->>>>>>> Stashed changes
 
 Route::prefix('/test')->group(function () {
     Route::get('/auth', fn () => view('temp.auth'))->name('login');
