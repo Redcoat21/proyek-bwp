@@ -22,7 +22,6 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::get('/', [PageController::class, 'showHome'])->name('home.get');
-Route::get('/listcourse', [homeController::class, 'listcourse'])->name('listcourse.get');
 
 Route::prefix('/test')->group(function () {
     Route::get('/auth', fn () => view('temp.auth'))->name('login');
