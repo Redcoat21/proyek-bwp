@@ -53,6 +53,11 @@ class PageController extends Controller
         return view('student.studentProfile');
     }
 
+    public function showLecturerProfile(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
+    {
+        return view('lecturer.lecturerProfile');
+    }
+
     // public function getTopThreeLecturer()
     public function getTopLecturers(): array
     {

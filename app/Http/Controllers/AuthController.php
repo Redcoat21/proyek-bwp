@@ -29,6 +29,16 @@ class AuthController extends Controller
             'password' => $credentials['password_login']
         ])) {
             $request->session()->regenerate();
+
+            $user = Auth::user();
+
+            if($user->role === 'STU') {
+                return redirect(route('home.get'));
+            }
+            else if($user->role === 'LEC') {
+                return redirect(route('lecturerProfile.get'));
+            }
+
             return redirect('/');
         }
 
