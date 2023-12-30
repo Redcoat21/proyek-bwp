@@ -17,6 +17,9 @@ Lecturer
                     <li>
                         <a href="{{ route('listcourse.get') }}" class="block text-blue-600 bg-transparent p-0">Courses</a>
                     </li>
+                    <li>
+                        <a href="{{ route('listlecturer.get') }}" class="block text-gray-900 hover:bg-transparent hover:text-blue-600 p-0">Lecturer</a>
+                    </li>
                 </ul>
             </div>
             <div class="flex">
@@ -45,11 +48,25 @@ Lecturer
             Lecturer
         </div>
         <!-- Content -->
-        <div class="flex">
-            <img src="{{ asset('asset/male_lecturer.jpg') }}" alt="Image Lecturer" class="rounded-full w-28 mb-10">
+        <div class="text-2xl font-bold text-black mb-1">Ahmad Bambang S.Mat, M.Mat</div>
+        <div class="text-xl font-italic text-gray-800">Mathematic Expert</div>
+        <div class="flex mt-5">
+            <img src="{{ asset('asset/male_lecturer.jpg') }}" alt="Image Lecturer" class="rounded-full w-32 mb-10">
             <div class="flex-col my-5 mx-5">
-                <div class="text-2xl font-bold text-black mb-1">Ahmad Bambang S.Mat, M.Mat</div>
-                <div class="text-xl font-italic text-gray-800">Mathematic Expert</div>
+                <table class="table-auto">
+                    <thead>
+                        <tr class="text-lg">
+                            <th class="px-4 py-2">Course</th>
+                            <th class="px-4 py-2">Following</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>6</th>
+                            <th>1</th>
+                        </tr>
+                    </tbody>    
+                </table>
             </div>
         </div>
         <!-- Courses Text-->

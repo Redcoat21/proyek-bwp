@@ -17,6 +17,9 @@ Home
                     <li>
                         <a href="{{ route('listcourse.get') }}" class="block text-blue-600 bg-transparent p-0">Courses</a>
                     </li>
+                    <li>
+                        <a href="{{ route('listlecturer.get') }}" class="block text-gray-900 hover:bg-transparent hover:text-blue-600 p-0">Lecturer</a>
+                    </li>
                 </ul>
             </div>
             <div class="flex">
@@ -39,15 +42,15 @@ Home
     </nav>
 @endsection
 @section('content')
-    <section class="bg-center bg-no-repeat bg-cover bg-gray-300 bg-blend-multiply relative overflow-hidden" style="background-image: url('{{ asset('asset/jumbotron.jpg') }}')">
+    <!-- <section class="bg-center bg-no-repeat bg-cover bg-gray-300 bg-blend-multiply relative overflow-hidden" style="background-image: url('{{ asset('asset/jumbotron.jpg') }}')">
         <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
             <h2 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Belajar dimana saja dan kapan saja</h2>
             <p class="mb-8 text-lg font-normal text-gray-100 lg:text-xl sm:px-16 lg:px-48">Dengan Pengajar Professional setara dengan Dosen Universitas <br> dan <br> berbagai macam topik menarik</p>            <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
             </div>
         </div>
-    </section>
+    </section> -->
     <!--Pelajari Topik Baru text-->
-    <div class="pt-7 pb-4 px-12">
+    <div class="pt-7 pb-4 px-12 mb-12">
         <div class="text-blue-500 text-3xl font-bold">
             Pelajari Topik Baru
         </div>
@@ -58,8 +61,8 @@ Home
             <!-- Slides -->
             <!-- Content for Slide 1 -->
             <div class="carousel-item">
-                <div class="flex items-center mb-1">
-                    <div class="bg-white p-1 rounded shadow-md pb-4 w-1/3 mx-2" >
+                <div class="flex place-content-center mb-1">
+                    <div class="bg-white p-1 rounded shadow-md pb-4 w-1/4 mx-2" >
                         <img src="https://g2.img-dpreview.com/81C81CB44922409EA3C99FA3E42369CD.jpg" alt="" class="w-full rounded mb-3">
                         <div class="p-2">
                             <div class="flex items-center">
@@ -73,7 +76,7 @@ Home
                             </div>
                         </div>
                     </div>
-                    <div class="bg-white p-1 rounded shadow-md pb-4 w-1/3 mx-2" >
+                    <div class="bg-white p-1 rounded shadow-md pb-4 w-1/4 mx-2" >
                         <img src="	https://g2.img-dpreview.com/2E3F787848C541C3BB196015762B1CFD.jpg" alt="" class="w-full rounded mb-3">
                         <div class="p-2">
                             <div class="flex items-center">
@@ -87,7 +90,7 @@ Home
                             </div>
                         </div>
                     </div>
-                    <div class="bg-white p-1 rounded shadow-md pb-4 w-1/3 mx-2" >
+                    <div class="bg-white p-1 rounded shadow-md pb-4 w-1/4 mx-2" >
                         <img src="https://g1.img-dpreview.com/FF9CE2684532407EA326F7E9562EB91A.jpg" alt="" class="w-full rounded mb-3">
                         <div class="p-2">
                             <div class="flex items-center">
@@ -105,8 +108,8 @@ Home
             </div>
             <!-- Content for Slide 2 -->
             <div class="carousel-item">
-                <div class="flex items-center mb-1">
-                    <div class="bg-white p-1 rounded shadow-md pb-4 w-1/3 mx-2" >
+                <div class="flex place-content-center mb-1">
+                    <div class="bg-white p-1 rounded shadow-md pb-4 w-1/4 mx-2" >
                         <img src="https://g2.img-dpreview.com/81C81CB44922409EA3C99FA3E42369CD.jpg" alt="" class="w-full rounded mb-3">
                         <div class="p-2">
                             <div class="flex items-center">
@@ -120,7 +123,7 @@ Home
                             </div>
                         </div>
                     </div>
-                    <div class="bg-white p-1 rounded shadow-md pb-4 w-1/3 mx-2" >
+                    <div class="bg-white p-1 rounded shadow-md pb-4 w-1/4 mx-2" >
                         <img src="https://g2.img-dpreview.com/81C81CB44922409EA3C99FA3E42369CD.jpg" alt="" class="w-full rounded mb-3">
                         <div class="p-2">
                             <div class="flex items-center">
@@ -134,7 +137,7 @@ Home
                             </div>
                         </div>
                     </div>
-                    <div class="bg-white p-1 rounded shadow-md pb-4 w-1/3 mx-2" >
+                    <div class="bg-white p-1 rounded shadow-md pb-4 w-1/4 mx-2" >
                         <img src="https://g2.img-dpreview.com/81C81CB44922409EA3C99FA3E42369CD.jpg" alt="" class="w-full rounded mb-3">
                         <div class="p-2">
                             <div class="flex items-center">
@@ -152,8 +155,8 @@ Home
             </div>
             <!-- Content for Slide 3 -->
             <div class="carousel-item">
-                <div class="flex items-center mb-1">
-                    <div class="bg-white p-1 rounded shadow-md pb-4 w-1/3 mx-2" >
+                <div class="flex place-content-center mb-1">
+                    <div class="bg-white p-1 rounded shadow-md pb-4 w-1/4 mx-2" >
                         <img src="https://g2.img-dpreview.com/81C81CB44922409EA3C99FA3E42369CD.jpg" alt="" class="w-full rounded mb-3">
                         <div class="p-2">
                             <div class="flex items-center">
@@ -167,7 +170,7 @@ Home
                             </div>
                         </div>
                     </div>
-                    <div class="bg-white p-1 rounded shadow-md pb-4 w-1/3 mx-2" >
+                    <div class="bg-white p-1 rounded shadow-md pb-4 w-1/4 mx-2" >
                         <img src="https://g2.img-dpreview.com/81C81CB44922409EA3C99FA3E42369CD.jpg" alt="" class="w-full rounded mb-3">
                         <div class="p-2">
                             <div class="flex items-center">
@@ -181,7 +184,7 @@ Home
                             </div>
                         </div>
                     </div>
-                    <div class="bg-white p-1 rounded shadow-md pb-4 w-1/3 mx-2" >
+                    <div class="bg-white p-1 rounded shadow-md pb-4 w-1/4 mx-2" >
                         <img src="https://g2.img-dpreview.com/81C81CB44922409EA3C99FA3E42369CD.jpg" alt="" class="w-full rounded mb-3">
                         <div class="p-2">
                             <div class="flex items-center">
@@ -253,15 +256,15 @@ Home
     </script>
 
     <!--Lihat topik hangat saat ini text-->
-    <div class="pt-7 pb-4 px-12">
+    <div class="pt-7 px-12 pb-5 mb-12">
         <div class="text-blue-500 text-3xl font-bold">
             Lihat topik hangat saat ini
         </div>
     </div>
     <!--Content Topik Hangat-->
-    <div class="flex flex-wrap items-center justify-center h-screen mx-8 mb-2">
+    <div class="flex flex-wrap items-center justify-center h-screen mx-8 mb-4">
         @for($i = 0; $i < 5; $i++)
-        <div class="bg-white p-1 rounded shadow-md pb-4 mx-2 mb-5" style="width:31.9%;">
+        <div class="bg-white p-1 rounded shadow-md pb-4 mx-5 mb-5" style="width:25%;">
             <img src="https://g2.img-dpreview.com/81C81CB44922409EA3C99FA3E42369CD.jpg" alt="" class="w-full rounded mb-3">
             <div class="p-2">
                 <div class="flex items-center">
@@ -276,5 +279,5 @@ Home
             </div>
         </div>
         @endfor
-    </div>
+    </div> 
 @endsection

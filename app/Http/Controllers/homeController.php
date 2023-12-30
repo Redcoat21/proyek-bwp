@@ -21,6 +21,6 @@ class homeController extends Controller
     }
     public function getlecturerdetail()
     {
-        return view('lecturer_detail');
+        return view('listlecturer');
     }
 }

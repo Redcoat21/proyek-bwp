@@ -28,6 +28,9 @@ Home
                         @endif
                         " class="block text-gray-900 hover:bg-transparent hover:text-blue-600 p-0">Courses</a>
                     </li>
+                    <li>
+                        <a href="{{ route('listlecturer.get') }}" class="block text-gray-900 hover:bg-transparent hover:text-blue-600 p-0">Lecturer</a>
+                    </li>
                 </ul>
             </div>
             <div class="flex">

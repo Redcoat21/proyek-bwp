@@ -15,7 +15,10 @@ Lecturer
                         <a href="{{ route('home.get') }}" class="block text-gray-900 hover:bg-transparent hover:text-blue-600 p-0">Home</a>
                     </li>
                     <li>
-                        <a href="{{ route('listcourse.get') }}" class="block text-blue-600 bg-transparent p-0">Courses</a>
+                        <a href="{{ route('listcourse.get') }}" class="block text-gray-900 hover:bg-transparent hover:text-blue-600 p-0">Courses</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('listlecturer.get') }}" class="block text-blue-600 bg-transparent p-0">Lecturer</a>
                     </li>
                 </ul>
             </div>
