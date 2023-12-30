@@ -32,17 +32,13 @@
                         Login
                     </a>
                 @else
-                    <form action="{{ route('auth.post.logout') }}" method="POST">
-                        @csrf
-                        <button type="submit">
-{{--                            <img src="{{ asset('asset/def_pp.jpg') }}" class="h-10 rounded-full" alt="pp">--}}
-                            @if(auth()->user()->profile_picture)
+                    <a href="{{ route('studentProfile.get') }}">
+                        @if(auth()->user()->profile_picture)
                                 <img src="{{ asset(auth()->user()->profile_picture) }}" class="h-10 rounded-full" alt="pp">
                             @else
                                 <img src="{{ asset('asset/def_pp.jpg') }}" class="h-10 rounded-full" alt="pp">
                             @endif
-                        </button>
-                    </form>
+                    </a>
                 @endif
             </div>
         </div>

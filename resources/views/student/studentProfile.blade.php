@@ -42,6 +42,20 @@ Profile
                         <div class="row-start-2">2</div>
                     </div>
                 </div>
+                <div class="flex justify-end">
+                    <form action="" method="POST">
+                        @csrf
+                        <button type="submit" class="bg-green-600 hover:bg-green-800 text-white py-1 px-3 mt-2 me-2 rounded text-base">
+                            Edit Profile
+                        </button>
+                    </form>
+                    <form action="{{ route('auth.post.logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="bg-red-600 hover:bg-red-800 text-white py-1 px-3 mt-2 rounded text-base">
+                            Logout
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
         <div class="bg-zinc-100 my-6 mx-56 shadow-md">
@@ -55,7 +69,7 @@ Profile
                         <div class="my-2 text-xl font-bold">
                             You Don't Have Any In Progress Courses Now.
                         </div>
-                        <a href="{{ route('listCourse.get') }}" class="bg-blue-600 hover:bg-blue-800 text-white py-1 px-10 mt-2 border border-blue-600 text-base">
+                        <a href="{{ route('listCourse.get') }}" class="bg-blue-600 hover:bg-blue-800 text-white py-1 px-10 mt-2 rounded text-base">
                             Search Course
                         </a>
                     </div>
