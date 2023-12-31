@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\homeController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -16,15 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PageController::class, 'showHome'])->name('home.get');
-Route::get('/listcourse', [homeController::class, 'getlistcourse'])->name('listcourse.get');
-Route::get('/lecturer/detail', [homeController::class, 'getlecturer'])->name('lecturer.get');
-Route::get('/listlecturer', [homeController::class, 'getlecturerdetail'])->name('listlecturer.get');
+Route::get('/lecturer/detail', [PageController::class, 'showLecturerDetail'])->name('lecturerDetail.get');
 
 // LOGIN AND REGISTER
 Route::prefix('auth')->group(function () {
     // SHOW PAGE
     Route::controller(PageController::class)->group(function () {
         Route::get('/', [PageController::class, 'showAuthPage'])->name('auth.get');
+        Route::post('/', [AuthController::class, 'process'])->name('auth.post');
         Route::get('/toggle', [PageController::class, 'toggleLogin'])->name('auth.get.toggle');
     });
 
@@ -45,6 +43,7 @@ Route::prefix('/test')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/listCourse', [PageController::class, 'showListCourse'])->name('listCourse.get');
+    Route::get('/listLecturer', [PageController::class, 'showListLecturer'])->name('listLecturer.get');
 });
 
 Route::get('/subCourse', [PageController::class, 'showSubCourse'])->name('subCourse.get');
