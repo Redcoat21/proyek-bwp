@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\homeController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PageController::class, 'showHome'])->name('home.get');
+Route::get('/listcourse', [homeController::class, 'getlistcourse'])->name('listcourse.get');
+Route::get('/lecturer/detail', [homeController::class, 'getlecturer'])->name('lecturer.get');
+Route::get('/listlecturer', [homeController::class, 'getlecturerdetail'])->name('listlecturer.get');
 
 // LOGIN AND REGISTER
 Route::prefix('auth')->group(function () {
