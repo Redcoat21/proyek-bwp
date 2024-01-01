@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('email', 150);
             $table->char('role', 3);
             $table->string('profile_picture', 500)->nullable();
-
+            $table->timestamps();
+            $table->softDeletes();
             $table->foreign('role')->references('id')->on('roles');
         });
     }

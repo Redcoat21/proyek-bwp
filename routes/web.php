@@ -52,3 +52,7 @@ Route::get('/course', [PageController::class, 'showCourse'])->name('course.get')
 Route::get('/studentProfile', [PageController::class, 'showStudentProfile'])->name('studentProfile.get');
 
 Route::get('/lecturerProfile', [PageController::class, 'showLecturerProfile'])->name('lecturerProfile.get');
+
+
+//admin page
+Route::get('/adminProfile', [PageController::class, 'showAdminProfile'])->name('adminProfile.get');

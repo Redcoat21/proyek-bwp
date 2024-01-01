@@ -113,4 +113,8 @@ class PageController extends Controller
 
         return $res;
     }
+
+    public function showAdminProfile(){
+        return view('admin.adminProfile');
+    }
 }
