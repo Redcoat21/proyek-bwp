@@ -58,6 +58,16 @@ class PageController extends Controller
         return view('lecturer.lecturerProfile');
     }
 
+    public function showListLecturer(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
+    {
+        return view('lecturerFS.listLecturer');
+    }
+
+    public function showLecturerDetail(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
+    {
+        return view('lecturerFS.lecturer');
+    }
+
     // public function getTopThreeLecturer()
     public function getTopLecturers(): array
     {

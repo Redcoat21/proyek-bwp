@@ -11,6 +11,9 @@
                 <li>
                     <a href="{{ route('listCourse.get') }}" class="block {{ $activePage === 'course' ? 'text-blue-600' : 'text-gray-900' }} hover:bg-transparent hover:text-blue-600 p-0">Courses</a>
                 </li>
+                <li>
+                    <a href="{{ route('listLecturer.get') }}" class="block {{ $activePage === 'lecturer' ? 'text-blue-600' : 'text-gray-900' }} hover:bg-transparent hover:text-blue-600 p-0">Lecturer</a>
+                </li>
             </ul>
         </div>
         <div class="flex">
