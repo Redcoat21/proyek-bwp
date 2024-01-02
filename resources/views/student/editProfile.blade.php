@@ -64,6 +64,12 @@ Edit
                 <label for="repeat-password" class="block mb-2 text-sm font-medium text-gray-900">Confirm Password</label>
                 <input type="password" id="repeat-password" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2" placeholder="your new password confirmation" value="{{ auth()->user()->password }}" required>
                 </div>
+                @if(auth()->user()->role =='LEC')
+                <div class="mb-5">
+                    <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Your Description</label>
+                    <textarea id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300" placeholder="Write Your Description">{{ auth()->user()->description }}</textarea>
+                </div>
+                @endif
                 <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-md text-sm px-5 py-2 text-center">Update My Profile</button>
             </form>
         </div>

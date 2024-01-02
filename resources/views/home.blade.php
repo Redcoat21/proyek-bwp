@@ -58,7 +58,7 @@
                 @else
                     {{ route('home.get') }}
                 @endif
-                " class="w-3/5 bg-white border border-gray-200 rounded-lg hover:shadow-md place-self-center">
+                " class="w-3/5 bg-white border border-gray-200 rounded-lg hover:shadow-md place-self-center self-start">
                     @if($course->cover)
                         <img class="rounded-t-lg w-full" src="{{ asset($course->cover) }}" alt="">
                     @else
