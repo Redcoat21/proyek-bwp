@@ -26,7 +26,7 @@
                         <span class="sr-only">Search icon</span>
                     </div>
                     <label for="search-navbar"></label>
-                    <input type="text" id="search-navbar" name="search-navbar" class="block p-2 my-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Search...">
+                    <input type="text" id="search-navbar" name="search-navbar" class="block p-2 my-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" placeholder="Search..." onkeyup="searchItems()">
                 </div>
             @endif
             <div class="relative block my-2 mx-3">

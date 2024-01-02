@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 /*
@@ -54,3 +55,6 @@ Route::get('/editProfile', [PageController::class, 'showEditProfile'])->name('ed
 Route::get('/lecturerProfile', [PageController::class, 'showLecturerProfile'])->name('lecturerProfile.get');
 Route::post('/toEdit', [PageController::class, 'toEdit'])->name('toEdit.post');
 Route::get('/back', [PageController::class, 'showBack'])->name('back.get');
+
+//routing untuk ajax
+Route::get('/search', [DataController::class, 'search']);

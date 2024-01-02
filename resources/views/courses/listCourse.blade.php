@@ -9,3 +9,8 @@
 @endsection
 
 {{-- ini buat dilanjut sama edward --}}
+@section('content')
+<div id="search-results">
+
+</div>
+@endsection
