@@ -31,6 +31,20 @@
                         <div class="row-start-2">0</div>
                     </div>
                 </div>
+                <div class="flex justify-end">
+                    <form action="{{ route('toEdit.post') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="bg-green-600 hover:bg-green-800 text-white py-1 px-3 mt-2 me-2 rounded text-base">
+                            Edit Profile
+                        </button>
+                    </form>
+                    <form action="{{ route('auth.post.logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="bg-red-600 hover:bg-red-800 text-white py-1 px-3 mt-2 rounded text-base">
+                            Logout
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
         <div class="bg-zinc-100 my-6 mx-56 shadow-md">

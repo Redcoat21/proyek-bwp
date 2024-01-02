@@ -23,6 +23,16 @@ class PageController extends Controller
         return view('login');
     }
 
+    public function toEdit()
+    {
+        return redirect()->route('editProfile.get');
+    }
+
+    public function showBack(): RedirectResponse
+    {
+        return back();
+    }
+
     public function showHome(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
         return view('home', ['topLecturers' => $this->getTopLecturers(), 'topCourses' => $this->getTopCourses()]);
@@ -53,7 +63,7 @@ class PageController extends Controller
         return view('student.studentProfile');
     }
 
-    public function showEditProfileStudent(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
+    public function showEditProfile(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
         return view('student.editProfile');
     }
