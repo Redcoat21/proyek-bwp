@@ -53,6 +53,11 @@ class PageController extends Controller
         return view('student.studentProfile');
     }
 
+    public function showEditProfileStudent(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
+    {
+        return view('student.editProfile');
+    }
+
     public function showLecturerProfile(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
         return view('lecturer.lecturerProfile');
@@ -72,12 +77,12 @@ class PageController extends Controller
     public function getTopLecturers(): array
     {
         $res = DB::select("
-            SELECT u.username, u.name, u.profile_picture, l.description
+            SELECT u.username, u.name, u.profile_picture, u.description
             FROM transactions AS `t`
             LEFT JOIN courses AS `c` ON c.id = t.course
-            LEFT JOIN lecturers AS `l` ON l.username = c.lecturer
-            LEFT JOIN users AS `u` ON u.username = l.username
-            GROUP BY u.username, u.name, u.profile_picture, l.description LIMIT 3
+            LEFT JOIN users AS `u` ON u.username = c.lecturer
+            WHERE u.role = 'LEC'
+            GROUP BY u.username, u.name, u.profile_picture, u.description LIMIT 3
         ");
         return $res;
     }
@@ -100,13 +105,12 @@ class PageController extends Controller
     public function getTopCourses(): array
     {
         $res = DB::select("
-            SELECT c.id, c.name, c.description, u.username, u.profile_picture, COUNT(*) AS `occurences`
+            SELECT c.id, c.name, c.description, u.name as user_name, u.profile_picture, COUNT(*) AS `occurences`, c.cover
             FROM transactions AS `t`
             LEFT JOIN courses AS `c` ON c.id = t.course
-            LEFT JOIN lecturers AS `l` ON l.username = c.lecturer
-            LEFT JOIN users AS `u` ON u.username = l.username
+            LEFT JOIN users AS `u` ON u.username = c.lecturer
             WHERE c.status = 1
-            GROUP BY c.id, c.name, c.description, u.username, u.profile_picture
+            GROUP BY c.id, c.name, c.description, u.name, u.profile_picture, c.cover
             ORDER BY `occurences` DESC
             LIMIT 3;
         ");

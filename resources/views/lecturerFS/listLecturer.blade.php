@@ -4,7 +4,7 @@
 Lecturer
 @endsection
 @section('header')
-    <x-navbar :searchBar="false" activePage="lecturer" />
+    <x-navbar :searchBar="true" activePage="lecturer" />
 @endsection
 
 @section('content')
@@ -22,7 +22,7 @@ Lecturer
                         <div class="text-2xl font-bold text-black mb-1">Ahmad Bambang S.Mat, M.Mat</div>
                         <div class="text-xl font-italic text-gray-800">Mathematic Expert</div>
                     </div>
-                    <button class="ml-auto text-white text-bold text-xl bg-blue-600 rounded h-12 py-1 px-3">See course</button>
+                    <button class="ml-auto text-white text-bold text-xl bg-blue-600 rounded py-1 px-3">See course</button>
                 </div>
             @endfor
         </div>

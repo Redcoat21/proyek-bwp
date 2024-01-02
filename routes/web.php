@@ -50,5 +50,5 @@ Route::get('/subCourse', [PageController::class, 'showSubCourse'])->name('subCou
 Route::get('/courseDetail', [PageController::class, 'showCourseDetail'])->name('courseDetail.get');
 Route::get('/course', [PageController::class, 'showCourse'])->name('course.get');
 Route::get('/studentProfile', [PageController::class, 'showStudentProfile'])->name('studentProfile.get');
-
+Route::get('/editProfileStudent', [PageController::class, 'showEditProfileStudent'])->name('editProfileStudent.get');
 Route::get('/lecturerProfile', [PageController::class, 'showLecturerProfile'])->name('lecturerProfile.get');

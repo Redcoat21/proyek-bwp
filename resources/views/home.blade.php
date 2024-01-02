@@ -51,59 +51,34 @@
         </div>
         <div class="grid grid-cols-3 my-10 justify-items-center">
 
-            <a href="
-            @if (!auth()->user())
-                {{ route('auth.get') }}
-            @else
-                {{ route('home.get') }}
-            @endif
-            " class="w-3/5 bg-white border border-gray-200 rounded-lg hover:shadow-md">
-                <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
-                <div class="p-5">
-                    <div class="flex items-center space-x-3">
-                        <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
-                        <span class="self-center text-xs font-normal whitespace-nowrap">AWS Educate</span>
+            @foreach ($topCourses as $course)
+                <a href="
+                @if (!auth()->user())
+                    {{ route('auth.get') }}
+                @else
+                    {{ route('home.get') }}
+                @endif
+                " class="w-3/5 bg-white border border-gray-200 rounded-lg hover:shadow-md place-self-center">
+                    @if($course->cover)
+                        <img class="rounded-t-lg w-full" src="{{ asset($course->cover) }}" alt="">
+                    @else
+                        <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
+                    @endif
+                    <div class="p-5">
+                        <div class="flex items-center space-x-3">
+                            @if($course->profile_picture)
+                                <img src="{{ asset($course->profile_picture) }}" class="h-8 border-none rounded" alt="pp">
+                            @else
+                                <img src="{{ asset('asset/def_pp.jpg') }}" class="h-8 border-none rounded" alt="pp">
+                            @endif
+                            <span class="self-center text-xs font-normal whitespace-nowrap">{{ $course->user_name }}</span>
+                        </div>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{ $course->name }}</h5>
+                        <p class="mb-3 font-normal text-gray-700">{{ $course->description }}</p>
                     </div>
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Cloud Engineering for Beginners</h5>
-                    <p class="mb-3 font-normal text-gray-700">Learn Basic Cloud Engineering with AWS Educate Team.</p>
-                </div>
-            </a>
+                </a>
+            @endforeach
 
-            <a href="
-            @if (!auth()->user())
-                {{ route('auth.get') }}
-            @else
-                {{ route('home.get') }}
-            @endif
-            " class="w-3/5 bg-white border border-gray-200 rounded-lg hover:shadow-md">
-                <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
-                <div class="p-5">
-                    <div class="flex items-center space-x-3">
-                        <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
-                        <span class="self-center text-xs font-normal whitespace-nowrap">AWS Educate</span>
-                    </div>
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Cloud Engineering for Beginners</h5>
-                    <p class="mb-3 font-normal text-gray-700">Learn Basic Cloud Engineering with AWS Educate Team.</p>
-                </div>
-            </a>
-
-            <a href="
-            @if (!auth()->user())
-                {{ route('auth.get') }}
-            @else
-                {{ route('home.get') }}
-            @endif
-            " class="w-3/5 bg-white border border-gray-200 rounded-lg hover:shadow-md">
-                <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
-                <div class="p-5">
-                    <div class="flex items-center space-x-3">
-                        <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
-                        <span class="self-center text-xs font-normal whitespace-nowrap">AWS Educate</span>
-                    </div>
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Cloud Engineering for Beginners</h5>
-                    <p class="mb-3 font-normal text-gray-700">Learn Basic Cloud Engineering with AWS Educate Team.</p>
-                </div>
-            </a>
         </div>
     </div>
 
