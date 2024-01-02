@@ -24,8 +24,21 @@ class AuthController extends Controller
     {
         $credentials = $this->validateLoginInput($request);
 
-        if(Auth::attempt($credentials)) {
+        if(Auth::attempt([
+            'username' => $credentials['username_login'],
+            'password' => $credentials['password_login']
+        ])) {
             $request->session()->regenerate();
+
+            $user = Auth::user();
+
+            if($user->role === 'STU') {
+                return redirect(route('home.get'));
+            }
+            else if($user->role === 'LEC') {
+                return redirect(route('lecturerProfile.get'));
+            }
+
             return redirect('/');
         }
 
@@ -34,24 +47,30 @@ class AuthController extends Controller
         ])->onlyInput('username');
     }
 
+    public function logout(): RedirectResponse
+    {
+        Auth::logout();
+        return redirect(route('home.get'));
+    }
+
     public function register(Request $request): RedirectResponse
     {
         $credentials = $this->validateRegisterInput($request);
 
-        $username = $credentials['username'];
+        $username = $credentials['username_register'];
         $user = User::find($username);
 
         if($user){
             // Apabila user kembar.
-            return back()->withErrors('error', 'Username already exists!');
+            return back()->withErrors(['kembar' => 'Username already exists!']);
         }
         else{
             $role = $credentials['inline-radio-group'] === 'student' ? 'STU' : 'LEC';
            User::create([
-                'username' => $credentials['username'],
-                'password' => Hash::make($credentials['password']),
-                'name' => $credentials['nama'],
-                'email' => $credentials['email'],
+                'username' => $username,
+                'password' => Hash::make($credentials['password_register']),
+                'name' => $credentials['nama_register'],
+                'email' => $credentials['email_register'],
                 'role' => $role
             ]);
 
@@ -66,7 +85,7 @@ class AuthController extends Controller
             'username_register' => 'required',
             'email_register' => 'required|email',
             'password_register' => 'required|min:6',
-            'confirm_register' => 'required|same:password',
+            'confirm_register' => 'required|same:password_register',
             'inline-radio-group' => 'required'
         ], [
             'nama_register.required' => 'Full name is required.',

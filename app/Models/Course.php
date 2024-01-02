@@ -33,16 +33,16 @@ class Course extends Model
 
     public function lecturers(): BelongsTo
     {
-        return $this->belongsTo(Lecturer::class, 'lecturer');
+        return $this->belongsTo(User::class, 'lecturer', 'username');
     }
 
     public function customers(): BelongsToMany
     {
-        return $this->belongsToMany(Student::class, 'transactions', 'course', 'student', 'id', 'username');
+        return $this->belongsToMany(User::class, 'transactions', 'course', 'student', 'id', 'username');
     }
 
     public function graduates(): BelongsToMany
     {
-        return $this->belongsToMany(Student::class, 'certificates', 'course', 'student', 'id', 'username');
+        return $this->belongsToMany(User::class, 'certificates', 'course', 'student', 'id', 'username');
     }
 }
