@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -35,7 +35,7 @@ class PageController extends Controller
 
     public function showHome(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
-        return view('home', ['topLecturers' => $this->getTopLecturers(), 'topCourses' => $this->getTopCourses()]);
+        return view('home', ['topLecturers' => $this->getTopLecturers(), 'topCourses' => $this->getTopCourses(), 'newCourses' => $this->getNewestCourses()]);
     }
 
     public function showCourse(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
@@ -72,7 +72,7 @@ class PageController extends Controller
     {
         return view('lecturer.lecturerProfile');
     }
-    
+
     public function showAddCourse(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
         return view('lecturer.addCourse');
@@ -124,7 +124,7 @@ class PageController extends Controller
 
     public function getTopCourses(): array
     {
-        $res = DB::select("
+        return DB::select("
             SELECT c.id, c.name, c.description, u.name as user_name, u.profile_picture, COUNT(*) AS `occurences`, c.cover
             FROM transactions AS `t`
             LEFT JOIN courses AS `c` ON c.id = t.course
@@ -134,7 +134,12 @@ class PageController extends Controller
             ORDER BY `occurences` DESC
             LIMIT 3;
         ");
+    }
 
-        return $res;
+    public function getNewestCourses(): Collection
+    {
+        $newCourses = Course::orderBy('id', 'DESC')->take(3 * 3)->get();
+        $myCourses = $newCourses->chunk(3);
+        return $myCourses;
     }
 }

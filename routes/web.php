@@ -40,6 +40,7 @@ Route::prefix('/test')->group(function () {
     Route::post('/auth', [AuthController::class, 'login']);
     Route::post('/register', [AuthController::class, 'register']);
     Route::get('/test2', [PageController::class, 'getTopThreeLecturer']);
+    Route::get('/newCourse', [PageController::class, 'getNewestCourses']);
 });
 
 Route::middleware('auth')->group(function () {
