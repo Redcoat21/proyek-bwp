@@ -26,7 +26,7 @@ Add Course
     <form action="{{ route('auth.post') }}" method="post" class="col-span-2 col-start-3 mt-2">
         @csrf
         <input type="hidden" name="type" value="login">
-    
+
         <div class="col-span-2 col-start-3 mt-3">
             <label for="" class="block text-sm font-medium leading-6 text-gray-900">COURSE TITLE <span class="text-red-600">*</span></label>
             <div class="mt-1">
@@ -56,16 +56,16 @@ Add Course
             <div class="mt-1">
                 <input type="radio" id="option1" name="option" value="option1">
                 <label for="option1">1</label>
-                
+
                 <input type="radio" id="option2" name="option" value="option2">
                 <label for="option2">2</label>
-                
+
                 <input type="radio" id="option3" name="option" value="option3">
                 <label for="option3">3</label>
-                
+
                 <input type="radio" id="option4" name="option" value="option4">
                 <label for="option4">4</label>
-                
+
                 <input type="radio" id="option5" name="option" value="option5">
                 <label for="option5">5</label>
             </div>
@@ -73,7 +73,7 @@ Add Course
         <div class="col-span-2 col-start-3 mt-3">
             <label for="" class="block text-sm font-medium leading-6 text-gray-900">CATEGORY <span class="text-red-600">*</span></label>
             <div class="mt-1">
-            <select id="options" name="option" class="shadow">
+            <select id="options" name="option" class="shadow border">
                 <option value="1">qui</option>
                 <option value="2">accusamus</option>
                 <option value="3">voluptatibus</option>
