@@ -16,7 +16,7 @@
     </div>
 </div>
 <div class="mx-auto mb-2 h-full text-center">
-    <div id="search-results">
+    <div id="search-results" class="grid grid-cols-3 my-10 justify-items-center gap-y-10">
     </div>
 </div>
 @endsection
