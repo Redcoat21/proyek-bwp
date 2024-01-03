@@ -8,9 +8,15 @@
     <x-navbar :searchBar="true" activePage="course" />
 @endsection
 
-{{-- ini buat dilanjut sama edward --}}
-@section('content')
-<div id="search-results">
 
+@section('content')
+<div class="pt-7 pb-4 px-12">
+    <div class="text-blue-500 text-3xl font-bold">
+        List course
+    </div>
+</div>
+<div class="mx-auto mb-2 h-full text-center">
+    <div id="search-results">
+    </div>
 </div>
 @endsection

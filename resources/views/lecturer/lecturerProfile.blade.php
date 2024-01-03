@@ -88,8 +88,17 @@
         </div>
 
         <div class="bg-zinc-100 my-6 mx-56 shadow-md">
-            <div class="text-2xl font-bold mt-10 ms-10">
-                My Courses | Published
+            <div class="flex flex-row items-center mt-10 ml-10">
+                <div class="text-2xl font-bold">
+                    My Courses | Published
+                </div>    
+                <div class="ml-auto">
+                    <div class="mr-8">
+                        <a href="/addCourse" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
+                            Add Course
+                        </a>
+                    </div>
+                </div>
             </div>
             <div class="grid grid-cols-4 my-10 mx-10 justify-items-center">
 
