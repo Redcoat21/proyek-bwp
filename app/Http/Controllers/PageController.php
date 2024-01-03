@@ -72,6 +72,11 @@ class PageController extends Controller
     {
         return view('lecturer.lecturerProfile');
     }
+    
+    public function showAddCourse(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
+    {
+        return view('lecturer.addCourse');
+    }
 
     public function showListLecturer(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {

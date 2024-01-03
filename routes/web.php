@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 /*
@@ -44,6 +45,7 @@ Route::prefix('/test')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/listCourse', [PageController::class, 'showListCourse'])->name('listCourse.get');
     Route::get('/listLecturer', [PageController::class, 'showListLecturer'])->name('listLecturer.get');
+    Route::get('/addCourse', [PageController::class, 'showAddCourse'])->name('addCourse.get');
 });
 
 Route::get('/subCourse', [PageController::class, 'showSubCourse'])->name('subCourse.get');
@@ -56,3 +58,6 @@ Route::post('/toEdit', [PageController::class, 'toEdit'])->name('toEdit.post');
 Route::get('/back', [PageController::class, 'showBack'])->name('back.get');
 
 Route::get('/addSubCourse', [PageController::class, 'showAddSubCourse'])->name('addSubCourse.get');
+
+//routing untuk ajax
+Route::get('/search', [DataController::class, 'search']);

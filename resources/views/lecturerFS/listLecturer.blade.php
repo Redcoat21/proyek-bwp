@@ -27,4 +27,5 @@ Lecturer
             @endfor
         </div>
     </div>
+
 @endsection

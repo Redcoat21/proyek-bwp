@@ -42,11 +42,11 @@
             <input type="text" name="name" id="name" value="{{ old('name') }}">
         </div>
         <div>
-            <label for="email">Email: </label>
+            <label for="email">Email: </label><br>
             <input type="text" name="email" id="email" value="{{ old('email') }}">
         </div>
         <div>
-            <label for="email">Password: </label>
+            <label for="email">Password: </label><br>
             <input type="text" name="password" id="password">
         </div>
         <div>
@@ -54,7 +54,7 @@
             <input type="text" name="passwordConfirmation" id="passwordConfirmation">
         </div>
         <div>
-            <button type="submit">Submit</button>
+            <button type="submit" class="">Submit</button>
         </div>
     </form>
 </body>
