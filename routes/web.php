@@ -45,7 +45,7 @@ Route::prefix('/test')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/listCourse', [PageController::class, 'showListCourse'])->name('listCourse.get');
     Route::get('/listLecturer', [PageController::class, 'showListLecturer'])->name('listLecturer.get');
-    Route::get('/addCourse', [PageController::class, 'showAddCourse'])->name('addCourse.get');
+    Route::get('/addCourse', [PageController::class,'listAddCourse'])->name('addCourse.get');
 });
 
 Route::get('/subCourse', [PageController::class, 'showSubCourse'])->name('subCourse.get');

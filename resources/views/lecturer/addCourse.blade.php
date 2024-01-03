@@ -34,6 +34,12 @@ Add Course
             </div>
         </div>
         <div class="col-span-2 col-start-3 mt-3">
+            <label for="" class="block text-sm font-medium leading-6 text-gray-900">PRICE <span class="text-red-600">*</span></label>
+            <div class="mt-1">
+                <input id="" name="" type="text" class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Rp. 100.000,-">
+            </div>
+        </div>
+        <div class="col-span-2 col-start-3 mt-3">
             <label for="" class="block text-sm font-medium leading-6 text-gray-900">DESCRIPTION <span class="text-red-600">*</span></label>
             <div class="mt-1">
             <textarea id="textInput" name="text" rows="4" cols="50"  class="block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 text-sm leading-6" placeholder="Description"></textarea>
@@ -54,36 +60,20 @@ Add Course
         <div class="col-span-2 col-start-3 mt-3">
             <label for="" class="block text-sm font-medium leading-6 text-gray-900">DIFFICULTY <span class="text-red-600">*</span></label>
             <div class="mt-1">
-                <input type="radio" id="option1" name="option" value="option1">
-                <label for="option1">1</label>
-                
-                <input type="radio" id="option2" name="option" value="option2">
-                <label for="option2">2</label>
-                
-                <input type="radio" id="option3" name="option" value="option3">
-                <label for="option3">3</label>
-                
-                <input type="radio" id="option4" name="option" value="option4">
-                <label for="option4">4</label>
-                
-                <input type="radio" id="option5" name="option" value="option5">
-                <label for="option5">5</label>
+                <select id="difficulty" name="difficulty" class="form-control shadow">
+                    @foreach ($difficulty as $diff)
+                            <option value="{{$diff->id}}" selected>{{$diff->name}}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
         <div class="col-span-2 col-start-3 mt-3">
             <label for="" class="block text-sm font-medium leading-6 text-gray-900">CATEGORY <span class="text-red-600">*</span></label>
             <div class="mt-1">
-            <select id="options" name="option" class="shadow">
-                <option value="1">qui</option>
-                <option value="2">accusamus</option>
-                <option value="3">voluptatibus</option>
-                <option value="4">animi</option>
-                <option value="5">ut</option>
-                <option value="6">praesentium</option>
-                <option value="7">neque</option>
-                <option value="8">error</option>
-                <option value="9">repellat</option>
-                <option value="10">tempore</option>
+            <select id="category" name="category" class="shadow">
+                @foreach ($category as $diff)
+                        <option value="{{$diff->id}}" selected>{{$diff->name}}</option>
+                @endforeach
             </select>
             </div>
         </div>
