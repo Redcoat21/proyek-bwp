@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
     @vite(['resources/js/app.js', 'resources/css/app.css'])
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> --}}
 </head>
 <body onload="loadItem()">
     <div>
@@ -71,7 +71,11 @@
                     `;
                 });
             } else {
-                container.innerHTML = '<p>No results found</p>';
+                container.innerHTML = `
+                <div class="col-span-3">
+                <p>No results found</p>
+                </div>
+                `;
             }
         }
     </script>
