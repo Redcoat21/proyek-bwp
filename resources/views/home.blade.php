@@ -81,7 +81,6 @@
 
         </div>
     </div>
-
     <!--newest course text-->
     <div class="w-full text-center mb-10">
         <h1 class="text-4xl font-bold text-blue-500">Learn Our Newest Courses</h1>
@@ -89,11 +88,11 @@
     <!--Content carousel-->
     <div class="relative">
         <div id="carousel" class="carousel flex justify-center">
-            <!-- Slides -->
-            <!-- Content for Slide 1 -->
+            {{-- Carousel for each section --}}
             @foreach($newCourses as $newCourse)
                 <div class="carousel-item w-full">
                     <div class="grid grid-cols-3 justify-items-center mb-5">
+                    {{--  Carousel item for each section (3 card) --}}
                     @foreach($newCourse as $course)
                             <a href="
                             @if (!auth()->user())
@@ -178,5 +177,4 @@
         showSlide();
     });
     </script>
-
 @endsection

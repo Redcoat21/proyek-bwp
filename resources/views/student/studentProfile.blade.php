@@ -43,12 +43,11 @@ Profile
                     </div>
                 </div>
                 <div class="flex justify-end">
-                    <form action="{{ route('toEdit.post') }}" method="POST">
-                        @csrf
+                    <a href="{{route('profile.toEdit.get')}}">
                         <button type="submit" class="bg-green-600 hover:bg-green-800 text-white py-1 px-3 mt-2 me-2 rounded text-base">
                             Edit Profile
                         </button>
-                    </form>
+                    </a>
                     <form action="{{ route('auth.post.logout') }}" method="POST">
                         @csrf
                         <button type="submit" class="bg-red-600 hover:bg-red-800 text-white py-1 px-3 mt-2 rounded text-base">

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -49,13 +50,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/addCourse', [PageController::class, 'showAddCourse'])->name('addCourse.get');
 });
 
-Route::get('/subCourse', [PageController::class, 'showSubCourse'])->name('subCourse.get');
+Route::prefix('profile')->group(function() {
+    Route::get('/studentProfile', [PageController::class, 'showStudentProfile'])->name('profile.studentProfile.get');
+    Route::get('/editProfile', [PageController::class, 'showEditProfile'])->name('profile.editProfile.get');
+    Route::get('/lecturerProfile', [PageController::class, 'showLecturerProfile'])->name('profile.lecturerProfile.get');
+    Route::get('/toEdit', [PageController::class, 'toEdit'])->name('profile.toEdit.get');
+    Route::patch('/edit', [UserController::class, 'updateStudent'])->name('profile.edit.patch');
+});
+
 Route::get('/courseDetail', [PageController::class, 'showCourseDetail'])->name('courseDetail.get');
 Route::get('/course', [PageController::class, 'showCourse'])->name('course.get');
-Route::get('/studentProfile', [PageController::class, 'showStudentProfile'])->name('studentProfile.get');
-Route::get('/editProfile', [PageController::class, 'showEditProfile'])->name('editProfile.get');
-Route::get('/lecturerProfile', [PageController::class, 'showLecturerProfile'])->name('lecturerProfile.get');
-Route::post('/toEdit', [PageController::class, 'toEdit'])->name('toEdit.post');
 Route::get('/back', [PageController::class, 'showBack'])->name('back.get');
 
 Route::get('/addSubCourse', [PageController::class, 'showAddSubCourse'])->name('addSubCourse.get');

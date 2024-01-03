@@ -25,7 +25,7 @@ class PageController extends Controller
 
     public function toEdit()
     {
-        return redirect()->route('editProfile.get');
+        return redirect()->route('profile.editProfile.get');
     }
 
     public function showBack(): RedirectResponse

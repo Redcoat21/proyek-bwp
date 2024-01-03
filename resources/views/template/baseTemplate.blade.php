@@ -23,19 +23,21 @@
     </footer>
     <script>
         function searchItems() {
-            var query = document.getElementById('search-navbar').value;
-
-            // Make AJAX request
-            $.ajax({
-                url: '/search',
-                type: 'GET',
-                data: {query: query},
-                success: function (data) {
-                    // Update the results container
-                    displayResults(data);
-                    console.log('AJAX success');
-                }
-            });
+            const query = document.getElementById('search-navbar');
+            if(query) {
+                const result = query.value;
+                // Make AJAX request
+                $.ajax({
+                    url: '/search',
+                    type: 'GET',
+                    data: {query: result},
+                    success: function (data) {
+                        // Update the results container
+                        displayResults(data);
+                        console.log('AJAX success');
+                    }
+                });
+            }
         }
 
         function loadItem() {
