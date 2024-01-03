@@ -54,3 +54,5 @@ Route::get('/editProfile', [PageController::class, 'showEditProfile'])->name('ed
 Route::get('/lecturerProfile', [PageController::class, 'showLecturerProfile'])->name('lecturerProfile.get');
 Route::post('/toEdit', [PageController::class, 'toEdit'])->name('toEdit.post');
 Route::get('/back', [PageController::class, 'showBack'])->name('back.get');
+
+Route::get('/addSubCourse', [PageController::class, 'showAddSubCourse'])->name('addSubCourse.get');

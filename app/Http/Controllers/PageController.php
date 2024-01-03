@@ -83,6 +83,11 @@ class PageController extends Controller
         return view('lecturerFS.lecturer');
     }
 
+    public function showAddSubCourse(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
+    {
+        return view('lecturer.addSubCourse');
+    }
+
     // public function getTopThreeLecturer()
     public function getTopLecturers(): array
     {
