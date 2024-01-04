@@ -25,11 +25,7 @@ Profile
             </div>
             <div class="grid grid-cols-4 my-10 mx-10">
                 <div class="image-container">
-                    @if(auth()->user()->profile_picture)
-                        <img src="{{ asset(auth()->user()->profile_picture) }}" class="h-30 rounded-full" alt="pp">
-                    @else
-                        <img src="{{ asset('asset/def_pp.jpg') }}" class="h-30 rounded-full" alt="pp">
-                    @endif
+                    <img src="{{ asset(auth()->user()->profile_picture) }}" class="h-30 w-30 rounded-full" alt="pp">
                 </div>
                 <div class="col-span-2">
                     <div class="text-xl font-semibold m-3">
