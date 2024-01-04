@@ -32,12 +32,12 @@
                     </div>
                 </div>
                 <div class="flex justify-end">
-                    <form action="{{ route('toEdit.post') }}" method="POST">
-                        @csrf
+{{--                    lecturerabcd123!@#--}}
+                    <a href="{{ route('profile.toEdit.get') }}">
                         <button type="submit" class="bg-green-600 hover:bg-green-800 text-white py-1 px-3 mt-2 me-2 rounded text-base">
                             Edit Profile
                         </button>
-                    </form>
+                    </a>
                     <form action="{{ route('auth.post.logout') }}" method="POST">
                         @csrf
                         <button type="submit" class="bg-red-600 hover:bg-red-800 text-white py-1 px-3 mt-2 rounded text-base">
@@ -91,7 +91,7 @@
             <div class="flex flex-row items-center mt-10 ml-10">
                 <div class="text-2xl font-bold">
                     My Courses | Published
-                </div>    
+                </div>
                 <div class="ml-auto">
                     <div class="mr-8">
                         <a href="/addCourse" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">

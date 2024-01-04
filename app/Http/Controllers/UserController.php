@@ -41,19 +41,21 @@ class UserController extends Controller
 
     private function validateUpdateInput(Request $request): array
     {
-        $credentials = $request->validate([
+        $credentialsUser = $request->validate([
             'username' => 'required',
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required'
         ]);
 
+        $credentials = $credentialsUser;
+
         if(Auth::user()->role === 'LEC') {
-            $credentials = $request->validate([
+            $credentialsLecturer = $request->validate([
                 'description' => 'required'
             ]);
+            $credentials = array_merge($credentialsUser, $credentialsLecturer);
         }
-
         return $credentials;
     }
 

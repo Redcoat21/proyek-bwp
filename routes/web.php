@@ -44,18 +44,6 @@ Route::prefix('/test')->group(function () {
     Route::get('/newCourse', [PageController::class, 'getNewestCourses']);
     Route::get('/file', fn() => view('temp.file'));
     Route::post('/file/submit', [\App\Http\Controllers\FileController::class, 'showFile']);
-    Route::get('/change', function () {
-        $users = \App\Models\User::all();
-
-        foreach($users as $user)
-        {
-            if($user->profile_picture === null)
-            {
-                $user->profile_picture = 'storage/profile_picture/default.webp';
-                $user->save();
-            }
-        }
-    });
 });
 
 Route::middleware('auth')->group(function () {

@@ -19,7 +19,7 @@ Edit
         @if (auth()->user()->role == 'STU')
             <a href="{{ route('profile.studentProfile.get') }}" class="flex items-center space-x-3 text-black">
         @else
-            <a href="{{ route('lecturerProfile.get') }}" class="flex items-center space-x-3 text-black">
+            <a href="{{ route('profile.lecturerProfile.get') }}" class="flex items-center space-x-3 text-black">
         @endif
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
@@ -68,7 +68,7 @@ Edit
                 @if(auth()->user()->role =='LEC')
                 <div class="mb-5">
                     <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Your Description</label>
-                    <textarea id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300" placeholder="Write Your Description">{{ auth()->user()->description }}</textarea>
+                    <textarea id="description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300" placeholder="Write Your Description">{{ auth()->user()->description }}</textarea>
                 </div>
                 @endif
                 <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-md text-sm px-5 py-2 text-center">Update My Profile</button>
