@@ -12,11 +12,14 @@
     {{ $message }}
     @enderror</h1>
     <h1>Input File</h1>
-    <form action="/test/file" method="POST" enctype="multipart/form-data">
+    <form action="/test/file/submit" method="POST" enctype="multipart/form-data">
         @csrf
         <label for="image">Image: </label>
         <input type="file" name="image" id="image">
         <button type="submit">Submit</button>
     </form>
+    @if(\Illuminate\Support\Facades\Session::has('image'))
+        <img src="{{ \Illuminate\Support\Facades\Session::get('image') }}" alt="">
+    @endif
 </body>
 </html>

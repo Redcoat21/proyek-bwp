@@ -40,7 +40,7 @@ Edit
             Edit My Profile
         </div>
         <div class="flex my-10 mx-10">
-            <form action="{{ route('profile.edit.patch') }}" method="POST" class="w-full">
+            <form action="{{ route('profile.edit.patch') }}" method="POST" class="w-full" enctype="multipart/form-data">
                 @method('PATCH')
                 @csrf
                 <input type="hidden" name="username" value="{{ auth()->user()->username }}">

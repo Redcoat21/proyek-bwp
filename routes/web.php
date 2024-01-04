@@ -42,6 +42,8 @@ Route::prefix('/test')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
     Route::get('/test2', [PageController::class, 'getTopThreeLecturer']);
     Route::get('/newCourse', [PageController::class, 'getNewestCourses']);
+    Route::get('/file', fn() => view('temp.file'));
+    Route::post('/file/submit', [\App\Http\Controllers\FileController::class, 'showFile']);
 });
 
 Route::middleware('auth')->group(function () {

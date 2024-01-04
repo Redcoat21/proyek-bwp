@@ -17,7 +17,7 @@ class DataController extends Controller
             return response()->json($results);
         } catch (Exception $e) {
             // Log the exception for debugging
-            dd($e->getMessage());
+            dump($e->getMessage());
             return response()->json(['error' => 'Internal Server Error'], 500);
         }
     }
