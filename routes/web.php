@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 /*
@@ -58,7 +59,7 @@ Route::get('/lecturerProfile', [PageController::class, 'showLecturerProfile'])->
 Route::get('/adminProfile', [PageController::class, 'showAdminProfile'])->name('adminProfile.get');
 Route::get('/listUser', [PageController::class, 'showAdminPage']);
 Route::get('/addUser', [PageController::class, 'showAddUser']);
-Route::post('/addUser', [PageController::class, 'addUser']);
-Route::get('/deleteUser/{uname}', [PageController::class, 'deleteUser']);
+Route::post('/addUser', [DataController::class, 'addUser']);
+Route::get('/deleteUser/{uname}', [DataController::class, 'deleteUser']);
 Route::get('/updateUser/{uname}', [PageController::class, 'updateUser']);
-Route::post('/updateUser/{uname}', [PageController::class, 'doUpdate']);
+Route::post('/updateUser/{uname}', [DataController::class, 'updateUser']);

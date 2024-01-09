@@ -8,6 +8,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -120,9 +121,9 @@ class PageController extends Controller
     }
 
     public function showAdminPage(){
-        $listAdmin = User::where('role', 'ADM')->get();
-        $listLecturer = User::where('role', 'LEC')->get();
-        $listStudent = User::where('role', 'STU')->get();
+        $listAdmin = User::withTrashed()->where('role', 'ADM')->get();
+        $listLecturer = User::withTrashed()->where('role', 'LEC')->get();
+        $listStudent = User::withTrashed()->where('role', 'STU')->get();
         $param["listAdmins"] = $listAdmin;
         $param["listLecturers"] = $listLecturer;
         $param["listStudents"] = $listStudent;
@@ -131,5 +132,11 @@ class PageController extends Controller
 
     public function showAddUser(){
         return view('admin.addUser');
+    }
+
+    public function updateUser(Request $req){
+        $user = User::find($req->uname);
+        $param["user"] = $user;
+        return view('admin.updateUser', $param);
     }
 }
