@@ -52,13 +52,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/addCourse', [PageController::class, 'showAddCourse'])->name('addCourse.get');
 });
 
-Route::prefix('profile')->group(function() {
-    Route::get('/studentProfile', [PageController::class, 'showStudentProfile'])->name('profile.studentProfile.get');
+// Route::prefix('profile')->group(function() {
     Route::get('/editProfile', [PageController::class, 'showEditProfile'])->name('profile.editProfile.get');
-    Route::get('/lecturerProfile', [PageController::class, 'showLecturerProfile'])->name('profile.lecturerProfile.get');
     Route::get('/toEdit', [PageController::class, 'toEdit'])->name('profile.toEdit.get');
     Route::patch('/edit', [UserController::class, 'updateStudent'])->name('profile.edit.patch');
-});
+// });
+
+Route::get('/profile', [PageController::class, 'showProfile'])->name('profile.get');
 
 Route::get('/courseDetail', [PageController::class, 'showCourseDetail'])->name('courseDetail.get');
 Route::get('/course', [PageController::class, 'showCourse'])->name('course.get');

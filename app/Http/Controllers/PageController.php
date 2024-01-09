@@ -59,19 +59,14 @@ class PageController extends Controller
         return view('courses.subCourse');
     }
 
-    public function showStudentProfile(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
+    public function showProfile(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
-        return view('student.studentProfile');
+        return view('profile');
     }
 
     public function showEditProfile(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
         return view('student.editProfile');
-    }
-
-    public function showLecturerProfile(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
-    {
-        return view('lecturer.lecturerProfile');
     }
 
     public function showAddCourse(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
