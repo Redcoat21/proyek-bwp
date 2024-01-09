@@ -9,5 +9,5 @@
 </table>
 @endsection
 @section('title')
-Add User
+Update User
 @endsection
