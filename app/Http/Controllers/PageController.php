@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Difficulty;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -41,7 +43,8 @@ class PageController extends Controller
 
     public function showCourse(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
-        return view('courses.course');
+        $user = User::all();
+        return view('courses.course',compact('user'));
     }
 
     public function showListCourse(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
@@ -77,6 +80,8 @@ class PageController extends Controller
     public function showListLecturer(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
         return view('lecturerFS.listLecturer', ['lecturers' => User::where('role', 'LEC')->get()]);
+        // $user = User::all();
+        // return view('lecturerFS.listLecturer',compact('user'));
     }
 
     public function showLecturerDetail(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
@@ -132,15 +137,15 @@ class PageController extends Controller
         ");
     }
 
+    public function showAdminProfile(){
+        return view('admin.adminProfile');
+    }
+
     public function getNewestCourses(): Collection
     {
         $newCourses = Course::orderBy('id', 'DESC')->take(3 * 3)->get();
         $myCourses = $newCourses->chunk(3);
         return $myCourses;
-    }
-
-    public function showAdminProfile(){
-        return view('admin.adminProfile');
     }
 
     public function showAdminPage(){
@@ -156,4 +161,13 @@ class PageController extends Controller
     public function showAddUser(){
         return view('admin.addUser');
     }
+
+    function listAddCourse(){
+        $difficultylist = Difficulty::all(['id', 'name']);
+        $param["difficulty"] = $difficultylist;
+        $categorylist = Category::all(['id', 'name']);
+        $param["category"] = $categorylist;
+        return view("lecturer.addCourse", $param);
+    }
+
 }

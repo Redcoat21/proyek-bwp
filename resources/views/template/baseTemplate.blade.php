@@ -45,9 +45,9 @@
         }
 
         function displayResults(results) {
+
             var container = document.getElementById('search-results');
             container.innerHTML = '';
-
             if (results.length > 0) {
                 results.forEach(function (result) {
                     // Set the image URL based on the condition
@@ -64,7 +64,7 @@
                     else{
                         pp = "asset/def_pp.jpg";
                     }
-                    // Append UI structure for each result
+
                     container.innerHTML += `<div class="rounded-lg hover:shadow-md w-4/5 border border-gray-200 ">
                         <a href="{{ route('home.get') }}" class="bg-white">
                             <img class="rounded-t-lg w-full" src="${img}" alt="">
