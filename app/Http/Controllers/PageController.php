@@ -42,10 +42,11 @@ class PageController extends Controller
         return view('home', ['topLecturers' => $this->getTopLecturers(), 'topCourses' => $this->getTopCourses(), 'newCourses' => $this->getNewestCourses()]);
     }
 
-    public function showCourse(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
+    public function showCourse(Request $req): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
-        $user = User::all();
-        return view('courses.course',compact('user'));
+        $id = $req->id;
+        $course = Course::where('id', $id)->first();
+        return view('courses.course', ['course' => $course]);
     }
 
     public function showListCourse(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
