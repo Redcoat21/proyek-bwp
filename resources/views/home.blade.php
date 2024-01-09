@@ -101,10 +101,19 @@
                                 {{ route('home.get') }}
                             @endif
                             " class="w-3/5 bg-white border border-gray-200 rounded-lg hover:shadow-md">
-                                <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
+                                @if($course->cover)
+                                    <img class="rounded-t-lg w-full" src="{{ asset($course->cover) }}" alt="">
+                                @else
+                                    <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
+                                @endif
                                 <div class="p-5">
                                     <div class="flex items-center space-x-3">
-                                        <img src="{{ asset($course->cover) }}" alt="course-cover" class="h-8 border-none rounded">
+                                        @if($course->profile_picture)
+                                            <img src="{{ asset($course->profile_picture) }}" alt="course-cover" class="h-8 border-none rounded">
+                                        @else
+                                            <img src="{{ asset('asset/def_pp.jpg') }}" alt="course-cover" class="h-8 border-none rounded">
+                                        @endif
+                                        {{-- <img src="{{ asset($course->cover) }}" alt="course-cover" class="h-8 border-none rounded"> --}}
                                         <span class="self-center text-xs font-normal whitespace-nowrap">{{ $course->lecturers->name }}</span>
                                     </div>
                                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{ $course->name }}</h5>
