@@ -25,8 +25,12 @@
                     <td>{{ $admin->name }}</td>
                     <td>{{ $admin->email }}</td>
                     <td>
-                        <button><a href="{{'/updateUser/'.$admin->username}}" style="background-color: limegreen">Update</a></button>
-                        <button><a href="{{'/deleteUser/'.$admin->username}}" style="background-color: salmon">Delete</a></button>
+                        @if ($admin->trashed())
+                            <button><a href="{{'/deleteUser/'.$admin->username}}" style="background-color: cornflowerblue;">Restore</a></button>
+                        @else
+                            <button><a href="{{'/updateUser/'.$admin->username}}" style="background-color: limegreen">Update</a></button>
+                            <button><a href="{{'/deleteUser/'.$admin->username}}" style="background-color: salmon">Delete</a></button>
+                        @endif
                     </td>
                 </tr>
             @endif
@@ -52,8 +56,12 @@
                     <td>{{ $lecturer->name }}</td>
                     <td>{{ $lecturer->email }}</td>
                     <td>
-                        <button><a href="{{'/updateUser/'.$lecturer->username}}" style="background-color: limegreen">Update</a></button>
-                        <button><a href="{{'/deleteUser/'.$lecturer->username}}" style="background-color: salmon">Delete</a></button>
+                        @if($lecturer->trashed())
+                            <button><a href="{{'/deleteUser/'.$lecturer->username}}" style="background-color: cornflowerblue;">Restore</a></button>
+                        @else
+                            <button><a href="{{'/updateUser/'.$lecturer->username}}" style="background-color: limegreen">Update</a></button>
+                            <button><a href="{{'/deleteUser/'.$lecturer->username}}" style="background-color: salmon">Delete</a></button>
+                        @endif
                     </td>
                 </tr>
         @endforeach
@@ -79,8 +87,12 @@
                     <td>{{ $student->name }}</td>
                     <td>{{ $student->email }}</td>
                     <td>
-                        <button><a href="{{'/updateUser/'.$student->username}}" style="background-color: limegreen">Update</a></button>
-                        <button><a href="{{'/deleteUser/'.$student->username}}" style="background-color: salmon">Delete</a></button>
+                        @if($student->trashed())
+                            <button><a href="{{'/deleteUser/'.$student->username}}" style="background-color: cornflowerblue;">Restore</a></button>
+                        @else
+                            <button><a href="{{'/updateUser/'.$student->username}}" style="background-color: limegreen">Update</a></button>
+                            <button><a href="{{'/deleteUser/'.$student->username}}" style="background-color: salmon">Delete</a></button>
+                        @endif
                     </td>
                 </tr>
             @endif
