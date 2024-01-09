@@ -170,4 +170,7 @@ class PageController extends Controller
         return view("lecturer.addCourse", $param);
     }
 
+    function testAjax(){
+        return view("lecturerFS.listLecturerNew");
+    }
 }
