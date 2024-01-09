@@ -55,7 +55,14 @@
                     if (result.cover != "") {
                         img = result.cover;
                     } else {
-                        img = "https://www.creativefabrica.com/wp-content/uploads/2021/04/05/Photo-Image-Icon-Graphics-10388619-1-1-580x386.jpg";
+                        img = "asset/aws.jpg";
+                    }
+                    var pp;
+                    if(result.lecturers.profile_picture != ""){
+                        pp = result.lecturers.profile_picture;
+                    }
+                    else{
+                        pp = "asset/def_pp.jpg";
                     }
                     // Append UI structure for each result
                     container.innerHTML += `<div class="rounded-lg hover:shadow-md w-4/5 border border-gray-200 ">
@@ -63,7 +70,7 @@
                             <img class="rounded-t-lg w-full" src="${img}" alt="">
                             <div class="p-5">
                                 <div class="flex items-center space-x-3">
-                                    <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
+                                    <img src="{{ asset('${pp}') }}" class="h-8 border-none rounded">
                                     <span class="self-center text-xs font-normal whitespace-nowrap">${result.lecturer}</span>
                                 </div>
                                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">${result.name}</h5>

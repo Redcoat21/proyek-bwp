@@ -81,7 +81,7 @@ class PageController extends Controller
 
     public function showListLecturer(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
-        return view('lecturerFS.listLecturer');
+        return view('lecturerFS.listLecturer', ['lecturers' => User::where('role', 'LEC')->get()]);
     }
 
     public function showLecturerDetail(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application

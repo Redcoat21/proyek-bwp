@@ -13,7 +13,7 @@ class DataController extends Controller
     {
         try {
             $query = $request->get('query');
-            $results = Course::where('name', 'like', '%' . $query . '%')->get();
+            $results = Course::where('name', 'like', '%' . $query . '%')->with('lecturers')->get();
             return response()->json($results);
         } catch (Exception $e) {
             // Log the exception for debugging
