@@ -37,7 +37,7 @@
                 @else
                     <a href="{{ route('profile.studentProfile.get') }}">
                         @if(auth()->user()->profile_picture)
-                            <img src="{{ asset(auth()->user()->profile_picture) }}" class="h-10 w-10 rounded-full" alt="pp">
+                            <img src="{{ asset(auth()->user()->profile_picture) }}" class="h-10 w-10 rounded-full border-2" alt="pp">
                         @else
                             <img src="{{ asset('asset/def_pp.jpg') }}" alt="pp" class="h-10 w-10 rounded-full">
                         @endif
