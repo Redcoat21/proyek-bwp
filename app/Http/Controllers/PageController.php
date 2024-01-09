@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Http\Request;
+
 
 class PageController extends Controller
 {
@@ -84,9 +86,15 @@ class PageController extends Controller
         // return view('lecturerFS.listLecturer',compact('user'));
     }
 
-    public function showLecturerDetail(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
+    public function showLecturerDetail(Request $req): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
-        return view('lecturerFS.lecturer');
+        // $listcourse = Course::where('lecturer', $req->lecturer)->get();
+        $listcourse = Course::where('lecturer', $req->lecturer);
+        $lecturer = User::Find($req->username);
+        $param["Course"]=$listcourse;
+        $param["lecturer"]=$lecturer;
+        // $param["jumlah"]=$jumlah;
+        return view('lecturerFS.lecturer',$param);
     }
 
     public function showAddSubCourse(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
@@ -171,6 +179,6 @@ class PageController extends Controller
     }
 
     function testAjax(){
-        return view("lecturerFS.listLecturerNew");
+        return view("lecturerFS.listLecturer");
     }
 }

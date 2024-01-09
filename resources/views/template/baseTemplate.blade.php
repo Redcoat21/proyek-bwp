@@ -69,7 +69,7 @@
                         <a href="{{ route('home.get') }}" class="bg-white">
                             <img class="rounded-t-lg w-full" src="${img}" alt="">
                             <div class="p-5">
-                                <div class="flex items-center space-x-3">
+                                <div class="flex items-center space-x-3 mb-4">
                                     <img src="{{ asset('${pp}') }}" class="h-8 border-none rounded">
                                     <span class="self-center text-xs font-normal whitespace-nowrap">${result.lecturer}</span>
                                 </div>

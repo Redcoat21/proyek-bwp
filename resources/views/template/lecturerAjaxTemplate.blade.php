@@ -50,24 +50,16 @@
             container.innerHTML = '';
             if (results.length > 0) {
                 results.forEach(function (result) {
+                    var desc = result.description !== null ? result.description : " ";
                     // Set the image URL based on the condition
-                    var img;
-                    if (result.cover != "") {
-                        img = result.cover;
-                    } else {
-                        img = "asset/aws.jpg";
-                    }
-
                     container.innerHTML += `<div class="bg-white rounded shadow-md mx-2 my-5 px-5 py-5 flex items-center">
-                    <img src="${img}" alt="Image Lecturer" class="rounded-full w-28 h-28">
-                    <div class="flex-col mx-5">
-                        <div class="text-2xl font-bold text-black mb-1">${result.name}</div>
-
-                        <div class="text-xl font-italic text-gray-800">New Expert</div>
-
+                        <img src="${result.profile_picture}" alt="Image Lecturer" class="rounded-full w-28 h-28">
+                        <div class="flex-col mx-5">
+                            <div class="text-2xl font-bold text-black mb-1">${result.name}</div>
+                            <div class="text-xl font-italic text-gray-800">${desc}</div>
+                        </div>
+                        <a class="ml-auto text-white text-bold text-xl bg-blue-600 rounded py-1 px-3" href='lecturer/${result.username}'>See course</a>
                     </div>
-                    <button class="ml-auto text-white text-bold text-xl bg-blue-600 rounded py-1 px-3">See course</button>
-                </div>
                     `;
                 });
             } else {

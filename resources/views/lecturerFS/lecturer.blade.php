@@ -13,10 +13,10 @@ Lecturer
             Lecturer
         </div>
         <!-- Content -->
-        <div class="text-2xl font-bold text-black mb-1">Ahmad Bambang S.Mat, M.Mat</div>
-        <div class="text-xl font-italic text-gray-800">Mathematic Expert</div>
+        <div class="text-2xl font-bold text-black mb-1">{{$lecturer->name}}</div>
+        <div class="text-xl font-italic text-gray-800">{{$lecturer->description}}</div>
         <div class="flex mt-5">
-            <img src="{{ asset('asset/male_lecturer.jpg') }}" alt="Image Lecturer" class="rounded-full w-32 mb-10">
+            <img src="{{asset($lecturer->profile_picture)}}" alt="Image Lecturer" class="rounded-full w-32 mb-10">
             <div class="flex-col my-5 mx-5">
                 <table class="table-auto">
                     <thead>
@@ -40,7 +40,7 @@ Lecturer
         </div>
         <!-- Content listcourse -->
         <div class="flex flex-wrap items-center justify-center h-screen mb-2">
-            @for($i = 0; $i < 10; $i++)
+            @foreach($Course as $course)
             <div class="bg-white p-1 rounded shadow-md pb-4 mb-10 mx-1" style="width:32.6%;">
                 <img src="https://g2.img-dpreview.com/81C81CB44922409EA3C99FA3E42369CD.jpg" alt="" class="w-full rounded mb-3">
                 <div class="p-2">
@@ -55,7 +55,7 @@ Lecturer
                     </div>
                 </div>
             </div>
-            @endfor
+            @endforeach
         </div>
     </div>
 @endsection
