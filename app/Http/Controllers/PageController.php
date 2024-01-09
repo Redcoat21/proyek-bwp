@@ -142,4 +142,8 @@ class PageController extends Controller
         $myCourses = $newCourses->chunk(3);
         return $myCourses;
     }
+
+    public function showAdminProfile(){
+        return view('admin.adminProfile');
+    }
 }

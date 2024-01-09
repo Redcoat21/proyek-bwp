@@ -68,3 +68,8 @@ Route::get('/addSubCourse', [PageController::class, 'showAddSubCourse'])->name('
 
 //routing untuk ajax
 Route::get('/search', [DataController::class, 'search']);
+Route::get('/lecturerProfile', [PageController::class, 'showLecturerProfile'])->name('lecturerProfile.get');
+
+
+//admin page
+Route::get('/adminProfile', [PageController::class, 'showAdminProfile'])->name('adminProfile.get');

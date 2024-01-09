@@ -6,13 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class User extends \Illuminate\Foundation\Auth\User
 {
     use HasFactory;
+    use SoftDeletes;
 
     public $keyType = "string";
-    public $timestamps = false;
+    public $timestamps = true;
     public $primaryKey = 'username';
     public $incrementing = false;
     public $guarded = [];

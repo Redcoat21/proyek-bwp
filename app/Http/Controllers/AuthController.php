@@ -38,6 +38,9 @@ class AuthController extends Controller
             else if($user->role === 'LEC') {
                 return redirect(route('profile.lecturerProfile.get'));
             }
+            else if($user->role === "ADM"){
+                return redirect(route('adminProfile.get'));
+            }
 
             return redirect('/');
         }
