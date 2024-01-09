@@ -73,3 +73,9 @@ Route::get('/lecturerProfile', [PageController::class, 'showLecturerProfile'])->
 
 //admin page
 Route::get('/adminProfile', [PageController::class, 'showAdminProfile'])->name('adminProfile.get');
+Route::get('/listUser', [PageController::class, 'showAdminPage']);
+Route::get('/addUser', [PageController::class, 'showAddUser']);
+Route::post('/addUser', [PageController::class, 'addUser']);
+Route::get('/deleteUser/{uname}', [PageController::class, 'deleteUser']);
+Route::get('/updateUser/{uname}', [PageController::class, 'updateUser']);
+Route::post('/updateUser/{uname}', [PageController::class, 'doUpdate']);
