@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
@@ -116,5 +117,19 @@ class PageController extends Controller
 
     public function showAdminProfile(){
         return view('admin.adminProfile');
+    }
+
+    public function showAdminPage(){
+        $listAdmin = User::where('role', 'ADM')->get();
+        $listLecturer = User::where('role', 'LEC')->get();
+        $listStudent = User::where('role', 'STU')->get();
+        $param["listAdmins"] = $listAdmin;
+        $param["listLecturers"] = $listLecturer;
+        $param["listStudents"] = $listStudent;
+        return view('admin.listUser', $param);
+    }
+
+    public function showAddUser(){
+        return view('admin.addUser');
     }
 }
