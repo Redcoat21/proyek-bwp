@@ -12,6 +12,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use PHPUnit\Framework\Constraint\Count;
@@ -68,11 +69,22 @@ class PageController extends Controller
     public function showCourseDetail(Request $req): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
         $id = $req->id;
-        $course = Course::where('id', $id)->first();
+        $course = Course::where('id', $req->id)->first();
 
-        $subCourse = Subcourse::where('course', $id)->get();
+        $haveCourse =
+            Auth::user()->buyedCourses()
+            ->where('course', '=', $course->id)
+            ->where('student', '=', Auth::user()->username)
+            ->get()
+            ->first();
 
-        return view('courses.courseDetail', ['course' => $course, 'subCourse' => $subCourse]);
+        if($haveCourse) {
+            $subCourse = Subcourse::where('course', $id)->get();
+
+            return view('courses.courseDetail', ['course' => $course, 'subCourse' => $subCourse]);
+        } else {
+            return back();
+        }
     }
 
     public function showSubCourse(Request $req): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
