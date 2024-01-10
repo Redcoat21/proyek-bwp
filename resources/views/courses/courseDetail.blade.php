@@ -37,8 +37,13 @@
             @endphp
             @foreach ($subCourse as $sub)
                 <a href="{{ route('subCourse.get', ['id' => $sub->id]) }}" class="">
-                    <li class="w-full py-4 px-4 hover:bg-gray-100">
-                        <span class="pe-2 border-e-2">{{ $ctr++ }}</span> {{ $sub->name }}
+                    <li class="flex w-full py-4 px-4 hover:bg-gray-100">
+                        <span class="pe-2 border-e-2">{{ $ctr++ }}</span> <span class="mx-2">{{ $sub->name }}</span>
+                        @if($comp[$sub->id])
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 flex">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                            </svg>
+                        @endif
                     </li>
                 </a>
             @endforeach

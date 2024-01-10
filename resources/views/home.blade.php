@@ -67,9 +67,9 @@
                     <div class="p-5">
                         <div class="flex items-center space-x-3">
                             @if($course->profile_picture)
-                                <img src="{{ asset($course->profile_picture) }}" class="h-8 border-none rounded" alt="pp">
+                                <img src="{{ asset($course->profile_picture) }}" class="h-8 border-none rounded-full" alt="pp">
                             @else
-                                <img src="{{ asset('asset/def_pp.jpg') }}" class="h-8 border-none rounded" alt="pp">
+                                <img src="{{ asset('asset/def_pp.jpg') }}" class="h-8 border-none rounded-full" alt="pp">
                             @endif
                             <span class="self-center text-xs font-normal whitespace-nowrap">{{ $course->user_name }}</span>
                         </div>
@@ -109,9 +109,9 @@
                                 <div class="p-5">
                                     <div class="flex items-center space-x-3">
                                         @if($course->profile_picture)
-                                            <img src="{{ asset($course->profile_picture) }}" alt="course-cover" class="h-8 border-none rounded">
+                                            <img src="{{ asset($course->profile_picture) }}" alt="course-cover" class="h-8 border-none rounded-full">
                                         @else
-                                            <img src="{{ asset('asset/def_pp.jpg') }}" alt="course-cover" class="h-8 border-none rounded">
+                                            <img src="{{ asset('asset/def_pp.jpg') }}" alt="course-cover" class="h-8 border-none rounded-full">
                                         @endif
                                         {{-- <img src="{{ asset($course->cover) }}" alt="course-cover" class="h-8 border-none rounded"> --}}
                                         <span class="self-center text-xs font-normal whitespace-nowrap">{{ $course->lecturers->name }}</span>

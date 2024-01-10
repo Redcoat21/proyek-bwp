@@ -52,10 +52,10 @@ class PageController extends Controller
             FROM transactions AS `t`
             LEFT JOIN users AS `u` ON u.username = t.student
             LEFT JOIN courses AS `c` ON c.id = t.course
-            WHERE t.course = '$id' AND c.status = 1 AND t.student = '$username'
+            WHERE t.course = '$id' AND t.student = '$username'
         ");
 
-        // dd($trans);
+        // dd($id, $username, $trans);
 
         return view('courses.course', ['course' => $course, 'trans' => $trans]);
     }
@@ -72,7 +72,18 @@ class PageController extends Controller
 
         $subCourse = Subcourse::where('course', $id)->get();
 
-        return view('courses.courseDetail', ['course' => $course, 'subCourse' => $subCourse]);
+        $username = auth()->user()->username;
+
+        $comp = [];
+
+        foreach ($subCourse as $sub) {
+            $comp[$sub->id] = DB::select("
+            SELECT s.id, s.subcourse, s.student
+            FROM subcourses_completion AS `s`
+            WHERE s.subcourse = '$sub->id' AND s.student = '$username'");
+        }
+
+        return view('courses.courseDetail', ['course' => $course, 'subCourse' => $subCourse, 'comp' => $comp]);
     }
 
     public function showSubCourse(Request $req): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
@@ -83,6 +94,8 @@ class PageController extends Controller
         $course = Course::where('id', $subCourse->course)->first();
 
         $listSubCourse = Subcourse::where('course', $course->id)->get();
+
+        $username = auth()->user()->username;
 
         $index = -1;
 
@@ -96,24 +109,104 @@ class PageController extends Controller
         $prev = $listSubCourse[$index - 1] ?? null;
         $next = $listSubCourse[$index + 1] ?? null;
 
+        $comp = DB::select("
+            SELECT s.id, s.subcourse, s.student
+            FROM subcourses_completion AS `s`
+            WHERE s.subcourse = '$id' AND s.student = '$username'");
+
+        if($comp == null){
+            DB::table('subcourses_completion')->insert([
+                'subcourse' => $id,
+                'student' => $username,
+                'completed_at' => now()
+            ]);
+        }
+
+        $ctr_comp = 0;
+
+        for ($i=0; $i < $listSubCourse->count(); $i++) {
+            $id_temp = $listSubCourse[$i]->id;
+
+            $temp = DB::select("
+                SELECT s.id, s.subcourse, s.student
+                FROM subcourses_completion AS `s`
+                WHERE s.subcourse = '$id_temp' AND s.student = '$username'");
+
+            if($temp != null){
+                $ctr_comp++;
+            }
+        }
+
+        if($ctr_comp == $listSubCourse->count()){
+            DB::table('certificates')->insert([
+                'course' => $course->id,
+                'student' => $username
+            ]);
+        }
+
         return view('courses.subCourse', ['subCourse' => $subCourse, 'prev' => $prev, 'next' => $next]);
     }
 
     public function showProfile(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
+        $username = auth()->user()->username;
+
         if(auth()->user()->role=="LEC"){
             //data untuk Lecturer di profile
-            $hiddenCourse = Course::where('lecturer',auth()->user()->username)->where('status',0)->get();
-            $publishedCourse = Course::where('lecturer',auth()->user()->username)->where('status',1)->get();
-            $disabledCourse = Course::where('lecturer',auth()->user()->username)->where('status',2)->get();
+            $hiddenCourse = Course::where('lecturer', $username)->where('status',0)->get();
+            $publishedCourse = Course::where('lecturer', $username)->where('status',1)->get();
+            $disabledCourse = Course::where('lecturer', $username)->where('status',2)->get();
             $param["hiddenCourses"] = $hiddenCourse;
             $param["publishedCourses"] = $publishedCourse;
             $param["disabledCourses"] = $disabledCourse;
         }
         else{
             // ini masih asal
-            $course = Course::all();
-            $param["courses"] = $course;
+            $course = DB::select("
+                SELECT t.id, t.course, t.student
+                FROM transactions AS `t`
+                WHERE t.student = '$username'
+            ");
+
+            $course_w_lec = DB::select("
+                SELECT c.id, c.name, c.description, u.name as user_name, u.profile_picture, COUNT(*) AS `occurences`, c.cover
+                FROM transactions AS `t`
+                LEFT JOIN courses AS `c` ON c.id = t.course
+                LEFT JOIN users AS `u` ON u.username = c.lecturer
+                where t.student = '$username'
+                GROUP BY c.id, c.name, c.description, u.name, u.profile_picture, c.cover
+                LIMIT 3;
+            ");
+
+            $completed = [];
+            $progress = [];
+
+            foreach ($course as $c) {
+                $temp = DB::select("
+                    SELECT c.id, c.course, c.student
+                    FROM certificates AS `c`
+                    WHERE c.course = '$c->course' AND c.student = '$username'
+                ");
+
+                foreach ($course_w_lec as $lec) {
+                    if($temp != null && $lec->id == $c->course){
+                        $completed[] = $lec;
+                        break;
+                    }
+                    else if($lec->id == $c->course){
+                        $progress[] = $lec;
+                        break;
+                    }
+                }
+
+            }
+
+            // dd($course, $completed, $progress);
+
+            $param["completedCourses"] = $completed;
+            $param["progressCourses"] = $progress;
+            $param["ctrCompleted"] = count($completed);
+            $param["ctrProgress"] = count($progress);
         }
         return view('profile', $param);
     }
@@ -135,8 +228,9 @@ class PageController extends Controller
 
     public function showLecturerDetail(Request $req): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
+        $listcoursePublish = Course::where('lecturer', $req->username)->where('status', 1)->get();
+        $countPublish = $listcoursePublish->count();
         $listcourse = Course::where('lecturer', $req->username)->get();
-        $count = Course::where('lecturer', $req->username)->count();
         $lecturer = User::Find($req->username);
         $follow = 0;
 
@@ -144,6 +238,7 @@ class PageController extends Controller
             $temp = DB::select("
                 SELECT t.id, t.course, t.student
                 FROM transactions AS `t`
+                LEFT JOIN courses AS `c` ON c.id = t.course
                 WHERE t.course = '$course->id'
                 ");
 
@@ -152,9 +247,9 @@ class PageController extends Controller
             $follow += $temp2;
         }
 
-        $param["Course"]=$listcourse;
+        $param["Course"]=$listcoursePublish;
         $param["lecturer"]=$lecturer;
-        $param["jumlah"]=$count;
+        $param["jumlah"]=$countPublish;
         $param["follow"]=$follow;
         return view('lecturerFS.lecturer',$param);
     }
@@ -172,7 +267,7 @@ class PageController extends Controller
             FROM transactions AS `t`
             LEFT JOIN courses AS `c` ON c.id = t.course
             LEFT JOIN users AS `u` ON u.username = c.lecturer
-            WHERE u.role = 'LEC'
+            WHERE u.role = 'LEC' AND deleted_at IS NULL
             GROUP BY u.username, u.name, u.profile_picture, u.description LIMIT 3
         ");
         return $res;
@@ -213,7 +308,7 @@ class PageController extends Controller
 
     public function getNewestCourses(): Collection
     {
-        $newCourses = Course::orderBy('id', 'DESC')->take(3 * 3)->get();
+        $newCourses = Course::orderBy('id', 'DESC')->where('status', 1)->take(3 * 3)->get();
         $myCourses = $newCourses->chunk(3);
         return $myCourses;
     }

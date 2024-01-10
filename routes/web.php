@@ -64,7 +64,7 @@ Route::get('/profile', [PageController::class, 'showProfile'])->name('profile.ge
 
 Route::get('/courseDetail/{id}', [PageController::class, 'showCourseDetail'])->name('courseDetail.get');
 Route::get('/course/{id}', [PageController::class, 'showCourse'])->name('course.get');
-Route::get('/subCourse/{id}', [PageController::class, 'showSubCourse'])->name('subCourse.get');
+Route::get('/subCourse/{id}', [PageController::class, 'showSubCou   rse'])->name('subCourse.get');
 Route::get('/addSubCourse', [PageController::class, 'showAddSubCourse'])->name('addSubCourse.get');
 
 //routing untuk ajax
