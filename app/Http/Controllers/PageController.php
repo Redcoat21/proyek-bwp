@@ -97,7 +97,7 @@ class PageController extends Controller
         }
     }
 
-    public function showSubCourse(Request $req): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
+    public function showSubCourse(Request $req)
     {
         $id = $req->id;
         $subCourse = Subcourse::where('id', $id)->first();
@@ -155,7 +155,19 @@ class PageController extends Controller
             ]);
         }
 
-        return view('courses.subCourse', ['subCourse' => $subCourse, 'prev' => $prev, 'next' => $next]);
+        $haveCourse =
+            Auth::user()->buyedCourses()
+            ->where('course', '=', $course->id)
+            ->where('student', '=', Auth::user()->username)
+            ->get()
+            ->first();
+
+        if($haveCourse) {
+            return view('courses.subCourse', ['subCourse' => $subCourse, 'prev' => $prev, 'next' => $next]);
+        }
+        else{
+            return redirect()->route('course.get', ['id' => $course->id, 'trans' => null]);
+        }
     }
 
     public function showProfile(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
