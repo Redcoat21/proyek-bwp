@@ -28,7 +28,7 @@ Lecturer
                     <tbody>
                         <tr>
                             <th>{{$jumlah}}</th>
-                            <th>1</th>
+                            <th>{{ $follow }}</th>
                         </tr>
                     </tbody>
                 </table>
@@ -40,21 +40,35 @@ Lecturer
         </div>
         <!-- Content listcourse -->
         @if($jumlah>0)
-            <div class="flex flex-wrap items-center justify-center h-screen mb-2">
+            <div class="grid grid-cols-3 items-center justify-center mb-2">
                 @foreach($Course as $course)
-                <div class="bg-white p-1 rounded shadow-md pb-4 mb-10 mx-1" style="width:32.6%;">
-                    <img src="{{$course->cover}}" alt="" class="w-full rounded mb-3">
+                {{-- <a href="" class="bg-white p-1 rounded hover:shadow-md border pb-4 mb-10 mx-1" style="width:32.6%;">
+                    @if ($course->cover)
+                        <img src="{{ asset($course->cover) }}" alt="" class="w-full rounded mb-3">
+                    @else
+                        <img src="{{ asset('asset/aws.jpg') }}" alt="" class="w-full rounded mb-3">
+                    @endif
                     <div class="p-2">
                         <div class="flex items-center">
-                            <img src="{{ asset($lecturer->profile_picture) }}" alt="Image Lecturer" class="rounded-full w-10 mr-4">
-                            <h2 class="text-xl font-bold text-gray-800 mb-4 pt-3">{{$lecturer->name}}</h2>
+                            <h2 class="text-xl font-bold text-gray-800 mb-4 pt-3">{{$course->name}}</h2>
                         </div>
                         <p class="text-gray-600 mb-4">{{$course->description}}</p>
-                        <div class="flex items-center justify-between">
-                            <a href="#" class="text-blue-500 hover:underline">Learn More</a>
-                        </div>
                     </div>
-                </div>
+                </a> --}}
+                <a href="{{ route('course.get', ['id' => $course->id]) }}" class="w-3/5 bg-white border border-gray-200 rounded-lg hover:shadow-md place-self-center self-start">
+                    @if($course->cover)
+                        <img class="rounded-t-lg w-full" src="{{ asset($course->cover) }}" alt="">
+                    @else
+                        <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
+                    @endif
+                    <div class="p-5">
+                        <div class="flex items-center space-x-3">
+                            <span class="self-center text-xs font-normal whitespace-nowrap">{{ $course->user_name }}</span>
+                        </div>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{ $course->name }}</h5>
+                        <p class="mb-3 font-normal text-gray-700">{{ $course->description }}</p>
+                    </div>
+                </a>
                 @endforeach
             </div>
         @else

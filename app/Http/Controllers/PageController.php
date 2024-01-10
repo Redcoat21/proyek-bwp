@@ -124,9 +124,24 @@ class PageController extends Controller
         $listcourse = Course::where('lecturer', $req->username)->get();
         $count = Course::where('lecturer', $req->username)->count();
         $lecturer = User::Find($req->username);
+        $follow = 0;
+
+        foreach ($listcourse as $course) {
+            $temp = DB::select("
+                SELECT t.id, t.course, t.student
+                FROM transactions AS `t`
+                WHERE t.course = '$course->id'
+                ");
+
+            $temp2 = 0;
+            $temp2 = count($temp);
+            $follow += $temp2;
+        }
+
         $param["Course"]=$listcourse;
         $param["lecturer"]=$lecturer;
         $param["jumlah"]=$count;
+        $param["follow"]=$follow;
         return view('lecturerFS.lecturer',$param);
     }
 

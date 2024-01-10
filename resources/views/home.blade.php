@@ -34,7 +34,7 @@
                     @if (!auth()->user())
                         {{ route('auth.get') }}
                     @else
-                        {{ route('home.get') }}
+                        {{ route('lecturerDetail.get', ['username' => $topLecturer->username]) }}
                     @endif
                     " class="bg-blue-600 hover:bg-blue-800 text-white py-2 px-6 border border-blue-600 rounded-full text-sm mt-2">
                             See Courses
@@ -56,7 +56,7 @@
                 @if (!auth()->user())
                     {{ route('auth.get') }}
                 @else
-                    {{ route('home.get') }}
+                    {{ route('course.get', ['id' => $course->id]) }}
                 @endif
                 " class="w-3/5 bg-white border border-gray-200 rounded-lg hover:shadow-md place-self-center self-start">
                     @if($course->cover)
@@ -98,7 +98,7 @@
                             @if (!auth()->user())
                                 {{ route('auth.get') }}
                             @else
-                                {{ route('home.get') }}
+                                {{ route('course.get', ['id' => $course->id]) }}
                             @endif
                             " class="w-3/5 bg-white border border-gray-200 rounded-lg hover:shadow-md">
                                 @if($course->cover)

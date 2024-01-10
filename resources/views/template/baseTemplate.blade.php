@@ -72,7 +72,7 @@
                             <img class="rounded-t-lg w-full" src="${img}" alt="">
                             <div class="p-5">
                                 <div class="flex items-center space-x-3 mb-4">
-                                    <img src="{{ asset('${pp}') }}" class="h-8 border-none rounded">
+                                    <img src="{{ asset('${pp}') }}" class="h-8 w-8 border-none rounded-full">
                                     <span class="self-center text-xs font-normal whitespace-nowrap">${result.lecturer}</span>
                                 </div>
                                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">${result.name}</h5>
