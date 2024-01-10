@@ -7,45 +7,14 @@ List User
 @endsection
 @section('content')
 <div class="m-4">
-    <div class="mb-4">
-        <button class="bg-blue-600 text-white p-2 rounded"><a href="{{'/addUser'}}">Add New User</a></button>
+    <div class="flex">
+        <div class="mx-2">
+            <button class="bg-red-600 text-white p-2 rounded"><a href="{{'/adminProfile'}}">Back</a></button>
+        </div>
+        <div class="mx-2">
+            <button class="bg-blue-600 text-white p-2 rounded"><a href="{{'/addUser'}}">Add New User</a></button>
+        </div>
     </div>
-    <div class="text-2xl font-bold my-4">
-        List Admins
-    </div>
-    <table class="w-full">
-        <thead>
-            <tr>
-                <div>
-                    <th>No</th>
-                    <th>Username</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Action</th>
-                </div>
-            </tr>
-        </thead>
-        <tbody class="text-center">
-            @foreach ($listAdmins as $index => $admin)
-            @if($admin != Auth::user())
-            <tr>
-                <td>{{ $index + 1 }}</td>
-                <td>{{ $admin->username }}</td>
-                <td>{{ $admin->name }}</td>
-                <td>{{ $admin->email }}</td>
-                <td>
-                    @if ($admin->trashed())
-                    <button><a href="{{'/deleteUser/'.$admin->username}}" class="bg-blue-600 p-1 text-white rounded">Restore</a></button>
-                    @else
-                    <button><a href="{{'/updateUser/'.$admin->username}}" class="bg-green-600 p-1 text-white rounded">Update</a></button>
-                    <button><a href="{{'/deleteUser/'.$admin->username}}" class="bg-red-600 p-1 text-white rounded">Delete</a></button>
-                    @endif
-                </td>
-            </tr>
-            @endif
-            @endforeach
-        </tbody>
-    </table>
     <div class="text-2xl font-bold my-4">
         List Lecturers
     </div>

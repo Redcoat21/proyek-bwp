@@ -369,7 +369,7 @@ class PageController extends Controller
         $param["user"] = $user;
         return view('admin.updateUser', $param);
     }
-
+    
     public function showDetailCourse(Request $req){
         $course = Course::find($req->id);
         $param['course'] = $course;
@@ -377,7 +377,7 @@ class PageController extends Controller
         $param['subcourses'] = $subcourse;
         return view('lecturer.updateCourse', $param);
     }
-
+    
     public function updateSubCourse(Request $req){
         $sub = Subcourse::find($req->id);
         $param['subcourse'] = $sub;
@@ -385,12 +385,28 @@ class PageController extends Controller
         $param['course'] = $course;
         return view('lecturer.updateSubCourse', $param);
     }
-
+    
     public function detailSubCourseLecturer(Request $req){
         $sub = Subcourse::find($req->id);
         $param['subcourse'] = $sub;
         $course = Course::find($sub->course);
         $param['course'] = $course;
         return view('lecturer.detailSubCourse', $param);
+    }
+    ///Master Controller
+    public function masterAccount(){
+        $listAdmin = User::withTrashed()->where('role', 'ADM')->get();
+        $param["listAdmins"] = $listAdmin;
+        return view('master.master',$param);
+    }
+
+    public function updateAdmin(Request $req){
+        $user = User::find($req->uname);
+        $param["user"] = $user;
+        return view('master.updateAdmin', $param);
+    }
+    
+    public function MasterAddAdmin(){
+        return view('master.addAdmin');
     }
 }

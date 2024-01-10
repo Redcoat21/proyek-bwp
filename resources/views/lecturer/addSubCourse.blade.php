@@ -25,7 +25,7 @@
 @if($course->lecturer!=auth()->user()->username)
 <h1 class="block text-center text-2xl text-black-400 my-3">Bukan course Anda!</h1>
 @else
-<div class="px-96">
+<div class="px-96 rounded">
     <form action="" method="post" class="col-span-2 col-start-3 mt-2">
         @csrf
         <input type="hidden" name="type" value="login">
