@@ -181,7 +181,7 @@ Profile
                 @if (!auth()->user())
                     {{ route('auth.get') }}
                 @else
-                    {{ route('home.get') }}
+                    {{ '/lecturer/course/'.$hiddenCourse->id }}
                 @endif
                 " class="w-11/12 bg-white border border-gray-200 rounded-lg">
                     <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
@@ -241,7 +241,7 @@ Profile
                 @if (!auth()->user())
                     {{ route('auth.get') }}
                 @else
-                    {{ route('home.get') }}
+                    {{ '/lecturer/course/'.$publishedCourse->id }}
                 @endif
                 " class="w-11/12 bg-white border border-gray-200 rounded-lg">
                     <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
@@ -281,7 +281,7 @@ Profile
                 @if (!auth()->user())
                     {{ route('auth.get') }}
                 @else
-                    {{ route('home.get') }}
+                    {{ '/lecturer/course/'.$disabledCourse->id }}
                 @endif
                 " class="w-11/12 bg-white border border-gray-200 rounded-lg">
                     <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">

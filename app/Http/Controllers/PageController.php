@@ -144,9 +144,11 @@ class PageController extends Controller
         return view('lecturerFS.lecturer',$param);
     }
 
-    public function showAddSubCourse(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
+    public function showAddSubCourse(Request $req): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
-        return view('lecturer.addSubCourse');
+        $course = Course::find($req->id);
+        $param['course'] = $course;
+        return view('lecturer.addSubCourse', $param);
     }
 
     // public function getTopThreeLecturer()
@@ -233,5 +235,29 @@ class PageController extends Controller
         $user = User::find($req->uname);
         $param["user"] = $user;
         return view('admin.updateUser', $param);
+    }
+
+    public function showDetailCourse(Request $req){
+        $course = Course::find($req->id);
+        $param['course'] = $course;
+        $subcourse = Subcourse::where('course',$req->id)->get();
+        $param['subcourses'] = $subcourse;
+        return view('lecturer.updateCourse', $param);
+    }
+
+    public function updateSubCourse(Request $req){
+        $sub = Subcourse::find($req->id);
+        $param['subcourse'] = $sub;
+        $course = Course::find($sub->course);
+        $param['course'] = $course;
+        return view('lecturer.updateSubCourse', $param);
+    }
+
+    public function detailSubCourseLecturer(Request $req){
+        $sub = Subcourse::find($req->id);
+        $param['subcourse'] = $sub;
+        $course = Course::find($sub->course);
+        $param['course'] = $course;
+        return view('lecturer.detailSubCourse', $param);
     }
 }

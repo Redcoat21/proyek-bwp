@@ -65,8 +65,16 @@ Route::get('/profile', [PageController::class, 'showProfile'])->name('profile.ge
 Route::get('/courseDetail/{id}', [PageController::class, 'showCourseDetail'])->name('courseDetail.get');
 Route::get('/course/{id}', [PageController::class, 'showCourse'])->name('course.get');
 Route::get('/subCourse/{id}', [PageController::class, 'showSubCourse'])->name('subCourse.get');
-Route::get('/addSubCourse', [PageController::class, 'showAddSubCourse'])->name('addSubCourse.get');
-
+//routing untuk course lecturer
+Route::get('/lecturer/course/{id}', [PageController::class, 'showDetailCourse']);
+Route::get('/addSubCourse/{id}', [PageController::class, 'showAddSubCourse']);
+Route::post('/addSubCourse/{id}', [DataController::class, 'addSubCourse']);
+Route::get('/editSubCourse/{id}', [PageController::class, 'updateSubCourse']);
+Route::post('/editSubCourse/{id}', [DataController::class, 'updateSubCourse']);
+Route::get('/deleteSubCourse/{id}', [DataController::class, 'deleteSubCourse']);
+Route::get('/publishCourse/{id}', [DataController::class, 'publishCourse']);
+Route::get('/disableCourse/{id}', [DataController::class, 'disableCourse']);
+Route::get('/detailSubCourse/{id}', [PageController::class, 'detailSubCourseLecturer']);
 //routing untuk ajax
 Route::get('/search', [DataController::class, 'search']);
 Route::get('/lecturerProfile', [PageController::class, 'showLecturerProfile'])->name('lecturerProfile.get');
