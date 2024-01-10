@@ -7,9 +7,15 @@
     @section('content')
         <div class="flex flex-col">
             <div class="bg-zinc-100 my-6 mx-56 shadow-md">
-                <div class="text-2xl font-bold mt-10 ms-10">
+            <div class="flex justify-between items-center p-10">
+                <div class="text-2xl font-bold">
                     My Profile
                 </div>
+                <button class="text-lg font-bold bg-red-700 text-white px-4 py-2 rounded">
+                    <!--Ini masih blm di route buat logout-->
+                    Logout
+                </button>
+            </div>
                 <div class="grid grid-cols-4 my-10 mx-10">
                     <div class="image-container">
                         @if(auth()->user()->profile_picture)
