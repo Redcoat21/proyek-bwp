@@ -49,7 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/listCourse', [PageController::class, 'showListCourse'])->name('listCourse.get');
     Route::get('/listLecturer', [PageController::class, 'testAjax'])->name('listLecturer.get');
     Route::get('/addCourse', [PageController::class,'listAddCourse'])->name('addCourse.get');
-    Route::post('/addCourse', [PageController::class,'listAddCourse'])->name('addCourse.get');
+    Route::post('/addCourse', [DataController::class,'addCourse']);
     /////
     Route::get('/lecturer/{username}', [PageController::class, 'showLecturerDetail'])->name('lecturerDetail.get');
 });

@@ -137,9 +137,9 @@ Profile
                     <div class="text-lg font-semibold">Hidden</div>
                     <div class="text-lg font-semibold">Published</div>
                     <div class="text-lg font-semibold">Disabled</div>
-                    <div class="row-start-2">1</div>
-                    <div class="row-start-2">2</div>
-                    <div class="row-start-2">0</div>
+                    <div class="row-start-2">{{count($hiddenCourses)}}</div>
+                    <div class="row-start-2">{{count($publishedCourses)}}</div>
+                    <div class="row-start-2">{{count($disabledCourses)}}</div>
                 </div>
             </div>
             <div class="flex justify-end">
@@ -158,35 +158,48 @@ Profile
             </div>
         </div>
     </div>
+    {{-- hidden courses --}}
     <div class="bg-zinc-100 my-6 mx-56 shadow-md">
         <div class="text-2xl font-bold mt-10 ms-10">
             My Courses | Hidden
         </div>
+        @if (count($hiddenCourses)==0)
         <div class="grid grid-cols-4 my-10 mx-10 justify-items-center">
 
-            <a href="
-            @if (!auth()->user())
-                {{ route('auth.get') }}
-            @else
-                {{ route('home.get') }}
-            @endif
-            " class="w-11/12 bg-white border border-gray-200 rounded-lg">
-                <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
-                <div class="p-5">
-                    <div class="flex items-center space-x-3">
-                        <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
-                        <span class="self-center text-xs font-normal whitespace-nowrap">AWS Educate</span>
+            <div class="col-span-4">
+                <div class="grid grid-rows-2 justify-items-center">
+                    <div class="my-2 text-xl font-bold">
+                        You Don't Have Any Hidden Courses Now.
                     </div>
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Cloud Engineering for Beginners</h5>
-                    <p class="mb-3 font-normal text-gray-700">Learn Basic Cloud Engineering with AWS Educate Team.</p>
                 </div>
-            </a>
-
+            </div>
+        </div>
+        @else
+        <div class="grid grid-cols-4 my-10 mx-10 justify-items-center">
+            @foreach ($hiddenCourses as $hiddenCourse)
+                <a href="
+                @if (!auth()->user())
+                    {{ route('auth.get') }}
+                @else
+                    {{ route('home.get') }}
+                @endif
+                " class="w-11/12 bg-white border border-gray-200 rounded-lg">
+                    <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
+                    <div class="p-5">
+                        <div class="flex items-center space-x-3">
+                            <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
+                            <span class="self-center text-xs font-normal whitespace-nowrap">{{$hiddenCourse->lecturers->name}}</span>
+                        </div>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{$hiddenCourse->name}}</h5>
+                        <p class="mb-3 font-normal text-gray-700">{{$hiddenCourse->description}}</p>
+                    </div>
+                </a>
+            @endforeach
             <a href="
             @if (!auth()->user())
                 {{ route('auth.get') }}
             @else
-                {{ route('home.get') }}
+                {{ route('addCourse.get') }}
             @endif
             " class="w-11/12 bg-white border border-gray-200 rounded-lg grid justify-items-center content-center">
                 {{-- <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt=""> --}}
@@ -194,10 +207,10 @@ Profile
                     +
                 </div>
             </a>
-
         </div>
+        @endif
     </div>
-
+    {{-- published courses --}}
     <div class="bg-zinc-100 my-6 mx-56 shadow-md">
         <div class="flex flex-row items-center mt-10 ml-10">
             <div class="text-2xl font-bold">
@@ -211,50 +224,46 @@ Profile
                 </div>
             </div>
         </div>
+        @if (count($publishedCourses)==0)
         <div class="grid grid-cols-4 my-10 mx-10 justify-items-center">
-
-            <a href="
-            @if (!auth()->user())
-                {{ route('auth.get') }}
-            @else
-                {{ route('home.get') }}
-            @endif
-            " class="w-11/12 bg-white border border-gray-200 rounded-lg">
-                <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
-                <div class="p-5">
-                    <div class="flex items-center space-x-3">
-                        <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
-                        <span class="self-center text-xs font-normal whitespace-nowrap">AWS Educate</span>
+            <div class="col-span-4">
+                <div class="grid grid-rows-2 justify-items-center">
+                    <div class="my-2 text-xl font-bold">
+                        You Don't Have Any Published Courses Now.
                     </div>
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Cloud Engineering for Beginners</h5>
-                    <p class="mb-3 font-normal text-gray-700">Learn Basic Cloud Engineering with AWS Educate Team.</p>
                 </div>
-            </a>
-
-            <a href="
-            @if (!auth()->user())
-                {{ route('auth.get') }}
-            @else
-                {{ route('home.get') }}
-            @endif
-            " class="w-11/12 bg-white border border-gray-200 rounded-lg">
-                <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
-                <div class="p-5">
-                    <div class="flex items-center space-x-3">
-                        <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
-                        <span class="self-center text-xs font-normal whitespace-nowrap">AWS Educate</span>
-                    </div>
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Cloud Engineering for Beginners</h5>
-                    <p class="mb-3 font-normal text-gray-700">Learn Basic Cloud Engineering with AWS Educate Team.</p>
-                </div>
-            </a>
+            </div>
         </div>
+        @else
+        <div class="grid grid-cols-4 my-10 mx-10 justify-items-center">
+            @foreach ($publishedCourses as $publishedCourse)
+                <a href="
+                @if (!auth()->user())
+                    {{ route('auth.get') }}
+                @else
+                    {{ route('home.get') }}
+                @endif
+                " class="w-11/12 bg-white border border-gray-200 rounded-lg">
+                    <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
+                    <div class="p-5">
+                        <div class="flex items-center space-x-3">
+                            <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
+                            <span class="self-center text-xs font-normal whitespace-nowrap">{{$publishedCourse->lecturers->name}}</span>
+                        </div>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{$publishedCourse->name}}</h5>
+                        <p class="mb-3 font-normal text-gray-700">{{$publishedCourse->description}}</p>
+                    </div>
+                </a>
+            @endforeach
+        </div>
+        @endif
     </div>
-
+    {{-- disabled courses --}}
     <div class="bg-zinc-100 my-6 mx-56 shadow-md">
         <div class="text-2xl font-bold mt-10 ms-10">
             My Courses | Disabled
         </div>
+        @if (count($disabledCourses)==0)
         <div class="grid grid-cols-4 my-10 mx-10 justify-items-center">
 
             <div class="col-span-4">
@@ -265,6 +274,29 @@ Profile
                 </div>
             </div>
         </div>
+        @else
+        <div class="grid grid-cols-4 my-10 mx-10 justify-items-center">
+            @foreach ($disabledCourses as $disabledCourse)
+                <a href="
+                @if (!auth()->user())
+                    {{ route('auth.get') }}
+                @else
+                    {{ route('home.get') }}
+                @endif
+                " class="w-11/12 bg-white border border-gray-200 rounded-lg">
+                    <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
+                    <div class="p-5">
+                        <div class="flex items-center space-x-3">
+                            <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
+                            <span class="self-center text-xs font-normal whitespace-nowrap">{{$disabledCourse->lecturers->name}}</span>
+                        </div>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{$disabledCourse->name}}</h5>
+                        <p class="mb-3 font-normal text-gray-700">{{$disabledCourse->description}}</p>
+                    </div>
+                </a>
+            @endforeach
+        </div>
+        @endif
     </div>
 </div>
 @endif

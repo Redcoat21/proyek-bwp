@@ -146,4 +146,35 @@ class DataController extends Controller
 
         return redirect('/course/' . $id)->with("msg", "Pembelian Berhasil!");
     }
+
+    function addCourse(Request $req){
+        $req->validate([
+            'title' => 'required',
+            'price' => 'required|numeric',
+            'desc' => 'required',
+            'image' =>'required'
+        ], [
+            'title.required' => 'Title is required.',
+            'price.required' => 'Price is required.',
+            'price.numeric' => 'Price must be number.',
+            'desc.required' => 'Description is required.',
+            'image.required' => 'Cover image is required.'
+        ]);
+        $newCourse = new Course();
+        $newCourse->name = $req->title;
+        $newCourse->status = 0;
+        $newCourse->description = $req->desc;
+        $newCourse->price = (int) $req->price;
+        $newCourse->cover = $req->image;
+        $newCourse->difficulty = $req->difficulty;
+        $newCourse->lecturer = auth()->user()->username;
+        $newCourse->category = $req->category;
+        $res = $newCourse->save();
+        if($res){
+            return redirect('/profile')->with("msg", "Action Berhasil");
+        }
+        else{
+            return redirect('/addCourse')->with("msg", "Action Gagal");
+        }
+    }
 }

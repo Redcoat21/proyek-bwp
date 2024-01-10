@@ -101,7 +101,21 @@ class PageController extends Controller
 
     public function showProfile(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
-        return view('profile');
+        if(auth()->user()->role=="LEC"){
+            //data untuk Lecturer di profile
+            $hiddenCourse = Course::where('lecturer',auth()->user()->username)->where('status',0)->get();
+            $publishedCourse = Course::where('lecturer',auth()->user()->username)->where('status',1)->get();
+            $disabledCourse = Course::where('lecturer',auth()->user()->username)->where('status',2)->get();
+            $param["hiddenCourses"] = $hiddenCourse;
+            $param["publishedCourses"] = $publishedCourse;
+            $param["disabledCourses"] = $disabledCourse;
+        }
+        else{
+            // ini masih asal
+            $course = Course::all();
+            $param["courses"] = $course;
+        }
+        return view('profile', $param);
     }
 
     public function showEditProfile(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
