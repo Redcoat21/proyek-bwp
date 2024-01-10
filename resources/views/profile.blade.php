@@ -215,7 +215,7 @@ Profile
                 @if (!auth()->user())
                     {{ route('auth.get') }}
                 @else
-                    {{ route('home.get') }}
+                    {{ '/lecturer/course/'.$hiddenCourse->id }}
                 @endif
                 " class="w-11/12 bg-white border border-gray-200 rounded-lg">
                     <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
@@ -251,11 +251,11 @@ Profile
                 My Courses | Published
             </div>
             <div class="ml-auto">
-                <div class="mr-8">
+                {{-- <div class="mr-8">
                     <a href="/addCourse" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
                         Add Course
                     </a>
-                </div>
+                </div> --}}
             </div>
         </div>
         @if (count($publishedCourses)==0)
@@ -275,7 +275,7 @@ Profile
                 @if (!auth()->user())
                     {{ route('auth.get') }}
                 @else
-                    {{ route('home.get') }}
+                    {{ '/lecturer/course/'.$publishedCourse->id }}
                 @endif
                 " class="w-11/12 bg-white border border-gray-200 rounded-lg">
                     <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
@@ -315,7 +315,7 @@ Profile
                 @if (!auth()->user())
                     {{ route('auth.get') }}
                 @else
-                    {{ route('home.get') }}
+                    {{ '/lecturer/course/'.$disabledCourse->id }}
                 @endif
                 " class="w-11/12 bg-white border border-gray-200 rounded-lg">
                     <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Subcourse;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -176,5 +177,76 @@ class DataController extends Controller
         else{
             return redirect('/addCourse')->with("msg", "Action Gagal");
         }
+    }
+
+    public function addSubCourse(Request $req){
+        $req->validate([
+            'title' => 'required|max:200',
+            'desc' => 'required|max:1000'
+        ], [
+            'title.required' => 'Title is required.',
+            'title.max' => 'Title length must not be over 200 letters.',
+            'desc.required' => 'Description is required.',
+            'desc.max' => 'Description length must not be over 1000 letters.'
+        ]);
+        $newSubCourse = new Subcourse();
+        $newSubCourse->name = $req->title;
+        $newSubCourse->description = $req->desc;
+        $newSubCourse->course = $req->id;
+        $res = $newSubCourse->save();
+        if($res){
+            return redirect('/lecturer/course/'.$req->id)->with("msg", "Action Gagal");
+        }
+        else{
+            return redirect('/addSubCourse/'.$req->id)->with("msg", "Action Gagal");
+        }
+    }
+
+    public function updateSubCourse(Request $req){
+        $req->validate([
+            'title' => 'required|max:200',
+            'desc' => 'required|max:1000'
+        ], [
+            'title.required' => 'Title is required.',
+            'title.max' => 'Title length must not be over 200 letters.',
+            'desc.required' => 'Description is required.',
+            'desc.max' => 'Description length must not be over 1000 letters.'
+        ]);
+        $newSubCourse = Subcourse::find($req->id);
+        $newSubCourse->name = $req->title;
+        $newSubCourse->description = $req->desc;
+        $res = $newSubCourse->save();
+        if($res){
+            return redirect('/lecturer/course/'.$newSubCourse->course)->with("msg", "Action Gagal");
+        }
+        else{
+            return redirect('/editSubCourse/'.$req->id)->with("msg", "Action Gagal");
+        }
+    }
+
+    public function deleteSubCourse(Request $req){
+        $newSubCourse = Subcourse::find($req->id);
+        $course = $newSubCourse->course;
+        $res = $newSubCourse->delete();
+        if($res){
+            return redirect('/lecturer/course/'.$course)->with("msg", "Action Gagal");
+        }
+        else{
+            return redirect('/lecturer/course/'.$course)->with("msg", "Action Gagal");
+        }
+    }
+
+    public function publishCourse(Request $req){
+        $course = Course::find($req->id);
+        $course->status = 1;
+        $res = $course->save();
+        return redirect('/profile');
+    }
+
+    public function disableCourse(Request $req){
+        $course = Course::find($req->id);
+        $course->status = 2;
+        $res = $course->save();
+        return redirect('/profile');
     }
 }
