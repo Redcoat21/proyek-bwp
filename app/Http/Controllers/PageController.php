@@ -15,6 +15,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use PHPUnit\Framework\Constraint\Count;
+use Illuminate\Http\Request;
+
 
 class PageController extends Controller
 {
@@ -118,9 +120,15 @@ class PageController extends Controller
         return view('lecturerFS.listLecturer', ['lecturers' => User::where('role', 'LEC')->get()]);
     }
 
-    public function showLecturerDetail(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
+    public function showLecturerDetail(Request $req): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
-        return view('lecturerFS.lecturer');
+        $listcourse = Course::where('lecturer', $req->username)->get();
+        $count = Course::where('lecturer', $req->username)->count();
+        $lecturer = User::Find($req->username);
+        $param["Course"]=$listcourse;
+        $param["lecturer"]=$lecturer;
+        $param["jumlah"]=$count;
+        return view('lecturerFS.lecturer',$param);
     }
 
     public function showAddSubCourse(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
@@ -204,6 +212,10 @@ class PageController extends Controller
         return view("lecturer.addCourse", $param);
     }
 
+    function testAjax(){
+        return view("lecturerFS.listLecturer");
+    }
+    
     public function updateUser(Request $req){
         $user = User::find($req->uname);
         $param["user"] = $user;

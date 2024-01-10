@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PageController::class, 'showHome'])->name('home.get');
-Route::get('/lecturer/detail', [PageController::class, 'showLecturerDetail'])->name('lecturerDetail.get');
 
 // LOGIN AND REGISTER
 Route::prefix('auth')->group(function () {
@@ -48,8 +47,11 @@ Route::prefix('/test')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/listCourse', [PageController::class, 'showListCourse'])->name('listCourse.get');
-    Route::get('/listLecturer', [PageController::class, 'showListLecturer'])->name('listLecturer.get');
+    Route::get('/listLecturer', [PageController::class, 'testAjax'])->name('listLecturer.get');
     Route::get('/addCourse', [PageController::class,'listAddCourse'])->name('addCourse.get');
+    Route::post('/addCourse', [PageController::class,'listAddCourse'])->name('addCourse.get');
+    /////
+    Route::get('/lecturer/{username}', [PageController::class, 'showLecturerDetail'])->name('lecturerDetail.get');
 });
 
 // Route::prefix('profile')->group(function() {
@@ -67,6 +69,8 @@ Route::get('/addSubCourse', [PageController::class, 'showAddSubCourse'])->name('
 
 //routing untuk ajax
 Route::get('/search', [DataController::class, 'search']);
+Route::get('/lecturerProfile', [PageController::class, 'showLecturerProfile'])->name('lecturerProfile.get');
+Route::get('/searchLecturer', [DataController::class, 'searchLecturer']);
 
 //admin page
 Route::get('/adminProfile', [PageController::class, 'showAdminProfile'])->name('adminProfile.get');
