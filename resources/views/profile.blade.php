@@ -164,7 +164,8 @@ Profile
             My Courses | Hidden
         </div>
         @if (count($hiddenCourses)==0)
-        <a href="
+        <div class="grid grid-cols-4 my-10 mx-10 justify-items-center">
+            <a href="
             @if (!auth()->user())
                 {{ route('auth.get') }}
             @else
@@ -176,6 +177,7 @@ Profile
                     +
                 </div>
             </a>
+        </div>
         @else
         <div class="grid grid-cols-4 my-10 mx-10 justify-items-center">
             @foreach ($hiddenCourses as $hiddenCourse)
@@ -197,6 +199,18 @@ Profile
                     </div>
                 </a>
             @endforeach
+            <a href="
+            @if (!auth()->user())
+                {{ route('auth.get') }}
+            @else
+                {{ route('addCourse.get') }}
+            @endif
+            " class="w-11/12 bg-white border border-gray-200 rounded-lg grid justify-items-center content-center">
+                {{-- <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt=""> --}}
+                <div class="pb-8 text-9xl">
+                    +
+                </div>
+            </a>
         </div>
         @endif
     </div>
