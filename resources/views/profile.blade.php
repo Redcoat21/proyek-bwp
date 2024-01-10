@@ -37,8 +37,8 @@ Profile
                     <div class="grid grid-cols-3 grid-rows-2 justify-items-center gap-2">
                         <div class="text-lg font-semibold">Completed</div>
                         <div class="text-lg font-semibold">In Progress</div>
-                        <div class="row-start-2">0</div>
-                        <div class="row-start-2">2</div>
+                        <div class="row-start-2">{{ $ctrCompleted }}</div>
+                        <div class="row-start-2">{{ $ctrProgress }}</div>
                     </div>
                 </div>
                 <div class="flex justify-end">
@@ -62,16 +62,47 @@ Profile
             </div>
             <div class="grid grid-cols-4 my-10 mx-10 justify-items-center">
 
-                <div class="col-span-4">
-                    <div class="grid grid-rows-2 justify-items-center">
-                        <div class="my-2 text-xl font-bold">
-                            You Don't Have Any In Progress Courses Now.
-                        </div>
-                        <a href="{{ route('listCourse.get') }}" class="bg-blue-600 hover:bg-blue-800 text-white py-1 px-10 mt-2 rounded text-base">
-                            Search Course
+                @if ($progressCourses)
+                    @foreach($progressCourses as $course)
+                        <a href="
+                        @if (!auth()->user())
+                            {{ route('auth.get') }}
+                        @else
+                            {{ route('course.get', ['id' => $course->id]) }}
+                        @endif
+                        " class="w-11/12 bg-white border border-gray-200 rounded-lg">
+                        @if($course->cover)
+                            <img class="rounded-t-lg w-full" src="{{ asset($course->cover) }}" alt="">
+                        @else
+                            <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
+                        @endif
+                            <div class="p-5">
+                                <div class="flex items-center space-x-3">
+                                    @if($course->profile_picture)
+                                        <img src="{{ asset($course->profile_picture) }}" class="h-8 border-none rounded-full" alt="pp">
+                                    @else
+                                        <img src="{{ asset('asset/def_pp.jpg') }}" class="h-8 border-none rounded-full" alt="pp">
+                                    @endif
+                                    <span class="self-center text-xs font-normal whitespace-nowrap">{{ $course->user_name }}</span>
+                                </div>
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{ $course->name }}</h5>
+                                <p class="mb-3 font-normal text-gray-700">{{ $course->description }}</p>
+                            </div>
                         </a>
+                    @endforeach
+                @else
+                    <div class="col-span-4">
+                        <div class="grid grid-rows-2 justify-items-center">
+                            <div class="my-2 text-xl font-bold">
+                                You Don't Have Any In Progress Courses Now.
+                            </div>
+                            <a href="{{ route('listCourse.get') }}" class="bg-blue-600 hover:bg-blue-800 text-white py-1 px-10 mt-2 rounded text-base">
+                                Search Course
+                            </a>
+                        </div>
                     </div>
-                </div>
+                @endif
+
 
             </div>
         </div>
@@ -81,41 +112,44 @@ Profile
             </div>
             <div class="grid grid-cols-4 my-10 mx-10 justify-items-center">
 
-                <a href="
-                @if (!auth()->user())
-                    {{ route('auth.get') }}
+                @if ($completedCourses)
+                    @foreach($completedCourses as $course)
+                        <a href="
+                        @if (!auth()->user())
+                            {{ route('auth.get') }}
+                        @else
+                            {{ route('course.get', ['id' => $course->id]) }}
+                        @endif
+                        " class="w-11/12 bg-white border border-gray-200 rounded-lg">
+                        @if($course->cover)
+                            <img class="rounded-t-lg w-full" src="{{ asset($course->cover) }}" alt="">
+                        @else
+                            <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
+                        @endif
+                            <div class="p-5">
+                                <div class="flex items-center space-x-3">
+                                    @if($course->profile_picture)
+                                        <img src="{{ asset($course->profile_picture) }}" class="h-8 border-none rounded-full" alt="pp">
+                                    @else
+                                        <img src="{{ asset('asset/def_pp.jpg') }}" class="h-8 border-none rounded-full" alt="pp">
+                                    @endif
+                                    <span class="self-center text-xs font-normal whitespace-nowrap">{{ $course->user_name }}</span>
+                                </div>
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{ $course->name }}</h5>
+                                <p class="mb-3 font-normal text-gray-700">{{ $course->description }}</p>
+                            </div>
+                        </a>
+                    @endforeach
                 @else
-                    {{ route('home.get') }}
-                @endif
-                " class="w-11/12 bg-white border border-gray-200 rounded-lg">
-                    <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
-                    <div class="p-5">
-                        <div class="flex items-center space-x-3">
-                            <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
-                            <span class="self-center text-xs font-normal whitespace-nowrap">AWS Educate</span>
+                    <div class="col-span-4">
+                        <div class="grid grid-rows-2 justify-items-center">
+                            <div class="my-2 text-xl font-bold">
+                                You Don't Have Any Completed Courses Now.
+                            </div>
                         </div>
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Cloud Engineering for Beginners</h5>
-                        <p class="mb-3 font-normal text-gray-700">Learn Basic Cloud Engineering with AWS Educate Team.</p>
                     </div>
-                </a>
+                @endif
 
-                <a href="
-                @if (!auth()->user())
-                    {{ route('auth.get') }}
-                @else
-                    {{ route('home.get') }}
-                @endif
-                " class="w-11/12 bg-white border border-gray-200 rounded-lg">
-                    <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
-                    <div class="p-5">
-                        <div class="flex items-center space-x-3">
-                            <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
-                            <span class="self-center text-xs font-normal whitespace-nowrap">AWS Educate</span>
-                        </div>
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Cloud Engineering for Beginners</h5>
-                        <p class="mb-3 font-normal text-gray-700">Learn Basic Cloud Engineering with AWS Educate Team.</p>
-                    </div>
-                </a>
             </div>
         </div>
     </div>

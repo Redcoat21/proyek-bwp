@@ -34,7 +34,7 @@
                     @if (!auth()->user())
                         {{ route('auth.get') }}
                     @else
-                        {{ route('home.get') }}
+                        {{ route('lecturerDetail.get', ['username' => $topLecturer->username]) }}
                     @endif
                     " class="bg-blue-600 hover:bg-blue-800 text-white py-2 px-6 border border-blue-600 rounded-full text-sm mt-2">
                             See Courses
@@ -56,7 +56,7 @@
                 @if (!auth()->user())
                     {{ route('auth.get') }}
                 @else
-                    {{ route('home.get') }}
+                    {{ route('course.get', ['id' => $course->id]) }}
                 @endif
                 " class="w-3/5 bg-white border border-gray-200 rounded-lg hover:shadow-md place-self-center self-start">
                     @if($course->cover)
@@ -67,9 +67,9 @@
                     <div class="p-5">
                         <div class="flex items-center space-x-3">
                             @if($course->profile_picture)
-                                <img src="{{ asset($course->profile_picture) }}" class="h-8 border-none rounded" alt="pp">
+                                <img src="{{ asset($course->profile_picture) }}" class="h-8 border-none rounded-full" alt="pp">
                             @else
-                                <img src="{{ asset('asset/def_pp.jpg') }}" class="h-8 border-none rounded" alt="pp">
+                                <img src="{{ asset('asset/def_pp.jpg') }}" class="h-8 border-none rounded-full" alt="pp">
                             @endif
                             <span class="self-center text-xs font-normal whitespace-nowrap">{{ $course->user_name }}</span>
                         </div>
@@ -98,7 +98,7 @@
                             @if (!auth()->user())
                                 {{ route('auth.get') }}
                             @else
-                                {{ route('home.get') }}
+                                {{ route('course.get', ['id' => $course->id]) }}
                             @endif
                             " class="w-3/5 bg-white border border-gray-200 rounded-lg hover:shadow-md">
                                 @if($course->cover)
@@ -109,9 +109,9 @@
                                 <div class="p-5">
                                     <div class="flex items-center space-x-3">
                                         @if($course->profile_picture)
-                                            <img src="{{ asset($course->profile_picture) }}" alt="course-cover" class="h-8 border-none rounded">
+                                            <img src="{{ asset($course->profile_picture) }}" alt="course-cover" class="h-8 border-none rounded-full">
                                         @else
-                                            <img src="{{ asset('asset/def_pp.jpg') }}" alt="course-cover" class="h-8 border-none rounded">
+                                            <img src="{{ asset('asset/def_pp.jpg') }}" alt="course-cover" class="h-8 border-none rounded-full">
                                         @endif
                                         {{-- <img src="{{ asset($course->cover) }}" alt="course-cover" class="h-8 border-none rounded"> --}}
                                         <span class="self-center text-xs font-normal whitespace-nowrap">{{ $course->lecturers->name }}</span>
