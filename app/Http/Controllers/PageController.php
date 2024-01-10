@@ -15,7 +15,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use PHPUnit\Framework\Constraint\Count;
-use Illuminate\Http\Request;
 
 
 class PageController extends Controller
@@ -215,7 +214,7 @@ class PageController extends Controller
     function testAjax(){
         return view("lecturerFS.listLecturer");
     }
-    
+
     public function updateUser(Request $req){
         $user = User::find($req->uname);
         $param["user"] = $user;
