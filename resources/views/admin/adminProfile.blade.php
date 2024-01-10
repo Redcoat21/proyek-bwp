@@ -11,10 +11,12 @@
                 <div class="text-2xl font-bold">
                     My Profile
                 </div>
-                <a href="{{route('auth.post.logout')}}"><button class="text-lg font-bold bg-red-700 text-white px-4 py-2 rounded">
-                    <!--Ini masih blm di route buat logout-->
-                    Logout
-                </button></a>
+                <form action="{{ route('auth.post.logout') }}" method="POST" style="display: inline;">
+                    @csrf
+                    <button type="submit" class="text-lg font-bold bg-red-700 text-white px-4 py-2 rounded">
+                        Logout
+                    </button>
+                </form>
             </div>
                 <div class="grid grid-cols-4 my-10 mx-10">
                     <div class="image-container">
