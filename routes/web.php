@@ -43,6 +43,7 @@ Route::prefix('/test')->group(function () {
     Route::get('/newCourse', [PageController::class, 'getNewestCourses']);
     Route::get('/file', fn() => view('temp.file'));
     Route::post('/file/submit', [\App\Http\Controllers\FileController::class, 'showFile']);
+    Route::get('/awikwok', fn () => "<h1>Hello</h1>")->middleware('role.check:STU');
 });
 
 Route::middleware('auth')->group(function () {
@@ -50,7 +51,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/listLecturer', [PageController::class, 'testAjax'])->name('listLecturer.get');
     Route::get('/addCourse', [PageController::class,'listAddCourse'])->name('addCourse.get');
     Route::post('/addCourse', [DataController::class,'addCourse']);
-    /////
     Route::get('/lecturer/{username}', [PageController::class, 'showLecturerDetail'])->name('lecturerDetail.get');
 });
 
