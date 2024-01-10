@@ -65,8 +65,10 @@
                         pp = "asset/def_pp.jpg";
                     }
 
+                    var route = '/course/' + result.id;
+
                     container.innerHTML += `<div class="rounded-lg hover:shadow-md w-4/5 border border-gray-200 ">
-                        <a href="{{ route('home.get') }}" class="bg-white">
+                        <a href="${route}" class="bg-white">
                             <img class="rounded-t-lg w-full" src="${img}" alt="">
                             <div class="p-5">
                                 <div class="flex items-center space-x-3">

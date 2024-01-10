@@ -46,7 +46,20 @@ class PageController extends Controller
     {
         $id = $req->id;
         $course = Course::where('id', $id)->first();
-        return view('courses.course', ['course' => $course]);
+
+        $username = auth()->user()->username;
+
+        $trans = DB::select("
+            SELECT t.id, t.course, t.student
+            FROM transactions AS `t`
+            LEFT JOIN users AS `u` ON u.username = t.student
+            LEFT JOIN courses AS `c` ON c.id = t.course
+            WHERE t.course = '$id' AND c.status = 1 AND t.student = '$username'
+        ");
+
+        // dd($trans);
+
+        return view('courses.course', ['course' => $course, 'trans' => $trans]);
     }
 
     public function showListCourse(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
@@ -82,8 +95,6 @@ class PageController extends Controller
     public function showListLecturer(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
         return view('lecturerFS.listLecturer', ['lecturers' => User::where('role', 'LEC')->get()]);
-        // $user = User::all();
-        // return view('lecturerFS.listLecturer',compact('user'));
     }
 
     public function showLecturerDetail(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application

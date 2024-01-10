@@ -6,6 +6,7 @@ use App\Models\Course;
 use Exception;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
@@ -24,7 +25,7 @@ class DataController extends Controller
             return response()->json(['error' => 'Internal Server Error'], 500);
         }
     }
-    
+
     function addUser(Request $req){
         $req->validate([
             'username' => 'required',
@@ -112,5 +113,20 @@ class DataController extends Controller
         else{
             return redirect('/listUser')->with("msg", "Action Gagal");
         }
+    }
+
+    function buyCourse(Request $req){
+        $id = $req->id;
+        $course = Course::where('id', $id)->first();
+        $user = auth()->user();
+
+        DB::table('transactions')->insert([
+            'course' => $course->id,
+            'student' => $user->username,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        return redirect(back())->with("msg", "Pembelian Berhasil!");
     }
 }
