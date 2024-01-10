@@ -31,11 +31,13 @@
             Sub Courses
         </div>
         <div class="ml-auto">
+            @if($course->status == 0)
             <div class="mr-8">
                 <a href={{'/addSubCourse/'.$course->id}} class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
                     Add SubCourse
                 </a>
             </div>
+            @endif
         </div>
     </div>
 

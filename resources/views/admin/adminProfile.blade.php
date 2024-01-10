@@ -11,10 +11,10 @@
                 <div class="text-2xl font-bold">
                     My Profile
                 </div>
-                <button class="text-lg font-bold bg-red-700 text-white px-4 py-2 rounded">
+                <a href="{{route('auth.post.logout')}}"><button class="text-lg font-bold bg-red-700 text-white px-4 py-2 rounded">
                     <!--Ini masih blm di route buat logout-->
                     Logout
-                </button>
+                </button></a>
             </div>
                 <div class="grid grid-cols-4 my-10 mx-10">
                     <div class="image-container">

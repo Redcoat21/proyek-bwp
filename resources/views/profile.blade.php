@@ -217,11 +217,11 @@ Profile
                 My Courses | Published
             </div>
             <div class="ml-auto">
-                <div class="mr-8">
+                {{-- <div class="mr-8">
                     <a href="/addCourse" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
                         Add Course
                     </a>
-                </div>
+                </div> --}}
             </div>
         </div>
         @if (count($publishedCourses)==0)
