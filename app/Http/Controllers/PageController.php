@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\Difficulty;
 use App\Models\Category;
+use App\Models\Subcourse;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -13,6 +14,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use PHPUnit\Framework\Constraint\Count;
 
 class PageController extends Controller
 {
@@ -30,11 +32,6 @@ class PageController extends Controller
     public function toEdit()
     {
         return redirect()->route('profile.editProfile.get');
-    }
-
-    public function showBack(): RedirectResponse
-    {
-        return back();
     }
 
     public function showHome(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
@@ -67,14 +64,38 @@ class PageController extends Controller
         return view('courses.listCourse', ['courses' => Course::all()]);
     }
 
-    public function showCourseDetail(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
+    public function showCourseDetail(Request $req): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
-        return view('courses.courseDetail');
+        $id = $req->id;
+        $course = Course::where('id', $id)->first();
+
+        $subCourse = Subcourse::where('course', $id)->get();
+
+        return view('courses.courseDetail', ['course' => $course, 'subCourse' => $subCourse]);
     }
 
-    public function showSubCourse(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
+    public function showSubCourse(Request $req): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
-        return view('courses.subCourse');
+        $id = $req->id;
+        $subCourse = Subcourse::where('id', $id)->first();
+
+        $course = Course::where('id', $subCourse->course)->first();
+
+        $listSubCourse = Subcourse::where('course', $course->id)->get();
+
+        $index = -1;
+
+        for ($i=0; $i < $listSubCourse->count(); $i++) {
+            if($listSubCourse[$i]->id == $id){
+                $index = $i;
+                break;
+            }
+        }
+
+        $prev = $listSubCourse[$index - 1] ?? null;
+        $next = $listSubCourse[$index + 1] ?? null;
+
+        return view('courses.subCourse', ['subCourse' => $subCourse, 'prev' => $prev, 'next' => $next]);
     }
 
     public function showProfile(): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application

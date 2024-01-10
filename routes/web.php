@@ -60,10 +60,9 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/profile', [PageController::class, 'showProfile'])->name('profile.get');
 
-Route::get('/courseDetail', [PageController::class, 'showCourseDetail'])->name('courseDetail.get');
+Route::get('/courseDetail/{id}', [PageController::class, 'showCourseDetail'])->name('courseDetail.get');
 Route::get('/course/{id}', [PageController::class, 'showCourse'])->name('course.get');
-Route::get('/back', [PageController::class, 'showBack'])->name('back.get');
-
+Route::get('/subCourse/{id}', [PageController::class, 'showSubCourse'])->name('subCourse.get');
 Route::get('/addSubCourse', [PageController::class, 'showAddSubCourse'])->name('addSubCourse.get');
 
 //routing untuk ajax
@@ -78,4 +77,4 @@ Route::get('/deleteUser/{uname}', [DataController::class, 'deleteUser']);
 Route::get('/updateUser/{uname}', [PageController::class, 'updateUser']);
 Route::post('/updateUser/{uname}', [DataController::class, 'updateUser']);
 
-Route::post('/buyCourse/{id}', [DataController::class, 'buyCourse']);
+Route::post('/buyCourse/{id}', [DataController::class, 'buyCourse'])->name('buyCourse.post');

@@ -123,10 +123,9 @@ class DataController extends Controller
         DB::table('transactions')->insert([
             'course' => $course->id,
             'student' => $user->username,
-            'created_at' => now(),
-            'updated_at' => now(),
+            'time' => now()
         ]);
 
-        return redirect(back())->with("msg", "Pembelian Berhasil!");
+        return redirect('/course/' . $id)->with("msg", "Pembelian Berhasil!");
     }
 }
