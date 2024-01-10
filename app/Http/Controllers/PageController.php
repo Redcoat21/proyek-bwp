@@ -88,12 +88,12 @@ class PageController extends Controller
 
     public function showLecturerDetail(Request $req): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
     {
-        // $listcourse = Course::where('lecturer', $req->lecturer)->get();
-        $listcourse = Course::where('lecturer', $req->lecturer);
+        $listcourse = Course::where('lecturer', $req->username)->get();
+        $count = Course::where('lecturer', $req->username)->count();
         $lecturer = User::Find($req->username);
         $param["Course"]=$listcourse;
         $param["lecturer"]=$lecturer;
-        // $param["jumlah"]=$jumlah;
+        $param["jumlah"]=$count;
         return view('lecturerFS.lecturer',$param);
     }
 

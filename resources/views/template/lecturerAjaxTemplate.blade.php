@@ -54,7 +54,7 @@
                     // Set the image URL based on the condition
                     container.innerHTML += `<div class="bg-white rounded shadow-md mx-2 my-5 px-5 py-5 flex items-center">
                         <img src="${result.profile_picture}" alt="Image Lecturer" class="rounded-full w-28 h-28">
-                        <div class="flex-col mx-5">
+                        <div class="flex-col mx-5 mt-4">
                             <div class="text-2xl font-bold text-black mb-1">${result.name}</div>
                             <div class="text-xl font-italic text-gray-800">${desc}</div>
                         </div>
