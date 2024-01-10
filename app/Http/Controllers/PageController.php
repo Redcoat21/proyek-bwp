@@ -66,7 +66,7 @@ class PageController extends Controller
         return view('courses.listCourse', ['courses' => Course::all()]);
     }
 
-    public function showCourseDetail(Request $req): Application | Factory| \Illuminate\Contracts\View\View| \Illuminate\Foundation\Application
+    public function showCourseDetail(Request $req)
     {
         $id = $req->id;
         $course = Course::where('id', $req->id)->first();
@@ -78,24 +78,22 @@ class PageController extends Controller
             ->get()
             ->first();
 
-        $username = auth()->user()->username;
-
-        $comp = [];
-
-        foreach ($subCourse as $sub) {
-            $comp[$sub->id] = DB::select("
-            SELECT s.id, s.subcourse, s.student
-            FROM subcourses_completion AS `s`
-            WHERE s.subcourse = '$sub->id' AND s.student = '$username'");
-        }
-
-        return view('courses.courseDetail', ['course' => $course, 'subCourse' => $subCourse, 'comp' => $comp]);
         if($haveCourse) {
+            $username = auth()->user()->username;
             $subCourse = Subcourse::where('course', $id)->get();
 
-            return view('courses.courseDetail', ['course' => $course, 'subCourse' => $subCourse]);
+            $comp = [];
+
+            foreach ($subCourse as $sub) {
+                $comp[$sub->id] = DB::select("
+                SELECT s.id, s.subcourse, s.student
+                FROM subcourses_completion AS `s`
+                WHERE s.subcourse = '$sub->id' AND s.student = '$username'");
+            }
+
+            return view('courses.courseDetail', ['course' => $course, 'subCourse' => $subCourse, 'comp' => $comp]);
         } else {
-            return back();
+            return redirect()->route('course.get', ['id' => $id, 'trans' => null]);
         }
     }
 
