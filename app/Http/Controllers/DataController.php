@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class DataController extends Controller
@@ -216,16 +217,23 @@ class DataController extends Controller
             'desc.required' => 'Description is required.',
             'image.required' => 'Cover image is required.'
         ]);
+
+        $image = $req->file('image');
+
+        $imageName = time() . "_" . $req->title . "." . $image->extension();
+        Storage::disk('public')->putFileAs('course', $image, $imageName);
+
         $newCourse = new Course();
         $newCourse->name = $req->title;
         $newCourse->status = 0;
         $newCourse->description = $req->desc;
         $newCourse->price = (int) $req->price;
-        $newCourse->cover = $req->image;
+        $newCourse->cover = "storage/" . $req->imageName;
         $newCourse->difficulty = $req->difficulty;
         $newCourse->lecturer = auth()->user()->username;
         $newCourse->category = $req->category;
         $res = $newCourse->save();
+
         if($res){
             return redirect('/profile')->with("msg", "Action Berhasil");
         }
