@@ -34,8 +34,8 @@ Edit
                 {{ $error }}
             </div>
         </div>
-    </div>
     @endforeach
+</div>
 <div class="flex flex-col">
     <div class="bg-zinc-100 my-6 mx-56 shadow-md">
         <div class="text-2xl font-bold mt-10 ms-10">
