@@ -102,6 +102,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/profile', [PageController::class, 'showProfile'])->name('profile.get');
         Route::get('/editProfile', [PageController::class, 'showEditProfile'])->name('profile.editProfile.get');
         Route::get('/toEdit', [PageController::class, 'toEdit'])->name('profile.toEdit.get');
-        Route::patch('/edit', [UserController::class, 'updateStudent'])->name('profile.edit.patch');
+        Route::patch('/edit', [UserController::class, 'updateUser'])->name('profile.edit.patch');
     });
 });

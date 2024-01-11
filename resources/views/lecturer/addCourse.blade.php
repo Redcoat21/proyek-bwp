@@ -28,7 +28,7 @@ Add Course
         </div>
 @endif
 <div class="px-96">
-    <form action="" method="post" class="col-span-2 col-start-3 mt-2">
+    <form action="" method="post" class="col-span-2 col-start-3 mt-2" enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="type" value="login">
 

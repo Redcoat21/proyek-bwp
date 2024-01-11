@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
-    public function updateStudent(Request $request)
+    public function updateUser(Request $request)
     {
         $credentials = $this->validateUpdateInput($request);
         $user = User::find($credentials['username']);
