@@ -34,14 +34,15 @@ List User
             </tr>
         </thead>
         <tbody class="text-center">
+            <tr class="bg-white border-b">
             @foreach ($listAdmins as $index => $admin)
             @if($admin != Auth::user())
-            <tr>
-                <td>{{ $index + 1 }}</td>
-                <td>{{ $admin->username }}</td>
-                <td>{{ $admin->name }}</td>
-                <td>{{ $admin->email }}</td>
-                <td>
+            <tr class="py-2">
+                <td class="py-2">{{ $index + 1 }}</td>
+                <td class="py-2">{{ $admin->username }}</td>
+                <td class="py-2">{{ $admin->name }}</td>
+                <td class="py-2">{{ $admin->email }}</td>
+                <td class="py-2">
                     @if ($admin->trashed())
                     <button><a href="{{'/deleteAdmin/'.$admin->username}}" class="bg-blue-600 p-1 text-white rounded">Restore</a></button>
                     @else
@@ -49,6 +50,7 @@ List User
                     @endif
                 </td>
             </tr>
+            <tr class="bg-white border-b">
             @endif
             @endforeach
         </tbody>
