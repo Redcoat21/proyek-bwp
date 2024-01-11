@@ -94,8 +94,6 @@ Route::middleware('auth')->group(function () {
         Route::get('/addAdmin',[PageController::class,'masterAddAdmin']);
         Route::post('/addAdmin', [DataController::class, 'addAdmin']);
         Route::get('/deleteAdmin/{uname}', [DataController::class, 'deleteAdmin']);
-        Route::get('/updateAdmin/{uname}', [PageController::class, 'updateAdmin']);
-        Route::post('/updateAdmin/{uname}', [DataController::class, 'updateAdmin']);
     });
 
     Route::middleware(('role.check:STU|LEC'))->group(function(){
