@@ -32,11 +32,13 @@ class UserController extends Controller
         $user->name = $credentials['name'];
         $user->email = $credentials['email'];
 
+        if($user->role === 'LEC') {
+            $user->description = $credentials['description'];
+        }
         $user->save();
 
         $message = ['success' => 'Succesfully updated user!'];
-        $routeUrl = Auth::user()->role === 'STU' ? route('profile.studentProfile.get') : route('profile.lecturerProfile.get');
-        return redirect($routeUrl);
+        return redirect(route('profile.get'))->with($message);
     }
 
     private function validateUpdateInput(Request $request): array
