@@ -46,6 +46,11 @@ class UserFactory extends Factory
         return $this->defineUser('adminabcd123!@#', 'ADM');
     }
 
+    public function master(): UserFactory | Factory
+    {
+        return $this->defineUser('master123', 'MST');
+    }
+
     public function defineUser(string $password, string $role): Factory|UserFactory
     {
         return
