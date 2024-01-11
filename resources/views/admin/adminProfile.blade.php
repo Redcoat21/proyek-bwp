@@ -20,24 +20,16 @@
                 </form>
             </div>
                 <div class="grid grid-cols-4 my-10 mx-10">
-                    <div class="image-container">
+                    <div class="image-container flex items-center justify-center">
                         @if(auth()->user()->profile_picture)
                             <img src="{{ asset(auth()->user()->profile_picture) }}" class="h-30 rounded-full" alt="pp">
                         @else
                             <img src="{{ asset('asset/def_pp.jpg') }}" class="h-30 rounded-full" alt="pp">
                         @endif
                     </div>
-                    <div class="col-span-2">
+                    <div class="col-span-2 flex items-center">
                         <div class="text-xl font-semibold m-3">
                             {{ auth()->user()->name }}
-                        </div>
-                        <div class="grid grid-cols-3 grid-rows-2 justify-items-center gap-2">
-                            <div class="text-lg font-semibold">Hidden</div>
-                            <div class="text-lg font-semibold">Published</div>
-                            <div class="text-lg font-semibold">Disabled</div>
-                            <div class="row-start-2">1</div>
-                            <div class="row-start-2">2</div>
-                            <div class="row-start-2">0</div>
                         </div>
                     </div>
                 </div>
