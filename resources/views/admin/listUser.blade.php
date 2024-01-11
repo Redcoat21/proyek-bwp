@@ -29,13 +29,14 @@ List User
             </tr>
         </thead>
         <tbody class="text-center">
+            <tr class="bg-white border-b">
             @foreach ($listLecturers as $index => $lecturer)
-            <tr class="my-2">
-                <td>{{ $index + 1 }}</td>
-                <td>{{ $lecturer->username }}</td>
-                <td>{{ $lecturer->name }}</td>
-                <td>{{ $lecturer->email }}</td>
-                <td>
+            <tr class="py-2">
+                <td class="py-2">{{ $index + 1 }}</td>
+                <td class="py-2">{{ $lecturer->username }}</td>
+                <td class="py-2">{{ $lecturer->name }}</td>
+                <td class="py-2">{{ $lecturer->email }}</td>
+                <td class="py-2">
                     @if($lecturer->trashed())
                     <button><a href="{{'/deleteUser/'.$lecturer->username}}" class="bg-blue-600 p-1 text-white rounded">Restore</a></button>
                     @else
@@ -43,6 +44,7 @@ List User
                     @endif
                 </td>
             </tr>
+            <tr class="bg-white border-b">
             @endforeach
         </tbody>
     </table>
@@ -60,14 +62,15 @@ List User
             </tr>
         </thead>
         <tbody class="text-center">
+            <tr class="bg-white border-b">
             @foreach ($listStudents as $index => $student)
             @if($student != Auth::user())
-            <tr class="my-2">
-                <td>{{ $index + 1 }}</td>
-                <td>{{ $student->username }}</td>
-                <td>{{ $student->name }}</td>
-                <td>{{ $student->email }}</td>
-                <td>
+            <tr class="py-2">
+                <td class="py-2">{{ $index + 1 }}</td>
+                <td class="py-2">{{ $student->username }}</td>
+                <td class="py-2">{{ $student->name }}</td>
+                <td class="py-2">{{ $student->email }}</td>
+                <td class="py-2">
                     @if($student->trashed())
                     <button><a href="{{'/deleteUser/'.$student->username}}" class="bg-blue-600 p-1 text-white rounded">Restore</a></button>
                     @else
@@ -75,6 +78,7 @@ List User
                     @endif
                 </td>
             </tr>
+            <tr class="bg-white border-b">
             @endif
             @endforeach
         </tbody>
