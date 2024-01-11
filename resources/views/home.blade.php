@@ -108,8 +108,8 @@
                                 @endif
                                 <div class="p-5">
                                     <div class="flex items-center space-x-3">
-                                        @if($course->profile_picture)
-                                            <img src="{{ asset($course->profile_picture) }}" alt="course-cover" class="h-8 border-none rounded-full">
+                                        @if($course->lecturers->profile_picture)
+                                            <img src="{{ asset($course->lecturers->profile_picture) }}" alt="course-cover" class="h-8 border-none rounded-full">
                                         @else
                                             <img src="{{ asset('asset/def_pp.jpg') }}" alt="course-cover" class="h-8 border-none rounded-full">
                                         @endif

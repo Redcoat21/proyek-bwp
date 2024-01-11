@@ -26,7 +26,7 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     //khusus lecturer
-    public function course(): ?HasMany
+    public function courses(): ?HasMany
     {
         if($this->role == 'LEC'){
             return $this->hasMany(Course::class, 'lecturer');
