@@ -22,6 +22,15 @@
     RuangDosen
 </div>
 <h1 class="block text-center text-2xl text-blue-400 my-3">{{$course->name}}</h1>
+@if(Session::has('msg'))
+        <div class="flex flex-col">
+            <div class="bg-green-500 my-3 py-3 mx-56 shadow-md rounded">
+                <div class="mx-3 text-white">
+                    {{ session('msg') }}
+                </div>
+            </div>
+        </div>
+    @endif
 @if($course->lecturer!=auth()->user()->username)
 <h1 class="block text-center text-2xl text-black-400 my-3">Bukan course Anda!</h1>
 @else
