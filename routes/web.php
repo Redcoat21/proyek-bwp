@@ -77,8 +77,16 @@ Route::middleware('auth')->group(function () {
         Route::get('/addUser', [PageController::class, 'showAddUser']);
         Route::post('/addUser', [DataController::class, 'addUser']);
         Route::get('/deleteUser/{uname}', [DataController::class, 'deleteUser']);
-        Route::get('/updateUser/{uname}', [PageController::class, 'updateUser']);
-        Route::post('/updateUser/{uname}', [DataController::class, 'updateUser']);
+    });
+
+    //Master
+    Route::middleware(('role.check:MST'))->group(function(){
+        Route::get('/master',[PageController::class,'masterAccount'])->name('master.get');
+        Route::get('/addAdmin',[PageController::class,'masterAddAdmin']);
+        Route::post('/addAdmin', [DataController::class, 'addAdmin']);
+        Route::get('/deleteAdmin/{uname}', [DataController::class, 'deleteAdmin']);
+        Route::get('/updateAdmin/{uname}', [PageController::class, 'updateAdmin']);
+        Route::post('/updateAdmin/{uname}', [DataController::class, 'updateAdmin']);
     });
 });
 
@@ -99,19 +107,9 @@ Route::get('/search', [DataController::class, 'search']);
 Route::get('/lecturerProfile', [PageController::class, 'showLecturerProfile'])->name('lecturerProfile.get');
 Route::get('/searchLecturer', [DataController::class, 'searchLecturer']);
 
-//Master
-Route::get('/master',[PageController::class,'masterAccount'])->name('master.get');
-Route::get('/addAdmin',[PageController::class,'masterAddAdmin']);
-Route::post('/addAdmin', [DataController::class, 'addAdmin']);
-Route::get('/deleteAdmin/{uname}', [DataController::class, 'deleteAdmin']);
-Route::get('/updateAdmin/{uname}', [PageController::class, 'updateAdmin']);
-Route::post('/updateAdmin/{uname}', [DataController::class, 'updateAdmin']);
+
 
 //admin page
-Route::get('/adminProfile', [PageController::class, 'showAdminProfile'])->name('adminProfile.get');
-Route::get('/listUser', [PageController::class, 'showAdminPage']);
-Route::get('/addUser', [PageController::class, 'showAddUser']);
-Route::post('/addUser', [DataController::class, 'addUser']);
-Route::get('/deleteUser/{uname}', [DataController::class, 'deleteUser']);
+
 
 
