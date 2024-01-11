@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('lecturer', 100);
             $table->text('description')->nullable();
             $table->string('cover', 500)->nullable();
+            $table->integer('price');
             $table->unsignedBigInteger('difficulty');
             $table->unsignedBigInteger('category');
 
