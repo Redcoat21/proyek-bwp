@@ -27,9 +27,15 @@ Edit
 @endsection
 
 @section('content')
+<div class="flex flex-col">
     @foreach($errors->all() as $error)
-        {{ $error }}
+        <div class="bg-red-500 my-6 py-3 mx-56 shadow-md rounded">
+            <div class="mx-3 text-white">
+                {{ $error }}
+            </div>
+        </div>
     @endforeach
+</div>
 <div class="flex flex-col">
     <div class="bg-zinc-100 my-6 mx-56 shadow-md">
         <div class="text-2xl font-bold mt-10 ms-10">

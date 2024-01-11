@@ -20,6 +20,16 @@ Profile
 @endsection
 
 @section('content')
+@if(session('success'))
+<div class="flex flex-col">
+    <div class="bg-green-500 my-6 py-3 mx-56 shadow-md rounded">
+        <div class="mx-3 text-white">
+            {{ session('success') }}
+        </div>
+    </div>
+</div>
+@endif
+
 @if(auth()->user()->role == "STU")
     <div class="flex flex-col">
         <div class="bg-zinc-100 my-6 mx-56 shadow-md">
