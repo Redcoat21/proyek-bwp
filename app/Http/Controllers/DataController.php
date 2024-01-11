@@ -84,10 +84,10 @@ class DataController extends Controller
 
     function addAdmin(Request $req){
         $req->validate([
-            'username' => 'required',
-            'name' => 'required|regex:/^[a-zA-Z\s]+$/',
-            'email' => 'required|email',
-            'password' => 'required|min:6'
+            'username' => 'required|max:100',
+            'name' => 'required|regex:/^[a-zA-Z\s]+$/|max:150',
+            'email' => 'required|email|max:150',
+            'password' => 'required|min:6|max:72'
         ], [
             'username.required' => 'Username is required.',
             'name.required' => 'Full name is required.',
@@ -96,6 +96,10 @@ class DataController extends Controller
             'email.email' => 'It must be a valid email address.',
             'password.required' => 'Password is required.',
             'password.min' => 'The password must contain at least 6 characters.',
+            'password.max' => 'The password must not have over 72 characters.',
+            'username.max' => 'The username must not have over 100 characters.',
+            'name.max' => 'The name must not have over 150 characters.',
+            'email.max' => 'The email must not have over 150 characters.',
         ]);
 
         $pass = Hash::make($req->password);

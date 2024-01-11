@@ -11,6 +11,11 @@ Add Admin
     <button class="bg-blue-600 text-white text-lg py-1 px-3 rounded"><a href="{{'/master'}}">Back</a></button>
 </div>
 <form action="" method="post">
+    @if(Session::has('msg'))
+        <div class="bg-red-500 text-white py-2 px-4 rounded mb-4">
+            {{ session('msg') }}
+        </div>
+    @endif
         @csrf
         <div class="mx-64">
             <input type="hidden" name="uname">
