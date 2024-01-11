@@ -244,7 +244,11 @@ Profile
                     {{ '/lecturer/course/'.$hiddenCourse->id }}
                 @endif
                 " class="w-11/12 bg-white border border-gray-200 rounded-lg">
+                @if($course->cover)
+                    <img class="rounded-t-lg w-full" src="{{ asset($course->cover) }}" alt="">
+                @else
                     <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
+                @endif
                     <div class="p-5">
                         <div class="flex items-center space-x-3">
                             <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
@@ -304,7 +308,11 @@ Profile
                     {{ '/lecturer/course/'.$publishedCourse->id }}
                 @endif
                 " class="w-11/12 bg-white border border-gray-200 rounded-lg">
+                @if($course->cover)
+                    <img class="rounded-t-lg w-full" src="{{ asset($course->cover) }}" alt="">
+                @else
                     <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
+                @endif
                     <div class="p-5">
                         <div class="flex items-center space-x-3">
                             <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
@@ -344,7 +352,11 @@ Profile
                     {{ '/lecturer/course/'.$disabledCourse->id }}
                 @endif
                 " class="w-11/12 bg-white border border-gray-200 rounded-lg">
+                @if($course->cover)
+                    <img class="rounded-t-lg w-full" src="{{ asset($course->cover) }}" alt="">
+                @else
                     <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
+                @endif
                     <div class="p-5">
                         <div class="flex items-center space-x-3">
                             <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
