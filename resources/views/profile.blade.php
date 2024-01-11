@@ -244,8 +244,8 @@ Profile
                     {{ '/lecturer/course/'.$hiddenCourse->id }}
                 @endif
                 " class="w-11/12 bg-white border border-gray-200 rounded-lg">
-                @if($course->cover)
-                    <img class="rounded-t-lg w-full" src="{{ asset($course->cover) }}" alt="">
+                @if($hiddenCourse->cover)
+                    <img class="rounded-t-lg w-full" src="{{ asset($hiddenCourse->cover) }}" alt="">
                 @else
                     <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
                 @endif
@@ -308,8 +308,8 @@ Profile
                     {{ '/lecturer/course/'.$publishedCourse->id }}
                 @endif
                 " class="w-11/12 bg-white border border-gray-200 rounded-lg">
-                @if($course->cover)
-                    <img class="rounded-t-lg w-full" src="{{ asset($course->cover) }}" alt="">
+                @if($publishedCourse->cover)
+                    <img class="rounded-t-lg w-full" src="{{ asset($publishedCourse->cover) }}" alt="">
                 @else
                     <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
                 @endif
@@ -352,8 +352,8 @@ Profile
                     {{ '/lecturer/course/'.$disabledCourse->id }}
                 @endif
                 " class="w-11/12 bg-white border border-gray-200 rounded-lg">
-                @if($course->cover)
-                    <img class="rounded-t-lg w-full" src="{{ asset($course->cover) }}" alt="">
+                @if($disabledCourse->cover)
+                    <img class="rounded-t-lg w-full" src="{{ asset($disabledCourse->cover) }}" alt="">
                 @else
                     <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
                 @endif

@@ -197,8 +197,7 @@ class PageController extends Controller
                 LEFT JOIN courses AS `c` ON c.id = t.course
                 LEFT JOIN users AS `u` ON u.username = c.lecturer
                 where t.student = '$username'
-                GROUP BY c.id, c.name, c.description, u.name, u.profile_picture, c.cover
-                LIMIT 3;
+                GROUP BY c.id, c.name, c.description, u.name, u.profile_picture, c.cover;
             ");
 
             $completed = [];
