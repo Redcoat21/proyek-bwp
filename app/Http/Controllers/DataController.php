@@ -198,7 +198,7 @@ class DataController extends Controller
         $newCourse->status = 0;
         $newCourse->description = $req->desc;
         $newCourse->price = (int) $req->price;
-        $newCourse->cover = "storage/" . $req->imageName;
+        $newCourse->cover = "storage/course/" . $imageName;
         $newCourse->difficulty = $req->difficulty;
         $newCourse->lecturer = auth()->user()->username;
         $newCourse->category = $req->category;
