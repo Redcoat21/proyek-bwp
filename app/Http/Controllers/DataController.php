@@ -209,12 +209,13 @@ class DataController extends Controller
 
     function addCourse(Request $req){
         $req->validate([
-            'title' => 'required',
+            'title' => 'required|max:200',
             'price' => 'required|numeric',
             'desc' => 'required',
-            'image' =>'required'
+            'image' =>'required|max:500'
         ], [
             'title.required' => 'Title is required.',
+            'title.max' => 'Title must not have over 200 characters',
             'price.required' => 'Price is required.',
             'price.numeric' => 'Price must be number.',
             'desc.required' => 'Description is required.',
@@ -231,10 +232,10 @@ class DataController extends Controller
         $newCourse->category = $req->category;
         $res = $newCourse->save();
         if($res){
-            return redirect('/profile')->with("msg", "Action Berhasil");
+            return redirect('/profile')->with("msg", "Berhasil Add Course!");
         }
         else{
-            return redirect('/addCourse')->with("msg", "Action Gagal");
+            return redirect('/addCourse')->with("msg", "Gagal Add Course!");
         }
     }
 
@@ -254,10 +255,10 @@ class DataController extends Controller
         $newSubCourse->course = $req->id;
         $res = $newSubCourse->save();
         if($res){
-            return redirect('/lecturer/course/'.$req->id)->with("msg", "Action Gagal");
+            return redirect('/lecturer/course/'.$req->id)->with("msg", "Berhasil Add Sub Course");
         }
         else{
-            return redirect('/addSubCourse/'.$req->id)->with("msg", "Action Gagal");
+            return redirect('/addSubCourse/'.$req->id)->with("msg", "Gagal Add Sub Course");
         }
     }
 
@@ -276,10 +277,10 @@ class DataController extends Controller
         $newSubCourse->description = $req->desc;
         $res = $newSubCourse->save();
         if($res){
-            return redirect('/lecturer/course/'.$newSubCourse->course)->with("msg", "Action Gagal");
+            return redirect('/lecturer/course/'.$newSubCourse->course)->with("msg", "Berhasil Update Sub Course");
         }
         else{
-            return redirect('/editSubCourse/'.$req->id)->with("msg", "Action Gagal");
+            return redirect('/editSubCourse/'.$req->id)->with("msg", "Gagal Update Sub Course");
         }
     }
 
@@ -288,10 +289,10 @@ class DataController extends Controller
         $course = $newSubCourse->course;
         $res = $newSubCourse->delete();
         if($res){
-            return redirect('/lecturer/course/'.$course)->with("msg", "Action Gagal");
+            return redirect('/lecturer/course/'.$course)->with("msg", "Berhasil Delete Sub Course");
         }
         else{
-            return redirect('/lecturer/course/'.$course)->with("msg", "Action Gagal");
+            return redirect('/lecturer/course/'.$course)->with("msg", "Gagal delete Sub Course");
         }
     }
 
@@ -299,13 +300,13 @@ class DataController extends Controller
         $course = Course::find($req->id);
         $course->status = 1;
         $res = $course->save();
-        return redirect('/profile');
+        return redirect('/profile')->with('msg', 'Course published!');
     }
 
     public function disableCourse(Request $req){
         $course = Course::find($req->id);
         $course->status = 2;
         $res = $course->save();
-        return redirect('/profile');
+        return redirect('/profile')->with('msg', 'Course disabled!');
     }
 }
