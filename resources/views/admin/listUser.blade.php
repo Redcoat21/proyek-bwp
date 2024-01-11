@@ -15,6 +15,11 @@ List User
             <button class="bg-blue-600 text-white p-2 rounded"><a href="{{'/addUser'}}">Add New User</a></button>
         </div>
     </div>
+    @if(Session::has('msg'))
+        <div class="bg-green-500 text-white py-2 px-4 rounded mb-5 mt-5">
+            {{ session('msg') }}
+        </div>
+    @endif
     <div class="text-2xl font-bold my-4">
         List Lecturers
     </div>
