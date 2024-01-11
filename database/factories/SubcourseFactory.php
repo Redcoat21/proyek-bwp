@@ -23,7 +23,6 @@ class SubcourseFactory extends Factory
             'name' => fake()->word(),
             'description' => fake()->word(),
             'course' => fake()->randomElement($courses),
-            'data' => null
         ];
     }
 }
