@@ -26,7 +26,7 @@
 <h1 class="block text-center text-2xl text-black-400 my-3">Bukan course Anda!</h1>
 @else
 <div class="bg-zinc-100 my-6 mx-56 shadow-md">
-    <div class="flex flex-row items-center mt-10 ml-10">
+    <div class="flex flex-row items-center mt-10 ml-10 pt-10 pl-5 pr-5 pb-5">
         <div class="text-2xl font-bold">
             Sub Courses
         </div>
@@ -68,8 +68,8 @@
             </div>
         @endforeach
     </div>
-    <div class="col-span-2 col-start-3 mt-5">
-        <label for="" class="block text-sm font-medium leading-6 text-gray-900 text-center">STATUS</span></label>
+    <div class="col-span-2 col-start-3 mt-5 p-5">
+        <label for="" class="block text-lg font-bold leading-6 text-gray-900 text-center mb-2">STATUS</label>
         <div class="mt-1">
             <div class="flex space-x-2">
                 @if($course->status != 1)
