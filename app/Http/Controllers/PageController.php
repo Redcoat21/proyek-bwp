@@ -339,10 +339,8 @@ class PageController extends Controller
     }
 
     public function showAdminPage(){
-        $listAdmin = User::withTrashed()->where('role', 'ADM')->get();
         $listLecturer = User::withTrashed()->where('role', 'LEC')->get();
         $listStudent = User::withTrashed()->where('role', 'STU')->get();
-        $param["listAdmins"] = $listAdmin;
         $param["listLecturers"] = $listLecturer;
         $param["listStudents"] = $listStudent;
         return view('admin.listUser', $param);
@@ -392,5 +390,15 @@ class PageController extends Controller
         $course = Course::find($sub->course);
         $param['course'] = $course;
         return view('lecturer.detailSubCourse', $param);
+    }
+    ///Master Controller
+    public function masterAccount(){
+        $listAdmin = User::withTrashed()->where('role', 'ADM')->get();
+        $param["listAdmins"] = $listAdmin;
+        return view('master.master',$param);
+    }
+
+    public function MasterAddAdmin(){
+        return view('master.addAdmin');
     }
 }

@@ -49,7 +49,7 @@
             </div>
         </div>
         <div class="col-span-2 col-start-3 mb-1 mt-10">
-            <button type="submit" id="" name="" class="w-full text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">Edit Subcourse</button>
+            <button type="submit" id="" name="" class="w-full text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">Update Subcourse</button>
         </div>
     </form>
 </div>
