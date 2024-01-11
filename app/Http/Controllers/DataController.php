@@ -81,14 +81,13 @@ class DataController extends Controller
             return redirect('/addUser')->with("msg", "Gagal add user");
         }
     }
-    
+
     function addAdmin(Request $req){
         $req->validate([
             'username' => 'required',
             'name' => 'required|regex:/^[a-zA-Z\s]+$/',
             'email' => 'required|email',
-            'password' => 'required|min:6',
-            'role' => ['required', Rule::in(['ADM', 'LEC', 'STU'])],
+            'password' => 'required|min:6'
         ], [
             'username.required' => 'Username is required.',
             'name.required' => 'Full name is required.',
@@ -97,8 +96,6 @@ class DataController extends Controller
             'email.email' => 'It must be a valid email address.',
             'password.required' => 'Password is required.',
             'password.min' => 'The password must contain at least 6 characters.',
-            'role.required' => 'Role is required.',
-            'role.in' => 'Invalid role selected.',
         ]);
 
         $pass = Hash::make($req->password);
@@ -108,7 +105,7 @@ class DataController extends Controller
         $newUser->name = $req->name;
         $newUser->email = $req->email;
         $newUser->password = $pass;
-        $newUser->role = $req->role;
+        $newUser->role = 'ADM';
 
         $res = $newUser->save();
 
@@ -153,41 +150,6 @@ class DataController extends Controller
             return redirect('/listUser')->with("msg", "Gagal update user");
         }
     }
-    
-    function updateAdmin(Request $req){
-        $req->validate([
-            'username' => 'required',
-            'name' => 'required|regex:/^[a-zA-Z\s]+$/',
-            'email' => 'required|email',
-            'password' => 'required|min:6',
-            'role' => ['required', Rule::in(['ADM', 'LEC', 'STU'])],
-        ], [
-            'username.required' => 'Username is required.',
-            'name.required' => 'Full name is required.',
-            'name.regex' => 'Name must not contain symbols or numbers.',
-            'email.required' => 'Email is required.',
-            'email.email' => 'It must be a valid email address.',
-            'password.required' => 'Password is required.',
-            'password.min' => 'The password must contain at least 6 characters.',
-            'role.required' => 'Role is required.',
-            'role.in' => 'Invalid role selected.',
-        ]);
-
-        $pass = Hash::make($req->password);
-        $newUser = User::find($req->uname);
-        $newUser->username = $req->username;
-        $newUser->name = $req->name;
-        $newUser->email = $req->email;
-        $newUser->password = $pass;
-        $newUser->role = $req->role;
-        $res = $newUser->save();
-        if($res){
-            return redirect('/master')->with("msg", "Berhasil update user");
-        }
-        else{
-            return redirect('/master')->with("msg", "Gagal update user");
-        }
-    }
 
     function deleteUser(Request $req){
         $user = User::withTrashed()->find($req->uname);
@@ -205,7 +167,7 @@ class DataController extends Controller
             return redirect('/listUser')->with("msg", "Action Gagal");
         }
     }
-    
+
     function deleteAdmin(Request $req){
         $user = User::withTrashed()->find($req->uname);
 

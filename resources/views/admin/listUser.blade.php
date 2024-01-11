@@ -39,7 +39,6 @@ List User
                     @if($lecturer->trashed())
                     <button><a href="{{'/deleteUser/'.$lecturer->username}}" class="bg-blue-600 p-1 text-white rounded">Restore</a></button>
                     @else
-                    <button><a href="{{'/updateUser/'.$lecturer->username}}" class="bg-green-600 p-1 text-white rounded">Update</a></button>
                     <button><a href="{{'/deleteUser/'.$lecturer->username}}" class="bg-red-600 p-1 text-white rounded">Delete</a></button>
                     @endif
                 </td>
@@ -72,7 +71,6 @@ List User
                     @if($student->trashed())
                     <button><a href="{{'/deleteUser/'.$student->username}}" class="bg-blue-600 p-1 text-white rounded">Restore</a></button>
                     @else
-                    <button><a href="{{'/updateUser/'.$student->username}}" class="bg-green-600 p-1 text-white rounded">Update</a></button>
                     <button><a href="{{'/deleteUser/'.$student->username}}" class="bg-red-600 p-1 text-white rounded">Delete</a></button>
                     @endif
                 </td>
@@ -83,4 +81,3 @@ List User
     </table>
 </div>
 @endsection
-    

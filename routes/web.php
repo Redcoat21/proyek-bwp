@@ -94,7 +94,5 @@ Route::get('/listUser', [PageController::class, 'showAdminPage']);
 Route::get('/addUser', [PageController::class, 'showAddUser']);
 Route::post('/addUser', [DataController::class, 'addUser']);
 Route::get('/deleteUser/{uname}', [DataController::class, 'deleteUser']);
-Route::get('/updateUser/{uname}', [PageController::class, 'updateUser']);
-Route::post('/updateUser/{uname}', [DataController::class, 'updateUser']);
 
 Route::post('/buyCourse/{id}', [DataController::class, 'buyCourse'])->name('buyCourse.post');

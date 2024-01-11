@@ -11,7 +11,7 @@
                 <div class="text-2xl font-bold">
                     My Profile
                 </div>
-                <a href="/listUser" class="bg-blue-600 px-4 py-2 rounded text-white text-lg -mr-16">See Details User</a>
+                <a href="{{'/listUser'}}" class="bg-blue-600 px-4 py-2 rounded text-white text-lg -mr-16">See List User</a>
                 <form action="{{ route('auth.post.logout') }}" method="POST" style="display: inline;">
                     @csrf
                     <button type="submit" class="text-lg bg-red-700 text-white px-4 py-2 rounded">
