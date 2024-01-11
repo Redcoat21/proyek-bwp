@@ -65,6 +65,8 @@ Route::middleware('auth')->group(function () {
     //routing untuk course lecturer
     Route::middleware(('role.check:LEC'))->group(function(){
         Route::get('/lecturer/course/{id}', [PageController::class, 'showDetailCourse']);
+        Route::get('/addCourse', [PageController::class,'listAddCourse'])->name('addCourse.get');
+        Route::post('/addCourse', [DataController::class,'addCourse']);
         Route::get('/addSubCourse/{id}', [PageController::class, 'showAddSubCourse']);
         Route::post('/addSubCourse/{id}', [DataController::class, 'addSubCourse']);
         Route::get('/editSubCourse/{id}', [PageController::class, 'updateSubCourse']);

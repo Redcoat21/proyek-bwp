@@ -224,8 +224,6 @@ class PageController extends Controller
 
             }
 
-            // dd($course, $completed, $progress);
-
             $param["completedCourses"] = $completed;
             $param["progressCourses"] = $progress;
             $param["ctrCompleted"] = count($completed);
