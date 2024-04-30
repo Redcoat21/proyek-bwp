@@ -28,7 +28,7 @@
                 const result = query.value;
                 // Make AJAX request
                 $.ajax({
-                    url: '/search',
+                    url: '/searchLecturer',
                     type: 'GET',
                     data: {query: result},
                     success: function (data) {
@@ -45,48 +45,21 @@
         }
 
         function displayResults(results) {
+
             var container = document.getElementById('search-results');
             container.innerHTML = '';
             if (results.length > 0) {
                 results.forEach(function (result) {
+                    var desc = result.description !== null ? result.description : " ";
                     // Set the image URL based on the condition
-                    var img;
-                    if (result.cover != "") {
-                        img = result.cover;
-                    } else {
-                        img = "asset/aws.jpg";
-                    }
-                    var pp;
-                    if(result.lecturers.profile_picture != ""){
-                        pp = result.lecturers.profile_picture;
-                    }
-                    else{
-                        pp = "asset/def_pp.jpg";
-                    }
-
-                    var route = '/course/' + result.id;
-
-                    var desc;
-
-                    if(result.description != null){
-                        desc = result.description;
-                    }
-                    else{
-                        desc = '';
-                    }
-
-                    container.innerHTML += `<div class="rounded-lg hover:shadow-md w-4/5 border border-gray-200 ">
-                        <a href="${route}" class="bg-white">
-                            <img class="rounded-t-lg w-full" src="${img}" alt="">
-                            <div class="p-5">
-                                <div class="flex items-center space-x-3 mb-4">
-                                    <img src="{{ asset('${pp}') }}" class="h-8 w-8 border-none rounded-full">
-                                    <span class="self-center text-xs font-normal whitespace-nowrap">${result.lecturers.name}</span>
-                                </div>
-                                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">${result.name}</h5>
-                                <p class="mb-3 font-normal text-gray-700">${desc}</p>
-                            </div>
-                        </a></div>
+                    container.innerHTML += `<div class="bg-white rounded shadow-md mx-2 my-5 px-5 py-5 flex items-center">
+                        <img src="${result.profile_picture}" alt="Image Lecturer" class="rounded-full w-28 h-28">
+                        <div class="flex-col mx-5 mt-4">
+                            <div class="text-2xl font-bold text-black mb-1">${result.name}</div>
+                            <div class="text-xl font-italic text-gray-800">${desc}</div>
+                        </div>
+                        <a class="ml-auto text-white text-bold text-xl bg-blue-600 rounded py-1 px-3" href='lecturer/${result.username}'>See course</a>
+                    </div>
                     `;
                 });
             } else {

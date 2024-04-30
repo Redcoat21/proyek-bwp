@@ -6,13 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class User extends \Illuminate\Foundation\Auth\User
 {
     use HasFactory;
+    use SoftDeletes;
 
     public $keyType = "string";
-    public $timestamps = false;
+    public $timestamps = true;
     public $primaryKey = 'username';
     public $incrementing = false;
     public $guarded = [];
@@ -23,25 +26,39 @@ class User extends \Illuminate\Foundation\Auth\User
     }
 
     //khusus lecturer
-    public function course(): HasMany
+    public function courses(): ?HasMany
     {
-        return $this->hasMany(Course::class, 'lecturer');
+        if($this->role == 'LEC'){
+            return $this->hasMany(Course::class, 'lecturer');
+        }
     }
 
     //khusus student
     public function buyedCourses(): BelongsToMany
     {
-        return $this->belongsToMany(Course::class, 'transactions', 'student', 'course', 'username', 'id');
+        if($this->role == 'STU'){
+            return $this->belongsToMany(Course::class, 'transactions', 'student', 'course', 'username', 'id');
+        }
+
+        return null;
     }
 
     public function completedSubcourses(): BelongsToMany
     {
-        return $this->belongsToMany(Subcourse::class, 'subcourses_completion', 'student', 'subcourse', 'username', 'id');
+        if($this->role == 'STU'){
+            return $this->belongsToMany(Subcourse::class, 'subcourses_completion', 'student', 'subcourse', 'username', 'id');
+        }
+
+        return null;
     }
 
     public function completedCourses(): BelongsToMany
     {
-        return $this->belongsToMany(Course::class, 'certificates', 'student', 'course', 'username', 'id');
+        if($this->role == 'STU'){
+            return $this->belongsToMany(Course::class, 'certificates', 'student', 'course', 'username', 'id');
+        }
+
+        return null;
     }
 
     protected static function booted()

@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +17,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PageController::class, 'showHome'])->name('home.get');
-Route::get('/lecturer/detail', [PageController::class, 'showLecturerDetail'])->name('lecturerDetail.get');
 
 // LOGIN AND REGISTER
 Route::prefix('auth')->group(function () {
@@ -39,16 +40,66 @@ Route::prefix('/test')->group(function () {
     Route::post('/auth', [AuthController::class, 'login']);
     Route::post('/register', [AuthController::class, 'register']);
     Route::get('/test2', [PageController::class, 'getTopThreeLecturer']);
+    Route::get('/newCourse', [PageController::class, 'getNewestCourses']);
+    Route::get('/file', fn() => view('temp.file'));
+    Route::post('/file/submit', [\App\Http\Controllers\FileController::class, 'showFile']);
+    Route::get('/awikwok', fn () => "<h1>Hello</h1>")->middleware('role.check:STU');
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/listCourse', [PageController::class, 'showListCourse'])->name('listCourse.get');
-    Route::get('/listLecturer', [PageController::class, 'showListLecturer'])->name('listLecturer.get');
-});
+    //khusus buat student
+    Route::middleware('role.check:STU')->group(function(){
+        Route::get('/listCourse', [PageController::class, 'showListCourse'])->name('listCourse.get');
+        Route::get('/listLecturer', [PageController::class, 'testAjax'])->name('listLecturer.get');
+        Route::get('/lecturer/{username}', [PageController::class, 'showLecturerDetail'])->name('lecturerDetail.get');
+        Route::post('/buyCourse/{id}', [DataController::class, 'buyCourse'])->name('buyCourse.post');
+        Route::get('/courseDetail/{id}', [PageController::class, 'showCourseDetail'])->name('courseDetail.get');
+        Route::get('/course/{id}', [PageController::class, 'showCourse'])->name('course.get');
+        Route::get('/subCourse/{id}', [PageController::class, 'showSubCourse'])->name('subCourse.get');
 
-Route::get('/subCourse', [PageController::class, 'showSubCourse'])->name('subCourse.get');
-Route::get('/courseDetail', [PageController::class, 'showCourseDetail'])->name('courseDetail.get');
-Route::get('/course', [PageController::class, 'showCourse'])->name('course.get');
-Route::get('/studentProfile', [PageController::class, 'showStudentProfile'])->name('studentProfile.get');
-Route::get('/editProfileStudent', [PageController::class, 'showEditProfileStudent'])->name('editProfileStudent.get');
-Route::get('/lecturerProfile', [PageController::class, 'showLecturerProfile'])->name('lecturerProfile.get');
+        //routing untuk ajax
+        Route::get('/search', [DataController::class, 'search']);
+        Route::get('/searchLecturer', [DataController::class, 'searchLecturer']);
+    });
+
+    //routing untuk course lecturer
+    Route::middleware(('role.check:LEC'))->group(function(){
+        Route::get('/lecturer/course/{id}', [PageController::class, 'showDetailCourse']);
+        Route::get('/addCourse', [PageController::class,'listAddCourse'])->name('addCourse.get');
+        Route::post('/addCourse', [DataController::class,'addCourse']);
+        Route::get('/addSubCourse/{id}', [PageController::class, 'showAddSubCourse']);
+        Route::post('/addSubCourse/{id}', [DataController::class, 'addSubCourse']);
+        Route::get('/editSubCourse/{id}', [PageController::class, 'updateSubCourse']);
+        Route::post('/editSubCourse/{id}', [DataController::class, 'updateSubCourse']);
+        Route::get('/deleteSubCourse/{id}', [DataController::class, 'deleteSubCourse']);
+        Route::get('/publishCourse/{id}', [DataController::class, 'publishCourse']);
+        Route::get('/disableCourse/{id}', [DataController::class, 'disableCourse']);
+        Route::get('/detailSubCourse/{id}', [PageController::class, 'detailSubCourseLecturer']);
+        Route::get('/addCourse', [PageController::class,'listAddCourse'])->name('addCourse.get');
+        Route::post('/addCourse', [DataController::class,'addCourse']);
+    });
+
+    //admin page
+    Route::middleware(('role.check:ADM'))->group(function(){
+        Route::get('/adminProfile', [PageController::class, 'showAdminProfile'])->name('adminProfile.get');
+        Route::get('/listUser', [PageController::class, 'showAdminPage']);
+        Route::get('/addUser', [PageController::class, 'showAddUser']);
+        Route::post('/addUser', [DataController::class, 'addUser']);
+        Route::get('/deleteUser/{uname}', [DataController::class, 'deleteUser']);
+    });
+
+    //Master
+    Route::middleware(('role.check:MST'))->group(function(){
+        Route::get('/master',[PageController::class,'masterAccount'])->name('master.get');
+        Route::get('/addAdmin',[PageController::class,'masterAddAdmin']);
+        Route::post('/addAdmin', [DataController::class, 'addAdmin']);
+        Route::get('/deleteAdmin/{uname}', [DataController::class, 'deleteAdmin']);
+    });
+
+    Route::middleware(('role.check:STU|LEC'))->group(function(){
+        Route::get('/profile', [PageController::class, 'showProfile'])->name('profile.get');
+        Route::get('/editProfile', [PageController::class, 'showEditProfile'])->name('profile.editProfile.get');
+        Route::get('/toEdit', [PageController::class, 'toEdit'])->name('profile.toEdit.get');
+        Route::patch('/edit', [UserController::class, 'updateUser'])->name('profile.edit.patch');
+    });
+});

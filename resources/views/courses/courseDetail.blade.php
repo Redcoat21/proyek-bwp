@@ -12,14 +12,18 @@
 <div class="hover:bg-blue-100">
     <div class="space-y-0 space-x-8 flex items-center py-4 mx-6">
         <div class="flex items-center justify-center h-48 rounded w-96">
-            <img src="{{ asset('asset/aws.jpg') }}" alt="course-pp" class="rounded">
+            @if($course->cover)
+                <img src="{{ asset($course->cover) }}" alt="course-pp" class="rounded">
+            @else
+                <img src="{{ asset('asset/aws.jpg') }}" alt="course-pp" class="rounded">
+            @endif
         </div>
         <div class="w-4/5">
             <div class="mb-3">
-                <span class="font-semibold text-2xl">Cloud Engineering for Beginners</span>
+                <span class="font-semibold text-2xl">{{ $course->name }}</span>
             </div>
             <div class="mb-3">
-                <p class="text-base text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis temporibus labore natus provident delectus vitae expedita cum sit quisquam inventore consequatur, quam repudiandae id sapiente. Iste perferendis iusto accusamus ratione dolorem voluptatibus illum veritatis ex, maiores quae labore eius facere at blanditiis eveniet dolore sunt fugiat aperiam amet perspiciatis eaque numquam. Voluptas dicta nesciunt atque eius facilis voluptatem debitis architecto dolore. Ab maxime modi molestiae esse minima quia illo eveniet labore tempore, sequi accusantium neque consequatur eum sit voluptate exercitationem autem earum odio beatae consequuntur harum error. Quis sit, fugit commodi, sed non aperiam, quia dolores tempore cum doloremque mollitia.</p>
+                <p class="text-base text-justify">{{ $course->description }}</p>
             </div>
         </div>
     </div>
@@ -28,21 +32,21 @@
     <div class="mx-20">
         <span class="font-semibold text-xl">Courses</span>
         <ul class="w-full">
-            <a href="#" class="">
-                <li class="w-full py-4 px-4 hover:bg-gray-100">
-                    <span class="pe-2 border-e-2">1</span> Introduction to AWS
-                </li>
-            </a>
-            <a href="#" class="">
-                <li class="w-full py-4 px-4 hover:bg-gray-100">
-                    <span class="pe-2 border-e-2">2</span> AWS Cloud
-                </li>
-            </a>
-            <a href="#" class="">
-                <li class="w-full py-4 px-4 hover:bg-gray-100">
-                    <span class="pe-2 border-e-2">3</span> Cloud Engineering
-                </li>
-            </a>
+            @php
+                $ctr = 1;
+            @endphp
+            @foreach ($subCourse as $sub)
+                <a href="{{ route('subCourse.get', ['id' => $sub->id]) }}" class="">
+                    <li class="flex w-full py-4 px-4 hover:bg-gray-100">
+                        <span class="pe-2 border-e-2">{{ $ctr++ }}</span> <span class="mx-2">{{ $sub->name }}</span>
+                        @if($comp[$sub->id])
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 flex">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                            </svg>
+                        @endif
+                    </li>
+                </a>
+            @endforeach
         </ul>
     </div>
 @endsection

@@ -16,9 +16,11 @@ return new class extends Migration
             $table->char('password', 72);
             $table->string('name', 150);
             $table->string('email', 150);
+            $table->text('description')->nullable();
             $table->char('role', 3);
-            $table->string('profile_picture', 500)->nullable();
-
+            $table->string('profile_picture', 500)->default('storage/profile_picture/default.webp');
+            $table->timestamps();
+            $table->softDeletes();
             $table->foreign('role')->references('id')->on('roles');
         });
     }

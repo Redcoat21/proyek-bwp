@@ -34,7 +34,7 @@
                     @if (!auth()->user())
                         {{ route('auth.get') }}
                     @else
-                        {{ route('home.get') }}
+                        {{ route('lecturerDetail.get', ['username' => $topLecturer->username]) }}
                     @endif
                     " class="bg-blue-600 hover:bg-blue-800 text-white py-2 px-6 border border-blue-600 rounded-full text-sm mt-2">
                             See Courses
@@ -56,9 +56,9 @@
                 @if (!auth()->user())
                     {{ route('auth.get') }}
                 @else
-                    {{ route('home.get') }}
+                    {{ route('course.get', ['id' => $course->id]) }}
                 @endif
-                " class="w-3/5 bg-white border border-gray-200 rounded-lg hover:shadow-md place-self-center">
+                " class="w-3/5 bg-white border border-gray-200 rounded-lg hover:shadow-md place-self-center self-start">
                     @if($course->cover)
                         <img class="rounded-t-lg w-full" src="{{ asset($course->cover) }}" alt="">
                     @else
@@ -67,9 +67,9 @@
                     <div class="p-5">
                         <div class="flex items-center space-x-3">
                             @if($course->profile_picture)
-                                <img src="{{ asset($course->profile_picture) }}" class="h-8 border-none rounded" alt="pp">
+                                <img src="{{ asset($course->profile_picture) }}" class="h-8 border-none rounded-full" alt="pp">
                             @else
-                                <img src="{{ asset('asset/def_pp.jpg') }}" class="h-8 border-none rounded" alt="pp">
+                                <img src="{{ asset('asset/def_pp.jpg') }}" class="h-8 border-none rounded-full" alt="pp">
                             @endif
                             <span class="self-center text-xs font-normal whitespace-nowrap">{{ $course->user_name }}</span>
                         </div>
@@ -81,7 +81,6 @@
 
         </div>
     </div>
-
     <!--newest course text-->
     <div class="w-full text-center mb-10">
         <h1 class="text-4xl font-bold text-blue-500">Learn Our Newest Courses</h1>
@@ -89,181 +88,42 @@
     <!--Content carousel-->
     <div class="relative">
         <div id="carousel" class="carousel flex justify-center">
-            <!-- Slides -->
-            <!-- Content for Slide 1 -->
-            <div class="carousel-item w-full">
-                <div class="grid grid-cols-3 justify-items-center mb-5">
-                    <a href="
-                    @if (!auth()->user())
-                        {{ route('auth.get') }}
-                    @else
-                        {{ route('home.get') }}
-                    @endif
-                    " class="w-3/5 bg-white border border-gray-200 rounded-lg hover:shadow-md">
-                        <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
-                        <div class="p-5">
-                            <div class="flex items-center space-x-3">
-                                <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
-                                <span class="self-center text-xs font-normal whitespace-nowrap">AWS Educate</span>
-                            </div>
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Cloud Engineering for Beginners</h5>
-                            <p class="mb-3 font-normal text-gray-700">Learn Basic Cloud Engineering with AWS Educate Team.</p>
-                        </div>
-                    </a>
-
-                    <a href="
-                    @if (!auth()->user())
-                        {{ route('auth.get') }}
-                    @else
-                        {{ route('home.get') }}
-                    @endif
-                    " class="w-3/5 bg-white border border-gray-200 rounded-lg hover:shadow-md">
-                        <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
-                        <div class="p-5">
-                            <div class="flex items-center space-x-3">
-                                <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
-                                <span class="self-center text-xs font-normal whitespace-nowrap">AWS Educate</span>
-                            </div>
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Cloud Engineering for Beginners</h5>
-                            <p class="mb-3 font-normal text-gray-700">Learn Basic Cloud Engineering with AWS Educate Team.</p>
-                        </div>
-                    </a>
-
-                    <a href="
-                    @if (!auth()->user())
-                        {{ route('auth.get') }}
-                    @else
-                        {{ route('home.get') }}
-                    @endif
-                    " class="w-3/5 bg-white border border-gray-200 rounded-lg hover:shadow-md">
-                        <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
-                        <div class="p-5">
-                            <div class="flex items-center space-x-3">
-                                <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
-                                <span class="self-center text-xs font-normal whitespace-nowrap">AWS Educate</span>
-                            </div>
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Cloud Engineering for Beginners</h5>
-                            <p class="mb-3 font-normal text-gray-700">Learn Basic Cloud Engineering with AWS Educate Team.</p>
-                        </div>
-                    </a>
+            {{-- Carousel for each section --}}
+            @foreach($newCourses as $newCourse)
+                <div class="carousel-item w-full">
+                    <div class="grid grid-cols-3 justify-items-center mb-5">
+                    {{--  Carousel item for each section (3 card) --}}
+                    @foreach($newCourse as $course)
+                            <a href="
+                            @if (!auth()->user())
+                                {{ route('auth.get') }}
+                            @else
+                                {{ route('course.get', ['id' => $course->id]) }}
+                            @endif
+                            " class="w-3/5 bg-white border border-gray-200 rounded-lg hover:shadow-md">
+                                @if($course->cover)
+                                    <img class="rounded-t-lg w-full" src="{{ asset($course->cover) }}" alt="">
+                                @else
+                                    <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
+                                @endif
+                                <div class="p-5">
+                                    <div class="flex items-center space-x-3">
+                                        @if($course->lecturers->profile_picture)
+                                            <img src="{{ asset($course->lecturers->profile_picture) }}" alt="course-cover" class="h-8 border-none rounded-full">
+                                        @else
+                                            <img src="{{ asset('asset/def_pp.jpg') }}" alt="course-cover" class="h-8 border-none rounded-full">
+                                        @endif
+                                        {{-- <img src="{{ asset($course->cover) }}" alt="course-cover" class="h-8 border-none rounded"> --}}
+                                        <span class="self-center text-xs font-normal whitespace-nowrap">{{ $course->lecturers->name }}</span>
+                                    </div>
+                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{ $course->name }}</h5>
+                                    <p class="mb-3 font-normal text-gray-700">{{ $course->description }}</p>
+                                </div>
+                            </a>
+                    @endforeach
+                    </div>
                 </div>
-            </div>
-            <!-- Content for Slide 2 -->
-            <div class="carousel-item w-full">
-                <div class="grid grid-cols-3 justify-items-center mb-5">
-                    <a href="
-                    @if (!auth()->user())
-                        {{ route('auth.get') }}
-                    @else
-                        {{ route('home.get') }}
-                    @endif
-                    " class="w-3/5 bg-white border border-gray-200 rounded-lg hover:shadow-md">
-                        <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
-                        <div class="p-5">
-                            <div class="flex items-center space-x-3">
-                                <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
-                                <span class="self-center text-xs font-normal whitespace-nowrap">AWS Educate</span>
-                            </div>
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Slide 2</h5>
-                            <p class="mb-3 font-normal text-gray-700">Learn Basic Cloud Engineering with AWS Educate Team.</p>
-                        </div>
-                    </a>
-
-                    <a href="
-                    @if (!auth()->user())
-                        {{ route('auth.get') }}
-                    @else
-                        {{ route('home.get') }}
-                    @endif
-                    " class="w-3/5 bg-white border border-gray-200 rounded-lg hover:shadow-md">
-                        <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
-                        <div class="p-5">
-                            <div class="flex items-center space-x-3">
-                                <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
-                                <span class="self-center text-xs font-normal whitespace-nowrap">AWS Educate</span>
-                            </div>
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Cloud Engineering for Beginners</h5>
-                            <p class="mb-3 font-normal text-gray-700">Learn Basic Cloud Engineering with AWS Educate Team.</p>
-                        </div>
-                    </a>
-
-                    <a href="
-                    @if (!auth()->user())
-                        {{ route('auth.get') }}
-                    @else
-                        {{ route('home.get') }}
-                    @endif
-                    " class="w-3/5 bg-white border border-gray-200 rounded-lg hover:shadow-md">
-                        <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
-                        <div class="p-5">
-                            <div class="flex items-center space-x-3">
-                                <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
-                                <span class="self-center text-xs font-normal whitespace-nowrap">AWS Educate</span>
-                            </div>
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Cloud Engineering for Beginners</h5>
-                            <p class="mb-3 font-normal text-gray-700">Learn Basic Cloud Engineering with AWS Educate Team.</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <!-- Content for Slide 3 -->
-            <div class="carousel-item w-full">
-                <div class="grid grid-cols-3 justify-items-center mb-5">
-                    <a href="
-                    @if (!auth()->user())
-                        {{ route('auth.get') }}
-                    @else
-                        {{ route('home.get') }}
-                    @endif
-                    " class="w-3/5 bg-white border border-gray-200 rounded-lg hover:shadow-md">
-                        <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
-                        <div class="p-5">
-                            <div class="flex items-center space-x-3">
-                                <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
-                                <span class="self-center text-xs font-normal whitespace-nowrap">AWS Educate</span>
-                            </div>
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Slide 3</h5>
-                            <p class="mb-3 font-normal text-gray-700">Learn Basic Cloud Engineering with AWS Educate Team.</p>
-                        </div>
-                    </a>
-
-                    <a href="
-                    @if (!auth()->user())
-                        {{ route('auth.get') }}
-                    @else
-                        {{ route('home.get') }}
-                    @endif
-                    " class="w-3/5 bg-white border border-gray-200 rounded-lg hover:shadow-md">
-                        <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
-                        <div class="p-5">
-                            <div class="flex items-center space-x-3">
-                                <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
-                                <span class="self-center text-xs font-normal whitespace-nowrap">AWS Educate</span>
-                            </div>
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Cloud Engineering for Beginners</h5>
-                            <p class="mb-3 font-normal text-gray-700">Learn Basic Cloud Engineering with AWS Educate Team.</p>
-                        </div>
-                    </a>
-
-                    <a href="
-                    @if (!auth()->user())
-                        {{ route('auth.get') }}
-                    @else
-                        {{ route('home.get') }}
-                    @endif
-                    " class="w-3/5 bg-white border border-gray-200 rounded-lg hover:shadow-md">
-                        <img class="rounded-t-lg w-full" src="{{ asset('asset/aws.jpg') }}" alt="">
-                        <div class="p-5">
-                            <div class="flex items-center space-x-3">
-                                <img src="{{ asset('asset/aws_education.jpg') }}" class="h-8 border-none rounded">
-                                <span class="self-center text-xs font-normal whitespace-nowrap">AWS Educate</span>
-                            </div>
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Cloud Engineering for Beginners</h5>
-                            <p class="mb-3 font-normal text-gray-700">Learn Basic Cloud Engineering with AWS Educate Team.</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            @endforeach
             <!-- Navigation buttons -->
             <button id="prevBtn" class="carousel-prev absolute left-10 top-1/2 transform -translate-y-1/2 px-2 py-5 rounded-r-sm hover:border-2 hover:border-black">
                 <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
@@ -326,5 +186,4 @@
         showSlide();
     });
     </script>
-
 @endsection
