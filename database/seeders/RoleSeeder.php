@@ -17,6 +17,7 @@ class RoleSeeder extends Seeder
             array('id' => 'ADM', 'name' => 'Admin'),
             array('id' => 'STU', 'name' => 'Student'),
             array('id' => 'LEC', 'name' => 'Lecturer'),
+            array('id' => 'MST', 'name' => 'Master')
         );
 
         Role::factory()
